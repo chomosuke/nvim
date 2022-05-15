@@ -11,8 +11,9 @@ function nmap(keys, mapping)
 	map('n', keys, mapping)
 end
 
--- map "nt" to <Esc>
-imap('nt', '<Esc>')
+-- map shift-enter & shift-space to <Esc>
+imap('<S-CR>', '<Esc>')
+imap('<S-Space>', '<Esc>')
 
 -- show trailing white space & tabs
 vim.opt.list = true

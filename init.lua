@@ -13,7 +13,6 @@ end
 
 -- map shift-enter & shift-space to <Esc>
 imap('<S-CR>', '<Esc>')
-imap('<S-Space>', '<Esc>')
 
 -- show trailing white space & tabs
 vim.opt.list = true

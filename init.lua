@@ -22,7 +22,7 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 
 -- for packer
-require('plugins')
+require 'plugins'
 
 -- for lsp
 local lsp_status = require 'lsp-status'
@@ -50,4 +50,17 @@ lspconfig.sumneko_lua.setup {
 }
 
 lsp_status.status()
+
+-- for rust tools
+require 'rust-tools'.setup {
+  server = {
+    settings = {
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
+      },
+    },
+  },
+}
 

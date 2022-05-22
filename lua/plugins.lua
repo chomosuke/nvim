@@ -1,6 +1,6 @@
 -- for bootstrap
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath 'data'..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
     'git',
@@ -36,12 +36,31 @@ return require 'packer'.startup(function(use)
   }
 
   -- for language servers
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/lsp-status.nvim'
-  use 'nvim-lua/completion-nvim'
+  use {
+    'neovim/nvim-lspconfig',
+    config = function ()
+      local lspconfig = require 'lspconfig'
+
+      lspconfig.rust_analyzer.setup {
+        settings = {
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              command = 'clippy',
+            },
+          },
+        },
+      }
+      lspconfig.sumneko_lua.setup {}
+    end,
+  }
 
   -- for rust
-  use 'simrat39/rust-tools.nvim'
+  use {
+    'simrat39/rust-tools.nvim',
+    config = function()
+      require 'rust-tools'.setup {}
+    end,
+  }
 
   -- for indentation
   use {

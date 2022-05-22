@@ -26,9 +26,9 @@ require 'plugins'
 
 -- for lsp
 local lsp_status = require 'lsp-status'
-local lspconfig = require 'lspconfig'
-
 lsp_status.register_progress()
+
+local lspconfig = require 'lspconfig'
 
 vim.cmd [[
   autocmd BufEnter * lua require 'completion'.on_attach()
@@ -57,4 +57,7 @@ lspconfig.sumneko_lua.setup {
 }
 
 lsp_status.status()
+
+-- for rust tools
+require 'rust-tools'.setup {}
 

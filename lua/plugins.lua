@@ -40,6 +40,9 @@ return require 'packer'.startup(function(use)
   use 'nvim-lua/lsp-status.nvim'
   use 'nvim-lua/completion-nvim'
 
+  -- for rust
+  use 'simrat39/rust-tools.nvim'
+
   -- for indentation
   use {
     'nmac427/guess-indent.nvim',

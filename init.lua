@@ -43,6 +43,13 @@ local capabilities = lsp_status.capabilities
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        command = 'clippy',
+      },
+    },
+  },
 }
 lspconfig.sumneko_lua.setup {
   on_attach = on_attach,
@@ -50,17 +57,4 @@ lspconfig.sumneko_lua.setup {
 }
 
 lsp_status.status()
-
--- for rust tools
-require 'rust-tools'.setup {
-  server = {
-    settings = {
-      ['rust-analyzer'] = {
-        checkOnSave = {
-          command = 'clippy',
-        },
-      },
-    },
-  },
-}
 

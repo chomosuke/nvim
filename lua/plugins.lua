@@ -2,7 +2,14 @@
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system {
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path
+  }
 end
 
 -- for auto PackerSync
@@ -25,7 +32,7 @@ return require 'packer'.startup(function(use)
         signcolumn = false,
         numhl = true,
       }
-    end
+    end,
   }
 
   -- for language servers
@@ -33,8 +40,13 @@ return require 'packer'.startup(function(use)
   use 'nvim-lua/lsp-status.nvim'
   use 'nvim-lua/completion-nvim'
 
-  -- for rust
-  use 'simrat39/rust-tools.nvim'
+  -- for indentation
+  use {
+    'nmac427/guess-indent.nvim',
+    config = function()
+      require 'guess-indent'.setup {}
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

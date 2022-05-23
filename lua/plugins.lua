@@ -1,6 +1,6 @@
 -- for bootstrap
 local fn = vim.fn
-local install_path = fn.stdpath 'data'..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
     'git',
@@ -8,7 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     '--depth',
     '1',
     'https://github.com/wbthomason/packer.nvim',
-    install_path
+    install_path,
   }
 end
 
@@ -36,23 +36,7 @@ return require 'packer'.startup(function(use)
   }
 
   -- for language servers
-  use {
-    'neovim/nvim-lspconfig',
-    config = function ()
-      local lspconfig = require 'lspconfig'
-
-      lspconfig.rust_analyzer.setup {
-        settings = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              command = 'clippy',
-            },
-          },
-        },
-      }
-      lspconfig.sumneko_lua.setup {}
-    end,
-  }
+  use 'neovim/nvim-lspconfig'
 
   -- for rust
   use {
@@ -73,6 +57,7 @@ return require 'packer'.startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
-    require('packer').sync()
+    require 'packer'.sync()
   end
 end)
+

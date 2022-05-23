@@ -21,9 +21,6 @@ vim.opt.list = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 
--- set font
-vim.opt.guifont="Courier New:h16"
-
 -- for packer
 require 'plugins'
 

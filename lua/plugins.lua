@@ -37,6 +37,14 @@ return require 'packer'.startup(function(use)
 
   -- for language servers
   use 'neovim/nvim-lspconfig'
+  use {
+    'williamboman/nvim-lsp-installer',
+    config = function()
+      require 'nvim-lsp-installer'.setup {
+        automatic_installation = true,
+      }
+    end,
+  }
 
   -- for rust
   use {

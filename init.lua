@@ -25,6 +25,11 @@ vim.opt.number = true
 vim.opt.redrawtime = 20000
 vim.opt.maxmempattern = 200000
 
+-- for font on mac
+if vim.loop.os_uname().sysname == 'Darwin' then
+  vim.opt.guifont = 'Courier New:h15'
+end
+
 -- for packer
 require 'plugins'
 

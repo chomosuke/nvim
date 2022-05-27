@@ -32,18 +32,3 @@ end
 
 -- for packer
 require 'plugins'
-
--- for lsp
-local lspconfig = require 'lspconfig'
-lspconfig.rust_analyzer.setup {
-  settings = {
-    ['rust-analyzer'] = {
-      checkOnSave = {
-        command = 'clippy',
-      },
-    },
-  },
-}
-lspconfig.sumneko_lua.setup {}
-lspconfig.quick_lint_js.setup {}
-lspconfig.hls.setup {}

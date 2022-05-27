@@ -46,4 +46,4 @@ lspconfig.rust_analyzer.setup {
 }
 lspconfig.sumneko_lua.setup {}
 lspconfig.quick_lint_js.setup {}
-
+lspconfig.hls.setup {}

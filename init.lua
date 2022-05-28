@@ -11,6 +11,22 @@ local function nmap(keys, mapping)
   map('n', keys, mapping)
 end
 
+-- helper for require if exist
+function isModuleAvailable(name)
+  if package.loaded[name] then
+    return true
+  else
+    for _, searcher in ipairs(package.searchers or package.loaders) do
+      local loader = searcher(name)
+      if type(loader) == 'function' then
+        package.preload[name] = loader
+        return true
+      end
+    end
+    return false
+  end
+end
+
 -- map shift-enter & shift-space to <Esc>
 imap('<S-CR>', '<Esc>')
 
@@ -25,9 +41,9 @@ vim.opt.number = true
 vim.opt.redrawtime = 20000
 vim.opt.maxmempattern = 200000
 
--- for font on mac
-if vim.loop.os_uname().sysname == 'Darwin' then
-  vim.opt.guifont = 'Courier New:h15'
+-- for machine specific configuration
+if isModuleAvailable 'machine_specific' then
+  require 'machine_specific'
 end
 
 -- for packer

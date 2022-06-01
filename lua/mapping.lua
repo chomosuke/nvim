@@ -13,3 +13,9 @@ end
 
 -- map shift-enter & shift-space to <Esc>
 imap('<S-CR>', '<Esc>')
+
+-- map space to leader
+vim.g.mapleader = ' '
+
+-- map <Leader>fd to open telescope fd
+nmap('<Leader>fd', ':Telescope fd<CR>')

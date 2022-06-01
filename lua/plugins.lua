@@ -88,7 +88,26 @@ return require 'packer'.startup(function(use)
   use {
     'feline-nvim/feline.nvim',
     config = function()
-      require('feline').setup()
+      require 'feline'.setup()
+    end,
+  }
+
+  -- for indentation guides
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require 'indent_blankline'.setup {}
+    end,
+  }
+
+  -- for theme
+  use {
+    'joshdick/onedark.vim',
+    config = function()
+      vim.cmd [[
+        syntax on
+        colorscheme onedark
+      ]]
     end,
   }
 

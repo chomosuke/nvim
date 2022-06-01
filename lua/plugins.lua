@@ -140,6 +140,14 @@ return require 'packer'.startup(function(use)
     end,
   }
 
+  -- for smooth scrolling
+  use {
+    'karb94/neoscroll.nvim',
+    config = function()
+      require 'neoscroll'.setup()
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

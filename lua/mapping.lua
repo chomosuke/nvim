@@ -20,6 +20,12 @@ vim.g.mapleader = ' '
 -- map <Leader>fd to open telescope fd
 nmap('<Leader>fd', ':Telescope fd<CR>')
 
--- map for NvimTree
+-- mapping for NvimTree
 nmap('<Leader>n', ':NvimTreeToggle<CR>')
 nmap('<Leader>r', ':NvimTreeRefresh<CR>')
+
+-- mapping for navigating splits
+nmap('<Leader>h', '<C-w><C-h>')
+nmap('<Leader>j', '<C-w><C-j>')
+nmap('<Leader>k', '<C-w><C-k>')
+nmap('<Leader>l', '<C-w><C-l>')

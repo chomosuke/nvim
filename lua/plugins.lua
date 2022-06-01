@@ -84,6 +84,14 @@ return require 'packer'.startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -- for status line
+  use {
+    'feline-nvim/feline.nvim',
+    config = function()
+      require('feline').setup()
+    end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then

@@ -12,3 +12,6 @@ vim.opt.maxmempattern = 200000
 -- case insensitive if no uppercase
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- for feline in terminal
+vim.opt.termguicolors = true

@@ -19,3 +19,7 @@ vim.g.mapleader = ' '
 
 -- map <Leader>fd to open telescope fd
 nmap('<Leader>fd', ':Telescope fd<CR>')
+
+-- map for NvimTree
+nmap('<Leader>n', ':NvimTreeToggle<CR>')
+nmap('<Leader>r', ':NvimTreeRefresh<CR>')

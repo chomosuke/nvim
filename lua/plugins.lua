@@ -81,7 +81,7 @@ return require 'packer'.startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { 'nvim-lua/plenary.nvim' }
   }
 
   -- for status line
@@ -108,6 +108,21 @@ return require 'packer'.startup(function(use)
         syntax on
         colorscheme onedark
       ]]
+    end,
+  }
+
+  -- for file explorer
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- for file icon
+    },
+    config = function()
+      require 'nvim-tree'.setup {
+        git = {
+          ignore = false,
+        },
+      }
     end,
   }
 

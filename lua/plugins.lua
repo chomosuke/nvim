@@ -82,7 +82,13 @@ return require 'packer'.startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = 'nvim-lua/plenary.nvim'
+    defaults = {
+      file_ignore_patterns = {
+        '^.git/',
+        '^node_modules/',
+      },
+    },
+    requires = 'nvim-lua/plenary.nvim',
   }
 
   -- for status line
@@ -122,6 +128,13 @@ return require 'packer'.startup(function(use)
       require 'nvim-tree'.setup {
         git = {
           ignore = false,
+        },
+        renderer = {
+          highlight_git = true,
+          highlight_opened_files = 'icon',
+          indent_markers = {
+            enable = true,
+          },
         },
       }
     end,

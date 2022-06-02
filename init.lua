@@ -1,7 +1,7 @@
 if not vim.g.vscode then
-  require 'mapping'
-  require 'config'
   require 'plugins'
+  require 'config'
+  require 'mapping'
 
   -- for machine specific configuration
   local function isModuleAvailable(name)

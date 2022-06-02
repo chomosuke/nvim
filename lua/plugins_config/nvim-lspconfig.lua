@@ -13,6 +13,6 @@ return function()
     },
   }
   lspconfig.sumneko_lua.setup {}
-  lspconfig.hls.setup {}
+--  lspconfig.hls.setup {}
   lspconfig.intelephense.setup {}
 end

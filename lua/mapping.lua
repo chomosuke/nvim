@@ -41,6 +41,8 @@ nmap('<Leader>l', '<C-w><C-l>')
 -- mappings for bufferline
 nmap(']]', ':BufferLineCycleNext<CR>')
 nmap('[[', ':BufferLineCyclePrev<CR>')
+nmap('gt', ':BufferLineCycleNext<CR>')
+nmap('gT', ':BufferLineCyclePrev<CR>')
 nmap('][', ':BufferLineMoveNext<CR>')
 nmap('[]', ':BufferLineMovePrev<CR>')
 nmap('<Leader>bp', ':BufferLinePick<CR>')

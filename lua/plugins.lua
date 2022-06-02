@@ -73,9 +73,7 @@ return require 'packer'.startup(function(use)
   -- for status line
   use {
     'feline-nvim/feline.nvim',
-    config = function()
-      require 'feline'.setup()
-    end,
+    config = require 'plugins_config.feline',
   }
 
   -- for indentation guides

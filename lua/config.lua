@@ -19,7 +19,3 @@ vim.opt.termguicolors = true
 -- split to right and bottom
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-
--- wrap h & l
-vim.opt.whichwrap:append 'h'
-vim.opt.whichwrap:append 'l'

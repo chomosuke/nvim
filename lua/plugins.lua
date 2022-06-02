@@ -94,6 +94,7 @@ return require 'packer'.startup(function(use)
       }
       lspconfig.sumneko_lua.setup {}
       lspconfig.hls.setup {}
+      lspconfig.intelephense.setup {}
     end,
   }
 

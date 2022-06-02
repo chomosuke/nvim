@@ -124,7 +124,7 @@ return require 'packer'.startup(function(use)
   -- for buffer as tabs
   use {
     'akinsho/bufferline.nvim',
-    tag = "v2.*",
+    tag = 'v2.*',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require 'bufferline'.setup {
@@ -138,10 +138,21 @@ return require 'packer'.startup(function(use)
 
   -- for keybinding hint
   use {
-    "folke/which-key.nvim",
+    'folke/which-key.nvim',
     config = function()
-      require("which-key").setup {}
+      require('which-key').setup {}
     end
+  }
+
+  -- better escape mapping
+  use {
+    'max397574/better-escape.nvim',
+    config = function()
+      require 'better_escape'.setup {
+        mapping = {',.'},
+        timeout = 256,
+      }
+    end,
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

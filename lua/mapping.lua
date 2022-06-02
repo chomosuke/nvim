@@ -18,9 +18,6 @@ local function nmap(keys, mapping)
   keymap('n', keys, mapping)
 end
 
--- map shift-enter to <Esc>
-amap('<S-CR>', '<Esc>')
-
 -- map space to leader
 vim.g.mapleader = ' '
 

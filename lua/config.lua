@@ -21,4 +21,4 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 
 -- faster timeout
-vim.opt.timeoutlen = 512
+vim.opt.timeoutlen = 256

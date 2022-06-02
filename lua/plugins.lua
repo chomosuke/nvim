@@ -150,7 +150,7 @@ return require 'packer'.startup(function(use)
     config = function()
       require 'better_escape'.setup {
         mapping = {',.'},
-        timeout = 256,
+        timeout = 128,
       }
     end,
   }

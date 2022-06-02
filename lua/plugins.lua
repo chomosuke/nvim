@@ -24,6 +24,12 @@ return require 'packer'.startup(function(use)
   -- for packer to host itself
   use 'wbthomason/packer.nvim'
 
+  -- prereq for many plugins
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+
   -- for git
   use {
     'lewis6991/gitsigns.nvim',
@@ -54,10 +60,6 @@ return require 'packer'.startup(function(use)
 
   -- for telescope finding files
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
-  use {
     'nvim-telescope/telescope.nvim',
     defaults = {
       file_ignore_patterns = {
@@ -86,12 +88,19 @@ return require 'packer'.startup(function(use)
 
   -- for theme
   use {
-    'joshdick/onedark.vim',
+    'Mofiqul/vscode.nvim',
     config = function()
-      vim.cmd [[
-        syntax on
-        colorscheme onedark
-      ]]
+      vim.g.vscode_italic_comment = 1
+      vim.g.vscode_disable_nvimtree_bg = true
+--      vim.cmd [[
+--        colorscheme vscode
+--      ]]
+    end,
+  }
+  use {
+    'navarasu/onedark.nvim',
+    config = function()
+      require 'onedark'.load()
     end,
   }
 

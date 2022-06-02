@@ -19,3 +19,6 @@ vim.opt.termguicolors = true
 -- split to right and bottom
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- faster timeout
+vim.opt.timeoutlen = 512

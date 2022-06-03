@@ -60,3 +60,7 @@ nmap('<Leader>bp', ':BufferLinePick<CR>')
 nmap('<Leader>bcp', ':BufferLinePickClose<CR>')
 nmap('<Leader>bcl', ':BufferLineCloseLeft<CR>')
 nmap('<Leader>bcr', ':BufferLineCloseRight<CR>')
+
+-- mappings for hop
+nmap('<Leader>e', ':HopWord<CR>')
+nmap('<Leader>u', ':HopLineStart<CR>')

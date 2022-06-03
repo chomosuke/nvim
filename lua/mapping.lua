@@ -25,11 +25,13 @@ local function nmap(keys, mapping)
   keymap('n', keys, mapping)
 end
 
--- map ,. to <Esc> except insert cause that's handled by better escape
-noimap(',.', '<Esc>')
-
 -- map space to leader
 vim.g.mapleader = ' '
+
+-- map ,. to <Esc> except insert cause that's handled by better escape
+noimap(',.', '<Esc>')
+-- map <Leader>, back to , for actual , usage
+nmap('<Leader>,', ',')
 
 -- mappings for telescope
 nmap('<Leader>fd', ':Telescope fd<CR>')

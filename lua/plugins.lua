@@ -61,12 +61,7 @@ return require 'packer'.startup(function(use)
   -- for telescope finding files
   use {
     'nvim-telescope/telescope.nvim',
-    defaults = {
-      file_ignore_patterns = {
-        '^.git/',
-        '^node_modules/',
-      },
-    },
+    config = require 'plugins_config.telescope',
     requires = 'nvim-lua/plenary.nvim',
   }
 
@@ -105,9 +100,7 @@ return require 'packer'.startup(function(use)
   -- for file explorer
   use {
     'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- for file icon
-    },
+    requires = 'kyazdani42/nvim-web-devicons', -- for file icon
     config = require 'plugins_config.nvim-tree',
   }
 

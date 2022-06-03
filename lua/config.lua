@@ -26,7 +26,19 @@ vim.opt.timeoutlen = 256
 -- don't let cursor go to the top or bottom
 vim.opt.scrolloff = 8
 
+-- for dashboard
+vim.g.dashboard_default_executive = 'telescope'
+vim.g.indent_blankline_filetype_exclude = {
+  'dashboard',
+  'lspinfo',
+  'packer',
+  'checkhealth',
+  'help',
+  'man',
+  '',
+}
+
 -- for neovide
-vim.g.neovide_cursor_animation_length=0.025
-vim.g.neovide_floating_opacity=0.8
-vim.g.neovide_scroll_animation_length=0.4
+vim.g.neovide_cursor_animation_length = 0.025
+vim.g.neovide_floating_opacity = 0.8
+vim.g.neovide_scroll_animation_length = 0.4

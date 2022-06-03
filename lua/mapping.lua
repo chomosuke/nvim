@@ -64,3 +64,11 @@ nmap('<Leader>bcr', ':BufferLineCloseRight<CR>')
 -- mappings for hop
 nmap('<Leader>e', ':HopWord<CR>')
 nmap('<Leader>u', ':HopLineStart<CR>')
+
+-- mappings for dashboard
+nmap('<Leader>ds', ':SessionSave<CR>')
+nmap('<Leader>dl', ':SessionLoad<CR>')
+nmap('<Leader>dh', ':DashboardFindHistory<CR>')
+nmap('<Leader>dc', ':DashboardChangeColorTheme<CR>')
+nmap('<Leader>db', ':DashboardJumpMark<CR>')
+nmap('<Leader>dn', ':DashboardNewFile<CR>')

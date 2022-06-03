@@ -150,12 +150,15 @@ return require 'packer'.startup(function(use)
   use {
     'phaazon/hop.nvim',
     config = function()
-      require'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
+      require 'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
     end
   }
 
   -- dashboard
-  use 'glepnir/dashboard-nvim'
+  use {
+    'glepnir/dashboard-nvim',
+    config = require 'plugins_config.dashboard',
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

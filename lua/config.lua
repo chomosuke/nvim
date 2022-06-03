@@ -23,6 +23,9 @@ vim.opt.splitright = true
 -- faster timeout
 vim.opt.timeoutlen = 256
 
+-- don't let cursor go to the top or bottom
+vim.opt.scrolloff = 8
+
 -- for neovide
 vim.g.neovide_cursor_animation_length=0.025
 vim.g.neovide_floating_opacity=0.8

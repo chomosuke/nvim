@@ -34,8 +34,10 @@ noimap(',.', '<Esc>')
 nmap('<Leader>,', ',')
 
 -- mappings for telescope
-nmap('<Leader>fd', ':Telescope fd<CR>')
-nmap('<Leader>cb', ':Telescope current_buffer_fuzzy_find<CR>')
+nmap('<Leader>ff', ':Telescope find_files<CR>')
+nmap('<Leader>fc', ':Telescope current_buffer_fuzzy_find<CR>')
+nmap('<Leader>fd', ':Telescope live_grep<CR>')
+nmap('<Leader>fu', ':Telescope grep_string<CR>')
 
 -- mappings for NvimTree
 nmap('<Leader>n', ':NvimTreeToggle<CR>')

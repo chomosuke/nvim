@@ -31,10 +31,10 @@ return function()
       map('n', '<leader>gR', ':Gitsigns reset_buffer<CR>')
       map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>')
       map('n', '<leader>gb', function() gs.blame_line{full=true} end)
-      map('n', '<leader>tb', ':Gitsigns toggle_current_line_blame<CR>')
+      map('n', '<leader>gtb', ':Gitsigns toggle_current_line_blame<CR>')
       map('n', '<leader>gd', ':Gitsigns diffthis<CR>')
       map('n', '<leader>gD', function() gs.diffthis('~') end)
-      map('n', '<leader>td', ':Gitsigns toggle_deleted<CR>')
+      map('n', '<leader>gtd', ':Gitsigns toggle_deleted<CR>')
 
       -- Text object
       map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

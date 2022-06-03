@@ -40,8 +40,8 @@ nmap('<Leader>fd', ':Telescope live_grep<CR>')
 nmap('<Leader>fu', ':Telescope grep_string<CR>')
 
 -- mappings for NvimTree
-nmap('<Leader>n', ':NvimTreeToggle<CR>')
-nmap('<Leader>r', ':NvimTreeRefresh<CR>')
+nmap('<Leader>tn', ':NvimTreeToggle<CR>')
+nmap('<Leader>tr', ':NvimTreeRefresh<CR>')
 
 -- mappings for navigating splits
 nmap('<Leader>h', '<C-w><C-h>')

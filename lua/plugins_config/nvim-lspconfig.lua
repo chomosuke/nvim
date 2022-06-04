@@ -7,7 +7,7 @@ return function()
     vim.keymap.set('n', keys, mapping, { noremap = true })
   end
 
-  map(',do', vim.diagnostic.open_float)
+  map(',df', vim.diagnostic.open_float)
   map(',dp', vim.diagnostic.goto_prev)
   map(',dn', vim.diagnostic.goto_next)
   map(',dl', vim.diagnostic.setloclist)

@@ -63,7 +63,8 @@ nmap('<Leader>br', ':BufferLineCloseRight<CR>')
 
 -- mappings for hop
 nmap('<Leader>e', ':HopWord<CR>')
-nmap('<Leader>u', ':HopLineStart<CR>')
+nmap('<Leader>o', ':HopLineStart<CR>')
+nmap('<Leader>u', ':HopLine<CR>')
 
 -- mappings for dashboard
 nmap('<Leader>ds', ':SessionSave<CR>')

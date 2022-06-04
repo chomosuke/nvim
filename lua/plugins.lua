@@ -43,11 +43,25 @@ return require 'packer'.startup(function(use)
     'neovim/nvim-lspconfig',
     config = require 'plugins_config.nvim-lspconfig',
   }
-
-  -- for rust
   use {
     'simrat39/rust-tools.nvim',
     config = require 'rust-tools'.setup {}
+  }
+  use {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    requires = {
+      {
+        'ms-jpq/coq.artifacts',
+        branch = 'artifacts',
+      },
+    },
+    config = function()
+      vim.g.coq_settings = {
+        auto_start = 'shut-up',
+      }
+      require 'coq'
+    end,
   }
 
   -- for indentation

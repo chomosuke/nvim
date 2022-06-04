@@ -83,10 +83,13 @@ return require 'packer'.startup(function(use)
     requires = 'nvim-lua/plenary.nvim',
   }
 
-  -- for status line
   use {
-    'feline-nvim/feline.nvim',
-    config = require 'plugins_config.feline',
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+      'arkav/lualine-lsp-progress',
+    },
+    config = require 'plugins_config/lualine',
   }
 
   -- for indentation guides
@@ -98,16 +101,6 @@ return require 'packer'.startup(function(use)
   }
 
   -- for theme
-  use {
-    'Mofiqul/vscode.nvim',
-    config = function()
-      vim.g.vscode_italic_comment = 1
-      vim.g.vscode_disable_nvimtree_bg = true
-      -- vim.cmd [[
-      --   colorscheme vscode
-      -- ]]
-    end,
-  }
   use {
     'navarasu/onedark.nvim',
     config = function()

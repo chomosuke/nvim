@@ -3,7 +3,7 @@ return function()
     options = {
       component_separators = '',
       section_separators = '',
-      disabled_filetypes = { 'NvimTree', 'packer' },
+      disabled_filetypes = { 'NvimTree', 'packer', 'dashboard' },
       always_divide_middle = false,
     },
     sections = {

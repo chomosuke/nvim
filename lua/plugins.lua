@@ -62,6 +62,12 @@ return require 'packer'.startup(function(use)
     end,
   }
 
+  -- for autopairs
+  use {
+    'windwp/nvim-autopairs',
+    config = require 'plugins_config/nvim-autopairs',
+  }
+
   -- for indentation
   use {
     'nmac427/guess-indent.nvim',

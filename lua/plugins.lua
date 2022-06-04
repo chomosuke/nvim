@@ -51,14 +51,12 @@ return require 'packer'.startup(function(use)
     'ms-jpq/coq_nvim',
     branch = 'coq',
     requires = {
-      {
-        'ms-jpq/coq.artifacts',
-        branch = 'artifacts',
-      },
+      { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
+      { 'ms-jpq/coq.thirdparty', branch = '3p' },
     },
     config = function()
       vim.g.coq_settings = {
-        auto_start = 'shut-up',
+        auto_start = true,
       }
       require 'coq'
     end,

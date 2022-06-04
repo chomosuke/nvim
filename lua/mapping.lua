@@ -57,9 +57,9 @@ nmap('gT', ':BufferLineCyclePrev<CR>')
 nmap('][', ':BufferLineMoveNext<CR>')
 nmap('[]', ':BufferLineMovePrev<CR>')
 nmap('<Leader>bp', ':BufferLinePick<CR>')
-nmap('<Leader>bcp', ':BufferLinePickClose<CR>')
-nmap('<Leader>bcl', ':BufferLineCloseLeft<CR>')
-nmap('<Leader>bcr', ':BufferLineCloseRight<CR>')
+nmap('<Leader>bc', ':BufferLinePickClose<CR>')
+nmap('<Leader>bl', ':BufferLineCloseLeft<CR>')
+nmap('<Leader>br', ':BufferLineCloseRight<CR>')
 
 -- mappings for hop
 nmap('<Leader>e', ':HopWord<CR>')

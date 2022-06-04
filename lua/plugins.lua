@@ -103,9 +103,9 @@ return require 'packer'.startup(function(use)
     config = function()
       vim.g.vscode_italic_comment = 1
       vim.g.vscode_disable_nvimtree_bg = true
---      vim.cmd [[
---        colorscheme vscode
---      ]]
+      -- vim.cmd [[
+      --   colorscheme vscode
+      -- ]]
     end,
   }
   use {
@@ -176,6 +176,14 @@ return require 'packer'.startup(function(use)
   use {
     'glepnir/dashboard-nvim',
     config = require 'plugins_config.dashboard',
+  }
+
+  -- for comment toggle
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

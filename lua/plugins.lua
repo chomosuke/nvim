@@ -1,6 +1,6 @@
 -- for bootstrap
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system {
     'git',
@@ -154,7 +154,7 @@ return require 'packer'.startup(function(use)
     'max397574/better-escape.nvim',
     config = function()
       require 'better_escape'.setup {
-        mapping = {',.'},
+        mapping = { ',.' },
         timeout = 128,
       }
     end,

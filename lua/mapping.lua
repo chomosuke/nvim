@@ -25,6 +25,10 @@ local function nmap(keys, mapping)
   keymap('n', keys, mapping)
 end
 
+local function map(keys, mapping)
+  keymap('', keys, mapping)
+end
+
 -- map space to leader
 vim.g.mapleader = ' '
 
@@ -62,11 +66,11 @@ nmap('<Leader>bl', ':BufferLineCloseLeft<CR>')
 nmap('<Leader>br', ':BufferLineCloseRight<CR>')
 
 -- mappings for hop
-nmap('<Leader>u', ':HopLine<CR>')
-nmap('<Leader>e', ':HopWord<CR>')
-nmap('<Leader>o', ':HopLineStart<CR>')
-nmap('<Leader>a', ':HopChar2<CR>')
-nmap('<Leader>c', ':HopChar1<CR>')
+map('<Leader>u', ':HopLine<CR>')
+map('<Leader>e', ':HopWord<CR>')
+map('<Leader>o', ':HopLineStart<CR>')
+map('<Leader>a', ':HopChar2<CR>')
+map('<Leader>c', ':HopChar1<CR>')
 
 -- mappings for dashboard
 nmap('<Leader>ds', ':SessionSave<CR>')

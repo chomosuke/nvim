@@ -102,6 +102,13 @@ return require 'packer'.startup(function(use)
 
   -- for theme
   use {
+    'Mofiqul/vscode.nvim',
+    config = function()
+      vim.g.vscode_italic_comment = 1
+      vim.g.vscode_disable_nvimtree_bg = true
+    end,
+  }
+  use {
     'navarasu/onedark.nvim',
     config = function()
       require 'onedark'.load()

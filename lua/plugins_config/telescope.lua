@@ -4,8 +4,10 @@ return function()
   require 'telescope'.setup {
     defaults = {
       file_ignore_patterns = {
-        '^.git/',
-        '^node_modules/',
+        "%.git/",
+        "%.git\\",
+        "node_modules/",
+        "node_modules\\",
       },
       mappings = {
         n = {

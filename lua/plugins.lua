@@ -201,6 +201,9 @@ return require 'packer'.startup({
   config = {
     display = {
       open_fn = require('packer.util').float,
-    }
+    },
+    profile = {
+      enable = true,
+    },
   },
 })

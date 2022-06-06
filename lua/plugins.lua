@@ -114,12 +114,8 @@ return require 'packer'.startup({
         vim.g.vscode_disable_nvimtree_bg = true
       end,
     }
-    use {
-      'navarasu/onedark.nvim',
-      config = function()
-        require 'onedark'.load()
-      end,
-    }
+    use 'rmehri01/onenord.nvim'
+    use 'navarasu/onedark.nvim'
 
     -- for file explorer
     use {

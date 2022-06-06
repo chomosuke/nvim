@@ -38,7 +38,7 @@ return function()
       map('n', '<Leader>gtd', '<cmd>Gitsigns toggle_deleted<CR>')
 
       -- Text object
-      map({ 'o', 'x' }, 'ih', '<cmd><C-U>Gitsigns select_hunk<CR>')
+      map({ 'o', 'x' }, 'ih', '<cmd>Gitsigns select_hunk<CR>')
     end
   }
 end

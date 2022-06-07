@@ -164,6 +164,7 @@ return require 'packer'.startup({
             close_command = 'bdelete %d',
             max_name_length = 50,
             max_prefix_length = 30,
+            offsets = { { filetype = 'NvimTree', text = 'File Explorer', text_align = 'left' } },
             show_buffer_close_icons = false,
             show_close_icon = false,
             diagnostics = 'nvim_lsp',

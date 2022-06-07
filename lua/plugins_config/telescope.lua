@@ -1,13 +1,13 @@
 return function()
-  local actions = require "telescope.actions"
-  local action_layout = require "telescope.actions.layout"
+  local actions = require 'telescope.actions'
+  local action_layout = require 'telescope.actions.layout'
   require 'telescope'.setup {
     defaults = {
       file_ignore_patterns = {
-        "%.git/",
-        "%.git\\",
-        "node_modules/",
-        "node_modules\\",
+        '%.git/',
+        '%.git\\',
+        'node_modules/',
+        'node_modules\\',
       },
       mappings = {
         n = {

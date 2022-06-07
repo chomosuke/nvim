@@ -160,7 +160,9 @@ return require 'packer'.startup({
       config = function()
         require 'bufferline'.setup {
           options = {
-            numbers = 'buffer_id',
+            numbers = function(opts)
+              return string.format('%s', opts.id)
+            end,
             close_command = 'bdelete %d',
             max_name_length = 50,
             max_prefix_length = 30,
@@ -169,8 +171,8 @@ return require 'packer'.startup({
             show_close_icon = false,
             diagnostics = 'nvim_lsp',
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
-              local icon = level:match 'error' and ' ' or level:match 'warning' and ' ' or level:match 'info' and ' ' or level:match 'hint' and ' ' or '?'
-              return ' ' .. icon .. count
+              local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and '' or level:match 'hint' and '' or '?'
+              return icon
             end,
           },
         }

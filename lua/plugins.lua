@@ -121,6 +121,14 @@ return require 'packer'.startup({
     }
     use 'rmehri01/onenord.nvim'
     use 'navarasu/onedark.nvim'
+    use 'marko-cerovac/material.nvim'
+    use {
+      'sainnhe/gruvbox-material',
+      config = function()
+        vim.gruvbox_material_enable_italic = 1
+      end,
+    }
+    use 'projekt0n/github-nvim-theme'
 
     -- for file explorer
     use {

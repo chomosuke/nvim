@@ -171,7 +171,7 @@ return require 'packer'.startup({
             show_close_icon = false,
             diagnostics = 'nvim_lsp',
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
-              local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and '' or level:match 'hint' and '' or '?'
+              local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and '' or level:match 'hint' and '' or '?'
               return icon
             end,
           },
@@ -202,7 +202,9 @@ return require 'packer'.startup({
     use {
       'phaazon/hop.nvim',
       config = function()
-        require 'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
+        require 'hop'.setup {
+          keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb',
+        }
       end
     }
 

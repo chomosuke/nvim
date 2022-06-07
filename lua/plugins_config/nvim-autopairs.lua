@@ -7,10 +7,10 @@ return function()
   vim.g.coq_settings = { keymap = { recommended = false } }
 
   -- these mappings are coq recommended mappings unrelated to nvim-autopairs
-  remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
-  remap('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
-  remap('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
-  remap('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
+  remap('i', '<esc>', [[pumvisible() ? '<c-e><esc>' : '<esc>']], { expr = true, noremap = true })
+  remap('i', '<c-c>', [[pumvisible() ? '<c-e><c-c>' : '<c-c>']], { expr = true, noremap = true })
+  remap('i', '<tab>', [[pumvisible() ? '<c-n>' : '<tab>']], { expr = true, noremap = true })
+  remap('i', '<s-tab>', [[pumvisible() ? '<c-p>' : '<bs>']], { expr = true, noremap = true })
 
   -- skip it, if you use another global object
   _G.MUtils = {}

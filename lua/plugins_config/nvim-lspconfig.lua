@@ -48,6 +48,7 @@ return function()
   local servers = {
     'sumneko_lua',
     'intelephense',
+    'tsserver',
   }
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup { on_attach = on_attach }

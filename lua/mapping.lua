@@ -34,14 +34,21 @@ vim.g.mapleader = ' '
 
 -- map ,. to <Esc> except insert cause that's handled by better escape
 noimap(',.', '<Esc>')
--- map <Leader>, back to , for actual , usage
+
+-- map <Leader>, & <Leader>; back to , & ; for actual , & ; usage
 nmap('<Leader>,', ',')
+nmap('<Leader>;', ';')
 
 -- mappings for telescope
-nmap('<Leader>ff', '<cmd>Telescope find_files<CR>')
-nmap('<Leader>fc', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
-nmap('<Leader>fd', '<cmd>Telescope live_grep<CR>')
-nmap('<Leader>fu', '<cmd>Telescope grep_string<CR>')
+nmap(';f', '<cmd>Telescope find_files<CR>')
+nmap(';c', '<cmd>Telescope current_buffer_fuzzy_find<CR>')
+nmap(';d', '<cmd>Telescope live_grep<CR>')
+nmap(';u', '<cmd>Telescope grep_string<CR>')
+nmap(';gc', '<cmd>Telescope git_commits<CR>')
+nmap(';gu', '<cmd>Telescope git_bcommits<CR>')
+nmap(';gb', '<cmd>Telescope git_branches<CR>')
+nmap(';gs', '<cmd>Telescope git_status<CR>')
+nmap(';gh', '<cmd>Telescope git_stash<CR>')
 
 -- mappings for NvimTree
 nmap('<Leader>n', '<cmd>NvimTreeToggle<CR>')

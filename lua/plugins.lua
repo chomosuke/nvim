@@ -89,6 +89,7 @@ return require 'packer'.startup({
       requires = 'nvim-lua/plenary.nvim',
     }
 
+    -- for statusline
     use {
       'nvim-lualine/lualine.nvim',
       requires = {
@@ -97,6 +98,10 @@ return require 'packer'.startup({
       },
       config = require 'plugins_config/lualine',
     }
+    -- use {
+    --   'feline-nvim/feline.nvim',
+    --   config = require 'plugins_config.feline',
+    -- }
 
     -- for indentation guides
     use {

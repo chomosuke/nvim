@@ -28,7 +28,14 @@ return require 'packer'.startup({
     -- prereq for many plugins
     use {
       'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
+      run = ':TSUpdate',
+      config = function()
+        require 'nvim-treesitter.configs'.setup {
+          highlight = {
+            enable = true,
+          },
+        }
+      end,
     }
 
     -- for git

@@ -162,6 +162,8 @@ return require 'packer'.startup({
           options = {
             numbers = 'buffer_id',
             close_command = 'bdelete %d',
+            max_name_length = 50,
+            max_prefix_length = 30,
             show_buffer_close_icons = false,
             show_close_icon = false,
           },

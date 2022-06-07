@@ -49,6 +49,9 @@ nmap(';gu', '<cmd>Telescope git_bcommits<CR>')
 nmap(';gb', '<cmd>Telescope git_branches<CR>')
 nmap(';gs', '<cmd>Telescope git_status<CR>')
 nmap(';gh', '<cmd>Telescope git_stash<CR>')
+nmap(';lr', '<cmd>Telescope lsp_references<CR>')
+nmap(';ld', '<cmd>Telescope diagnostics bufnr=0<CR>')
+nmap(';vm', '<cmd>Telescope keymaps<CR>')
 
 -- mappings for NvimTree
 nmap('<Leader>n', '<cmd>NvimTreeToggle<CR>')

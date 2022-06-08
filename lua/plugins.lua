@@ -222,6 +222,16 @@ return require 'packer'.startup({
       end
     }
 
+    -- terminal
+    use {
+      "akinsho/toggleterm.nvim",
+      config = function()
+        require 'toggleterm'.setup {
+          open_mapping = '<Leader>t',
+        }
+      end,
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
@@ -229,9 +239,6 @@ return require 'packer'.startup({
     end
   end,
   config = {
-    display = {
-      open_fn = require('packer.util').float,
-    },
     profile = {
       enable = true,
     },

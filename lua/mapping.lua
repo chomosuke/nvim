@@ -10,11 +10,12 @@ local function amap(keys, mapping)
   keymap('t', keys, mapping)
 end
 
--- all modes exept insert
-local function noimap(keys, mapping)
-  keymap('', keys, mapping)
-  keymap('t', keys, mapping)
+local function cmap(keys, mapping)
   keymap('c', keys, mapping)
+end
+
+local function tmap(keys, mapping)
+  keymap('t', keys, mapping)
 end
 
 local function imap(keys, mapping)
@@ -33,7 +34,9 @@ end
 vim.g.mapleader = ' '
 
 -- map ,. to <Esc> except insert cause that's handled by better escape
-noimap(',.', '<Esc>')
+map(',.', '<Esc>')
+cmap(',.', '<Esc>')
+tmap(',.', '<C-\\><C-n>')
 
 -- map <Leader>, & <Leader>; back to , & ; for actual , & ; usage
 nmap('<Leader>,', ',')

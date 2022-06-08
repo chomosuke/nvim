@@ -228,6 +228,9 @@ return require 'packer'.startup({
       config = function()
         require 'toggleterm'.setup {
           open_mapping = '<Leader>t',
+          start_in_insert = false,
+          insert_mappings = false,
+          terminal_mappings = false,
         }
       end,
     }

@@ -2,7 +2,13 @@ return function()
   local remap = vim.api.nvim_set_keymap
   local npairs = require('nvim-autopairs')
 
-  npairs.setup({ map_bs = false, map_cr = false })
+  npairs.setup {
+    map_bs = false,
+    map_cr = false,
+    fast_wrap = {
+      map = '<C-e>',
+    },
+  }
 
   vim.g.coq_settings = { keymap = { recommended = false } }
 

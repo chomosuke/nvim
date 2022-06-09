@@ -42,6 +42,10 @@ tmap(',.', '<C-\\><C-n>')
 nmap('<Leader>,', ',')
 nmap('<Leader>;', ';')
 
+-- scroll faster
+nmap('<C-e>', '8<C-e>')
+nmap('<C-y>', '8<C-y>')
+
 -- mappings for telescope
 nmap(';f', '<cmd>Telescope find_files<CR>')
 nmap(';c', '<cmd>Telescope current_buffer_fuzzy_find<CR>')

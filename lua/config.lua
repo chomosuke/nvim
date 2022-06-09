@@ -26,6 +26,11 @@ vim.opt.timeoutlen = 256
 -- don't let cursor go to the top or bottom
 vim.opt.scrolloff = 8
 
+-- winbar if supported
+if vim.opt.winbar then
+  vim.opt.winbar = '%f'
+end
+
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_floating_opacity = 0.8

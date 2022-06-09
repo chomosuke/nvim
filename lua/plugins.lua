@@ -53,7 +53,9 @@ return require 'packer'.startup({
     }
     use {
       'simrat39/rust-tools.nvim',
-      config = require 'rust-tools'.setup {}
+      config = function()
+        require 'rust-tools'.setup {}
+      end,
     }
     use {
       'ms-jpq/coq_nvim',

@@ -93,13 +93,15 @@ return require 'packer'.startup({
 
     -- for telescope finding files
     use {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-    }
-    use {
       'nvim-telescope/telescope.nvim',
       config = require 'plugins_config.telescope',
-      requires = 'nvim-lua/plenary.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        },
+      },
     }
 
     -- for statusline

@@ -59,6 +59,7 @@ nmap(';gh', '<cmd>Telescope git_stash<CR>')
 nmap(';lr', '<cmd>Telescope lsp_references<CR>')
 nmap(';ld', '<cmd>Telescope diagnostics bufnr=0<CR>')
 nmap(';vm', '<cmd>Telescope keymaps<CR>')
+nmap(';b', '<cmd>Telescope buffers<CR>')
 
 -- mappings for NvimTree
 nmap('<Leader>n', '<cmd>NvimTreeToggle<CR>')

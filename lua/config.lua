@@ -27,9 +27,7 @@ vim.opt.timeoutlen = 256
 vim.opt.scrolloff = 8
 
 -- winbar if supported
-if vim.opt.winbar then
-  vim.opt.winbar = '%f'
-end
+vim.opt.winbar = '%f'
 
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025

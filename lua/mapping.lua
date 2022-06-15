@@ -89,11 +89,3 @@ map('<Leader>e', '<cmd>HopWord<CR>')
 map('<Leader>o', '<cmd>HopLineStart<CR>')
 map('<Leader>a', '<cmd>HopChar2<CR>')
 map('<Leader>c', '<cmd>HopChar1<CR>')
-
--- mappings for dashboard
-nmap('<Leader>ds', '<cmd>SessionSave<CR>')
-nmap('<Leader>dl', '<cmd>SessionLoad<CR>')
-nmap('<Leader>dh', '<cmd>DashboardFindHistory<CR>')
-nmap('<Leader>dc', '<cmd>DashboardChangeColorscheme<CR>')
-nmap('<Leader>db', '<cmd>DashboardJumpMark<CR>')
-nmap('<Leader>dn', '<cmd>DashboardNewFile<CR>')

@@ -216,12 +216,6 @@ return require 'packer'.startup({
       end
     }
 
-    -- dashboard
-    use {
-      'glepnir/dashboard-nvim',
-      config = require 'plugins_config.dashboard',
-    }
-
     -- for comment toggle
     use {
       'numToStr/Comment.nvim',

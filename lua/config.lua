@@ -26,8 +26,11 @@ vim.opt.timeoutlen = 256
 -- don't let cursor go to the top or bottom
 vim.opt.scrolloff = 8
 
--- winbar if supported
+-- winbar
 vim.opt.winbar = '%f'
+
+-- blink cursor after 5 seconds
+vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
 
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025

@@ -26,6 +26,10 @@ vim.opt.timeoutlen = 256
 -- don't let cursor go to the top or bottom
 vim.opt.scrolloff = 8
 
+-- narrower tab
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- winbar
 vim.opt.winbar = '%f'
 

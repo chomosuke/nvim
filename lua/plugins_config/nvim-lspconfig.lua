@@ -50,6 +50,7 @@ return function()
     'intelephense',
     'tsserver',
     'eslint',
+    'csharp_ls',
   }
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup { on_attach = on_attach }

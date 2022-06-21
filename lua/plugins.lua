@@ -153,13 +153,13 @@ return require 'packer'.startup({
       config = require 'plugins_config.nvim-tree',
     }
 
-    -- -- for smooth scrolling
-    -- use {
-    --   'karb94/neoscroll.nvim',
-    --   config = function()
-    --     require 'neoscroll'.setup()
-    --   end,
-    -- }
+    -- for smooth scrolling
+    use {
+      'chomosuke/neoscroll.nvim',
+      config = function()
+        require 'neoscroll'.setup()
+      end,
+    }
 
     -- for buffer as tabs
     use {

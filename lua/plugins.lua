@@ -180,7 +180,8 @@ return require 'packer'.startup({
             show_close_icon = false,
             diagnostics = 'nvim_lsp',
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
-              local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and '' or level:match 'hint' and '' or '?'
+              local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and ''
+                  or level:match 'hint' and '' or '?'
               return icon
             end,
           },
@@ -227,7 +228,7 @@ return require 'packer'.startup({
 
     -- terminal
     use {
-      "akinsho/toggleterm.nvim",
+      'akinsho/toggleterm.nvim',
       config = function()
         require 'toggleterm'.setup {
           size = 20,
@@ -240,10 +241,18 @@ return require 'packer'.startup({
     }
 
     -- markdown preview
-    use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-    })
+    use {
+      'iamcco/markdown-preview.nvim',
+      run = function() vim.fn['mkdp#util#install']() end,
+    }
+
+    -- scrollbar
+    use {
+      'petertriho/nvim-scrollbar',
+      config = function()
+        require 'scrollbar'.setup()
+      end,
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

@@ -246,14 +246,6 @@ return require 'packer'.startup({
       run = function() vim.fn['mkdp#util#install']() end,
     }
 
-    -- scrollbar
-    use {
-      'petertriho/nvim-scrollbar',
-      config = function()
-        require 'scrollbar'.setup()
-      end,
-    }
-
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then

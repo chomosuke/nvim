@@ -25,7 +25,7 @@ return require 'packer'.startup {
     -- for packer to host itself
     use 'wbthomason/packer.nvim'
 
-    -- prereq for many plugins
+    -- syntax highlighting and many more
     use {
       'nvim-treesitter/nvim-treesitter',
       run = ':TSUpdate',
@@ -122,9 +122,7 @@ return require 'packer'.startup {
     -- for indentation guides
     use {
       'lukas-reineke/indent-blankline.nvim',
-      config = function()
-        require 'indent_blankline'.setup {}
-      end,
+      config = require 'plugins_config/indent-blankline',
     }
 
     -- for theme

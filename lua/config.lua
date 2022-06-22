@@ -42,7 +42,7 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.cmd [[
   augroup open_folds
     autocmd!
-    autocmd BufReadPost,FileReadPost * call timer_start(0, { tid -> execute('normal! zR')})  " without delaying 0ms it doesn't work
+    autocmd BufReadPost,FileReadPost * call timer_start(0, { tid -> execute('normal zR')})  " without delaying 0ms it doesn't work
   augroup end
 ]]
 

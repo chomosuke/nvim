@@ -4,6 +4,8 @@ return function()
     show_current_context = true,
   }
 
+  require 'indent_blankline.utils'.reset_highlights()
+
   local function fromhex(str)
     local chars = str:gsub('..', function(cc)
       return string.char(tonumber(cc, 16))

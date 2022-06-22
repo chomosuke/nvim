@@ -20,7 +20,7 @@ vim.cmd [[
   augroup end
 ]]
 
-return require 'packer'.startup({
+return require 'packer'.startup {
   function(use)
     -- for packer to host itself
     use 'wbthomason/packer.nvim'
@@ -257,4 +257,4 @@ return require 'packer'.startup({
       enable = true,
     },
   },
-})
+}

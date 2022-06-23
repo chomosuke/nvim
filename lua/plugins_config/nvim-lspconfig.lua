@@ -45,8 +45,23 @@ return function()
     },
     on_attach = on_attach,
   }
+  lspconfig.sumneko_lua.setup {
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostic = {
+          globals = {'vim'},
+        },
+        workspace = {
+          library = vim.api.nvim_get_runtime_file('', true),
+        },
+      },
+    },
+    on_attach = on_attach,
+  }
   local servers = {
-    'sumneko_lua',
     'intelephense',
     'tsserver',
     'eslint',

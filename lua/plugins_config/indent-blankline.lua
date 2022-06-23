@@ -44,7 +44,7 @@ return function()
       highlight[i] = string.sub(highlight[i], 2, 7)
       highlight[i] = fromhex(highlight[i])
       for j = 1, #highlight[i] do
-        highlight[i][j] = math.min(math.floor(highlight[i][j] * 1.5), 255)
+        highlight[i][j] = math.min(math.floor(highlight[i][j] * 1.6), 255)
       end
       highlight[i] = '#' .. tohex(highlight[i])
     end

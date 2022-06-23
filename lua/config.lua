@@ -39,12 +39,15 @@ vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-b
 -- fold via treesitter
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.cmd [[
-  augroup open_folds
-    autocmd!
-    autocmd BufReadPost,FileReadPost * call timer_start(0, { tid -> execute('normal zR')})  " without delaying 0ms it doesn't work
-  augroup end
-]]
+-- foldlevel 99 to prevent newly parsed treesitter nodes to be folded.
+-- how many time do you use zm anyways.
+vim.opt.foldlevel = 99
+-- vim.cmd [[
+--   augroup open_folds
+--     autocmd!
+--     autocmd BufReadPost,FileReadPost * call timer_start(0, { tid -> execute('normal zR')})  " without delaying 0ms it doesn't work
+--   augroup end
+-- ]]
 
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025

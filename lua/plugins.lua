@@ -119,10 +119,6 @@ return require 'packer'.startup {
       },
       config = require 'plugins_config.lualine',
     }
-    -- use {
-    --   'feline-nvim/feline.nvim',
-    --   config = require 'plugins_config.feline',
-    -- }
 
     -- for indentation guides
     use {

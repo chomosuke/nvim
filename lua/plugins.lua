@@ -35,9 +35,14 @@ return require 'packer'.startup {
           highlight = {
             enable = true,
           },
+          rainbow = {
+            enable = true,
+          },
         }
       end,
     }
+    -- bracket coloring
+    use 'p00f/nvim-ts-rainbow'
 
     -- for git
     use {

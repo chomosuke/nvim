@@ -86,8 +86,8 @@ nmap('<Leader>br', '<cmd>BufferLineCloseRight<CR>')
 -- mappings for hop
 map('<Leader>u', '<cmd>HopLine<CR>')
 map('<Leader>e', '<cmd>HopWord<CR>')
-map('<Leader>o', '<cmd>HopLineStart<CR>')
-map('<Leader>a', '<cmd>HopChar2<CR>')
+map('<Leader>o', '<cmd>HopChar1CurrentLine<CR>')
+map('<Leader>a', '<cmd>HopLineStart<CR>')
 map('<Leader>c', '<cmd>HopChar1<CR>')
 
 -- mappings for refresh after open fold

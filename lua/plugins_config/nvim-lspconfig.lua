@@ -1,6 +1,6 @@
 return function()
   require 'nvim-lsp-installer'.setup {
-    automatic_installation = true,
+    automatic_installation = { exclude = { 'rust_analyzer' } },
   }
 
   local function map(keys, mapping)
@@ -52,7 +52,7 @@ return function()
           version = 'LuaJIT',
         },
         diagnostic = {
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           library = vim.api.nvim_get_runtime_file('', true),

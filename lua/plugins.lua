@@ -86,7 +86,7 @@ return require 'packer'.startup {
     -- for autopairs
     use {
       'windwp/nvim-autopairs',
-      config = require 'plugins_config/nvim-autopairs',
+      config = require 'plugins_config.nvim-autopairs',
     }
 
     -- for indentation
@@ -117,7 +117,7 @@ return require 'packer'.startup {
         'kyazdani42/nvim-web-devicons',
         'arkav/lualine-lsp-progress',
       },
-      config = require 'plugins_config/lualine',
+      config = require 'plugins_config.lualine',
     }
     -- use {
     --   'feline-nvim/feline.nvim',
@@ -127,7 +127,7 @@ return require 'packer'.startup {
     -- for indentation guides
     use {
       'lukas-reineke/indent-blankline.nvim',
-      config = require 'plugins_config/indent-blankline',
+      config = require 'plugins_config.indent-blankline',
     }
 
     -- for theme
@@ -191,7 +191,7 @@ return require 'packer'.startup {
       end,
     }
 
-    -- hop navigation
+    -- navigation
     use {
       'phaazon/hop.nvim',
       config = function()
@@ -199,6 +199,10 @@ return require 'packer'.startup {
           keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb',
         }
       end
+    }
+    use {
+      'ziontee113/syntax-tree-surfer',
+      config = require 'plugins_config.syntax-tree-surfer',
     }
 
     -- for comment toggle

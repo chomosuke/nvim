@@ -189,11 +189,9 @@ return require 'packer'.startup {
 
     -- navigation
     use {
-      'phaazon/hop.nvim',
+      'ggandor/leap.nvim',
       config = function()
-        require 'hop'.setup {
-          keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb',
-        }
+        require 'leap'.set_default_keymaps()
       end
     }
     use {

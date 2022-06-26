@@ -3,10 +3,7 @@ return function()
     lualine_a = { 'mode' },
     lualine_b = { 'filetype' },
     lualine_c = { 'lsp_progress', 'diagnostics' },
-    lualine_x = {
-      'diff',
-      'branch',
-    },
+    lualine_x = { 'diff', 'branch' },
     lualine_y = {
       {
         'fileformat',
@@ -27,11 +24,14 @@ return function()
     options = {
       component_separators = '',
       section_separators = '',
-      disabled_filetypes = { 'dashboard' },
+      disabled_filetypes = { 'NvimTree', 'packer' },
       always_divide_middle = false,
-      globalstatus = true,
+      -- globalstatus = true,
     },
     sections = sections,
-    inactive_sections = sections,
+    inactive_sections = {
+      lualine_c = { 'filetype' },
+      lualine_x = {},
+    }
   }
 end

@@ -59,9 +59,11 @@ return require 'packer'.startup {
     }
     use {
       'simrat39/rust-tools.nvim',
-      config = function()
-        require 'rust-tools'.setup {}
-      end,
+      requires = {
+        'neovim/nvim-lspconfig',
+        'nvim-lua/plenary.nvim',
+        'mfussenegger/nvim-dap',
+      },
     }
     use {
       'ms-jpq/coq_nvim',

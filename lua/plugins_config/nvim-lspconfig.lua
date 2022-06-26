@@ -35,16 +35,6 @@ return function()
   end
 
   local lspconfig = require 'lspconfig'
-  lspconfig.rust_analyzer.setup {
-    settings = {
-      ['rust-analyzer'] = {
-        checkOnSave = {
-          command = 'clippy',
-        },
-      },
-    },
-    on_attach = on_attach,
-  }
   lspconfig.sumneko_lua.setup {
     settings = {
       Lua = {
@@ -70,4 +60,17 @@ return function()
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup { on_attach = on_attach }
   end
+
+  require 'rust-tools'.setup {
+    server = {
+      settings = {
+        ['rust-analyzer'] = {
+          checkOnSave = {
+            command = 'clippy',
+          },
+        },
+      },
+      on_attach = on_attach,
+    },
+  }
 end

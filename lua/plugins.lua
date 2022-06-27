@@ -81,6 +81,10 @@ return require 'packer'.startup {
               mode = 'short',
             },
           },
+          limits = {
+            completion_auto_timeout = 0.2,
+            completion_manual_timeout = 1,
+          }
         }
         require 'coq'
       end,

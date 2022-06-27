@@ -1,11 +1,13 @@
 return function()
   require 'indent_blankline'.setup {
     use_treesitter = true,
-    show_current_context = true,
     use_treesitter_scope = true,
+    show_current_context = true,
     show_trailing_blankline_indent = false,
   }
 
+  -- set IndentBlanklineContextChar to slightly lighter than IndentBlanklineChar
+  -- to set IndentBlanklineChar
   require 'indent_blankline.utils'.reset_highlights()
 
   local function fromhex(str)
@@ -34,8 +36,8 @@ return function()
 
   local highlight_group = vim.fn.synIDtrans(vim.fn.hlID 'IndentBlanklineChar')
   local highlight = {
-    vim.fn.synIDattr(highlight_group, "fg", "gui"),
-    vim.fn.synIDattr(highlight_group, "fg", "cterm"),
+    vim.fn.synIDattr(highlight_group, 'fg', 'gui'),
+    vim.fn.synIDattr(highlight_group, 'fg', 'cterm'),
   }
 
   for i = 1, #highlight do
@@ -51,11 +53,9 @@ return function()
     end
   end
 
-  print(highlight[1])
-
   vim.cmd(
     string.format(
-      "highlight IndentBlanklineContextChar guifg=%s ctermfg=%s gui=nocombine cterm=nocombine",
+      'highlight IndentBlanklineContextChar guifg=%s ctermfg=%s gui=nocombine cterm=nocombine',
       highlight[1],
       highlight[2]
     )

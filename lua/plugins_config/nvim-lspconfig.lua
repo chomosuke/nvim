@@ -1,8 +1,13 @@
 return function()
+  -- easy install lsp
   require 'nvim-lsp-installer'.setup {
     automatic_installation = { exclude = { 'rust_analyzer' } },
   }
 
+  -- more logging -> better debugging
+  vim.lsp.set_log_level(0)
+
+  -- keymaps
   local function map(keys, mapping)
     vim.keymap.set('n', keys, mapping, { noremap = true })
   end
@@ -34,6 +39,7 @@ return function()
     end)
   end
 
+  -- setup lsps
   local lspconfig = require 'lspconfig'
   lspconfig.sumneko_lua.setup {
     settings = {
@@ -61,6 +67,7 @@ return function()
     lspconfig[lsp].setup { on_attach = on_attach }
   end
 
+  -- setup tools that uses the lsp
   require 'rust-tools'.setup {
     server = {
       settings = {

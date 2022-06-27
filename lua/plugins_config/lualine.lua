@@ -18,7 +18,7 @@ return function()
         end,
       },
     },
-    lualine_z = { '%c:%l/%L' },
+    lualine_z = { '%{strwidth(getline("."))}:%L' },
   }
   require 'lualine'.setup {
     options = {

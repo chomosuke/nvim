@@ -66,6 +66,14 @@ return require 'packer'.startup {
       },
     }
     use {
+      'akinsho/flutter-tools.nvim',
+      requires = {
+        'neovim/nvim-lspconfig',
+        'nvim-lua/plenary.nvim',
+        'mfussenegger/nvim-dap',
+      },
+    }
+    use {
       'ms-jpq/coq_nvim',
       branch = 'coq',
       requires = {

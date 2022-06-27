@@ -10,8 +10,6 @@ return function()
     append_default_schemas = true,
     local_settings_root_markers = {
       '.git',
-      '.yarn',
-      'node_modules',
       '.nlsp-settings',
     }
   }
@@ -66,7 +64,6 @@ return function()
   local servers = {
     'intelephense',
     'tsserver',
-    'eslint',
     'csharp_ls',
     'yamlls',
     'jsonls',
@@ -78,13 +75,6 @@ return function()
   -- setup tools that uses the lsp
   require 'rust-tools'.setup {
     server = {
-      settings = {
-        ['rust-analyzer'] = {
-          checkOnSave = {
-            command = 'clippy',
-          },
-        },
-      },
       on_attach = on_attach,
     },
   }

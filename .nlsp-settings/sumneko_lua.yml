@@ -1,6 +1,3 @@
-Lua:
-  runtime:
-    version: LuaJIT
-  diagnostic:
-    globals:
-      - vim
+Lua.runtime.version: LuaJIT
+Lua.diagnostics.globals:
+  - vim

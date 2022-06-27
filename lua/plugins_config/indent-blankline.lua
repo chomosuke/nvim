@@ -3,6 +3,7 @@ return function()
     use_treesitter = true,
     show_current_context = true,
     use_treesitter_scope = true,
+    show_trailing_blankline_indent = false,
   }
 
   require 'indent_blankline.utils'.reset_highlights()

@@ -1,0 +1,6 @@
+Lua:
+  runtime:
+    version: LuaJIT
+  diagnostic:
+    globals:
+      - vim

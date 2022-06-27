@@ -57,21 +57,14 @@ return require 'packer'.startup {
       'neovim/nvim-lspconfig',
       config = require 'plugins_config.nvim-lspconfig',
     }
+    use 'tamago324/nlsp-settings.nvim'
     use {
       'simrat39/rust-tools.nvim',
-      requires = {
-        'neovim/nvim-lspconfig',
-        'nvim-lua/plenary.nvim',
-        'mfussenegger/nvim-dap',
-      },
+      requires = 'nvim-lua/plenary.nvim',
     }
     use {
       'akinsho/flutter-tools.nvim',
-      requires = {
-        'neovim/nvim-lspconfig',
-        'nvim-lua/plenary.nvim',
-        'mfussenegger/nvim-dap',
-      },
+      requires = 'nvim-lua/plenary.nvim',
     }
     use {
       'ms-jpq/coq_nvim',

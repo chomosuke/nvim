@@ -18,7 +18,7 @@ return function()
         end,
       },
     },
-    lualine_z = { 'progress' },
+    lualine_z = { '%c:%l/%L' },
   }
   require 'lualine'.setup {
     options = {

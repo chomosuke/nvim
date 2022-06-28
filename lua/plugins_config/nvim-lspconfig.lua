@@ -47,8 +47,6 @@ return function()
     bmap(',wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end)
-
-    require 'lsp_signature'.on_attach()
   end
 
   -- setup lsps

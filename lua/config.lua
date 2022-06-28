@@ -1,5 +1,6 @@
--- show trailing white space & tabs
+-- render space & tabs
 vim.opt.list = true
+vim.opt.listchars = 'tab:>-,trail:·'
 
 -- show relative line numbers
 vim.opt.relativenumber = true

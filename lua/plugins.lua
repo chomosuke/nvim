@@ -89,6 +89,7 @@ return require 'packer'.startup {
         require 'coq'
       end,
     }
+    use 'ray-x/lsp_signature.nvim'
 
     -- for autopairs
     use {

@@ -82,8 +82,8 @@ return require 'packer'.startup {
             },
           },
           limits = {
-            completion_auto_timeout = 0.2,
-            completion_manual_timeout = 1,
+            completion_auto_timeout = 0.5,
+            completion_manual_timeout = 5,
           }
         }
         require 'coq'

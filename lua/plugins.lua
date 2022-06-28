@@ -219,7 +219,7 @@ return require 'packer'.startup {
       'akinsho/toggleterm.nvim',
       config = function()
         require 'toggleterm'.setup {
-          size = 20,
+          size = 16,
           open_mapping = '<Leader>t',
           start_in_insert = false,
           insert_mappings = false,

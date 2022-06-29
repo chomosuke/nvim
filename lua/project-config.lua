@@ -2,13 +2,19 @@ local M = {}
 
 local util = require 'util'
 
-package.path = package.path .. ';' .. vim.fn.getcwd() .. '/.nvim-config/?.lua'
-
 local function get_config(name)
   local config = nil
+
+  -- load config without modifying the path
+  -- this is because cwd changes and must be aquired when this
+  -- function is actually called
+  local path = package.path
+  package.path = package.path .. ';' .. vim.fn.getcwd() .. '/.nvim-config/?.lua'
   if util.is_module_available(name) then
     config = require(name)
   end
+  package.path = path
+
   if config == nil then
     config = {}
   end

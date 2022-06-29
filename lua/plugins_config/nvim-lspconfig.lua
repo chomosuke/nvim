@@ -5,7 +5,7 @@ return function()
   }
 
   -- more logging -> better debugging
-  vim.lsp.set_log_level(0)
+  -- vim.lsp.set_log_level(0)
 
   -- mappings
   local map = require 'map'
@@ -15,6 +15,7 @@ return function()
   map.nmap(',dl', vim.diagnostic.setloclist)
 
   local function on_attach(client, bufnr)
+    -- keymaps
     local function bmap(keys, mapping)
       vim.keymap.set('n', keys, mapping, { noremap = true, buffer = bufnr })
     end
@@ -34,13 +35,14 @@ return function()
     bmap(',wl', function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end)
+
+    -- load project specific settings
+    -- this is done on attach because cwd changes
+    client.config.settings = require 'project-config'.get_lsp_config()[client.name]
   end
 
   -- map <Leader>, back to , for actual , usage
   map.nmap('<Leader>,', ',')
-
-  -- load project specific settings
-  local project_config = require 'project-config'.get_lsp_config()
 
   -- setup lsps
   local lspconfig = require 'lspconfig'
@@ -55,7 +57,6 @@ return function()
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup {
       on_attach = on_attach,
-      settings = project_config[lsp],
     }
   end
 
@@ -63,14 +64,12 @@ return function()
   require 'rust-tools'.setup {
     server = {
       on_attach = on_attach,
-      settings = project_config.rust_analyzer,
     },
   }
 
   require 'flutter-tools'.setup {
     lsp = {
       on_attach = on_attach,
-      settings = project_config.dartls,
     },
   }
 end

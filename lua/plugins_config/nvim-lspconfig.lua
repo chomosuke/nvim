@@ -4,16 +4,6 @@ return function()
     automatic_installation = { exclude = { 'rust_analyzer' } },
   }
 
-  -- project lsp settings
-  require 'nlspsettings'.setup {
-    loader = 'yaml',
-    append_default_schemas = true,
-    local_settings_root_markers = {
-      '.git',
-      '.nlsp-settings',
-    }
-  }
-
   -- more logging -> better debugging
   vim.lsp.set_log_level(0)
 
@@ -49,39 +39,38 @@ return function()
   -- map <Leader>, back to , for actual , usage
   map.nmap('<Leader>,', ',')
 
+  -- load project specific settings
+  local project_config = require 'project-config'.get_lsp_config()
+
   -- setup lsps
   local lspconfig = require 'lspconfig'
-  lspconfig.sumneko_lua.setup {
-    settings = {
-      Lua = {
-        workspace = {
-          library = vim.api.nvim_get_runtime_file('', true),
-        },
-      },
-    },
-    on_attach = on_attach,
-  }
   local servers = {
     'intelephense',
     'tsserver',
     'csharp_ls',
+    'sumneko_lua',
     'yamlls',
     'jsonls',
   }
   for _, lsp in pairs(servers) do
-    lspconfig[lsp].setup { on_attach = on_attach }
+    lspconfig[lsp].setup {
+      on_attach = on_attach,
+      settings = project_config[lsp],
+    }
   end
 
   -- setup tools that uses the lsp
   require 'rust-tools'.setup {
     server = {
       on_attach = on_attach,
+      settings = project_config.rust_analyzer,
     },
   }
 
   require 'flutter-tools'.setup {
     lsp = {
       on_attach = on_attach,
+      settings = project_config.dartls,
     },
   }
 end

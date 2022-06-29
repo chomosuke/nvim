@@ -57,7 +57,13 @@ return require 'packer'.startup {
       'neovim/nvim-lspconfig',
       config = require 'plugins_config.nvim-lspconfig',
     }
-    use 'tamago324/nlsp-settings.nvim'
+    use {
+      'rcarriga/nvim-dap-ui',
+      requires = 'mfussenegger/nvim-dap',
+      config = function()
+        require 'dapui'.setup {}
+      end,
+    }
     use {
       'simrat39/rust-tools.nvim',
       requires = 'nvim-lua/plenary.nvim',
@@ -65,6 +71,11 @@ return require 'packer'.startup {
     use {
       'akinsho/flutter-tools.nvim',
       requires = 'nvim-lua/plenary.nvim',
+    }
+    use {
+      'David-Kunz/jester',
+      config = function()
+      end,
     }
     use {
       'ms-jpq/coq_nvim',

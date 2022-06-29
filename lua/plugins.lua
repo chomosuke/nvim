@@ -12,14 +12,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   }
 end
 
--- for auto PackerSync
-vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]]
-
 return require 'packer'.startup {
   function(use)
     -- for packer to host itself

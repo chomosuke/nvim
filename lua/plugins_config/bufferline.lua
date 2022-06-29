@@ -13,9 +13,22 @@ return function()
       diagnostics = 'nvim_lsp',
       diagnostics_indicator = function(count, level, diagnostics_dict, context)
         local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and ''
-          or level:match 'hint' and '' or '?'
+            or level:match 'hint' and '' or '?'
         return icon
       end,
     },
   }
+
+  -- mappings
+  local map = require 'map'
+  map.nmap(']]', '<cmd>BufferLineCycleNext<CR>')
+  map.nmap('[[', '<cmd>BufferLineCyclePrev<CR>')
+  map.nmap('<Leader>f', '<cmd>BufferLineCycleNext<CR>')
+  map.nmap('<Leader>y', '<cmd>BufferLineCyclePrev<CR>')
+  map.nmap('][', '<cmd>BufferLineMoveNext<CR>')
+  map.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
+  map.nmap('<Leader>bp', '<cmd>BufferLinePick<CR>')
+  map.nmap('<Leader>bc', '<cmd>BufferLinePickClose<CR>')
+  map.nmap('<Leader>bl', '<cmd>BufferLineCloseLeft<CR>')
+  map.nmap('<Leader>br', '<cmd>BufferLineCloseRight<CR>')
 end

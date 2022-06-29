@@ -17,15 +17,12 @@ return function()
   -- more logging -> better debugging
   vim.lsp.set_log_level(0)
 
-  -- keymaps
-  local function map(keys, mapping)
-    vim.keymap.set('n', keys, mapping, { noremap = true })
-  end
-
-  map(',df', vim.diagnostic.open_float)
-  map(',dp', vim.diagnostic.goto_prev)
-  map(',dn', vim.diagnostic.goto_next)
-  map(',dl', vim.diagnostic.setloclist)
+  -- mappings
+  local map = require 'map'
+  map.nmap(',df', vim.diagnostic.open_float)
+  map.nmap(',dp', vim.diagnostic.goto_prev)
+  map.nmap(',dn', vim.diagnostic.goto_next)
+  map.nmap(',dl', vim.diagnostic.setloclist)
 
   local function on_attach(client, bufnr)
     local function bmap(keys, mapping)
@@ -48,6 +45,9 @@ return function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end)
   end
+
+  -- map <Leader>, back to , for actual , usage
+  map.nmap('<Leader>,', ',')
 
   -- setup lsps
   local lspconfig = require 'lspconfig'

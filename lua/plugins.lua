@@ -191,6 +191,10 @@ return require 'packer'.startup {
           mapping = { ',.' },
           timeout = 128,
         }
+        local map = require 'map'
+        map.map(',.', '<Esc>')
+        map.cmap(',.', '<Esc>')
+        map.tmap(',.', '<C-\\><C-n>')
       end,
     }
 

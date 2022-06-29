@@ -20,4 +20,9 @@ return function()
       }, show_on_dirs = true,
     },
   }
+
+  -- mapings
+  local map = require 'map'
+  map.nmap('<Leader>n', '<cmd>NvimTreeToggle<CR>')
+  map.nmap('<Leader>r', '<cmd>NvimTreeRefresh<CR>')
 end

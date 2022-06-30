@@ -55,6 +55,7 @@ return function()
     'sumneko_lua',
     'yamlls',
     'jsonls',
+    'clangd',
   }
   for _, lsp in pairs(servers) do
     lspconfig[lsp].setup {

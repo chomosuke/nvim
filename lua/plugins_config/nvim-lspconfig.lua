@@ -36,9 +36,11 @@ return function()
       print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
     end)
 
-    -- load project specific settings
-    -- this is done on attach because cwd changes
-    client.config.settings = require 'project-config'.get_lsp_config()[client.name]
+    -- load project specific settings for lsp
+    local settings = require 'project-config'.get_lsp_config()[client.name]
+    if settings ~= nil then
+      client.config.settings = settings
+    end
   end
 
   -- map <Leader>, back to , for actual , usage

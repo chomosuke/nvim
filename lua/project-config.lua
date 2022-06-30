@@ -29,4 +29,28 @@ function M.get_jester_config()
   return get_config 'jester'
 end
 
+local function update_lsp_config()
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    local new_settings = M.get_lsp_config()[client.name]
+    if new_settings ~= nil then
+      client.notify('workspace/didChangeConfiguration', {
+        settings = new_settings,
+      })
+      client.config.settings = new_settings
+    end
+  end
+end
+
+function M.update_config()
+  update_lsp_config()
+end
+
+-- update config when cwd changes
+util.create_autocmds(
+  'update_project_config',
+  {
+    { 'DirChanged', { callback = M.update_config } }
+  }
+)
+
 return M

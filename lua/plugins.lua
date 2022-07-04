@@ -87,7 +87,14 @@ return require 'packer'.startup {
           limits = {
             completion_auto_timeout = 1,
             completion_manual_timeout = 5,
-          }
+          },
+          clients = {
+            lsp = {
+              resolve_timeout = 1,
+              -- lsp should be prioritized
+              weight_adjust = 2,
+            },
+          },
         }
         require 'coq'
       end,

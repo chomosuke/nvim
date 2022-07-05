@@ -22,7 +22,7 @@ return function(use)
       local function on_attach(client, bufnr)
         -- keymaps
         local function bmap(keys, mapping)
-          vim.keymap.set('n', keys, mapping, { noremap = true, buffer = bufnr })
+          map.nmap(keys, mapping, { buffer = bufnr })
         end
 
         bmap(',gD', vim.lsp.buf.declaration)
@@ -30,7 +30,6 @@ return function(use)
         bmap(',gi', vim.lsp.buf.implementation)
         bmap(',gr', vim.lsp.buf.references)
         bmap(',h', vim.lsp.buf.hover)
-        bmap(',sg', vim.lsp.buf.signature_help)
         bmap(',td', vim.lsp.buf.type_definition)
         bmap(',rn', vim.lsp.buf.rename)
         bmap(',ca', vim.lsp.buf.code_action)
@@ -40,6 +39,7 @@ return function(use)
         bmap(',wl', function()
           print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         end)
+        map.imap('<C-s>', vim.lsp.buf.signature_help, { buffer = bufnr })
 
         -- load project specific settings for lsp
         local settings = require 'project-config'.get_lsp_config()[client.name]

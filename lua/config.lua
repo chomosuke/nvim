@@ -21,7 +21,7 @@ vim.opt.termguicolors = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- faster timeout
+-- faster timeout for keymaps
 vim.opt.timeoutlen = 256
 
 -- don't let cursor go to the top or bottom
@@ -43,12 +43,6 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- foldlevel 99 to prevent newly parsed treesitter nodes to be folded.
 -- how many time do you use zm anyways.
 vim.opt.foldlevel = 99
--- vim.cmd [[
---   augroup open_folds
---     autocmd!
---     autocmd BufReadPost,FileReadPost * call timer_start(0, { tid -> execute('normal zR')})  " without delaying 0ms it doesn't work
---   augroup end
--- ]]
 
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025

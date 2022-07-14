@@ -26,7 +26,7 @@ function M.get_lsp_config()
 end
 
 function M.get_jester_config()
-  return get_config 'jester'
+  return get_config 'jest'
 end
 
 local function update_lsp_config()

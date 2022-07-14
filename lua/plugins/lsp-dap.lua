@@ -104,6 +104,10 @@ return function(use)
   use {
     'David-Kunz/jester',
     config = function()
+      vim.cmd [[
+      command! JestDebug :lua require 'jester'.debug(require 'project-config'.get_jester_config())
+      command! JestRun :lua require 'jester'.run(require 'project-config'.get_jester_config())
+      ]]
     end,
   }
 

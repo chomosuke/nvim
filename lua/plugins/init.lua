@@ -36,6 +36,23 @@ return require 'packer'.startup {
     require 'plugins.bufferline' (use)
     require 'plugins.themes' (use)
 
+    -- winbar
+    use {
+      'fgheng/winbar.nvim',
+      config = function()
+        local default_config = require 'winbar.config'.defaults
+        require 'winbar'.setup {
+          enabled = true,
+          exclude_filetype = require 'util'.table_concat(
+            default_config.exclude_filetype,
+            {
+              'gitcommit',
+            }
+          ),
+        }
+      end,
+    }
+
     -- for smooth scrolling
     use {
       'chomosuke/neoscroll.nvim',

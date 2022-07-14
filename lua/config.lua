@@ -31,9 +31,6 @@ vim.opt.scrolloff = 8
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
--- winbar
-vim.opt.winbar = '%f'
-
 -- blink cursor after 5 seconds
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
 

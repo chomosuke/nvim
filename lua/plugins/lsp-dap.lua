@@ -127,12 +127,12 @@ return function(use)
           },
         },
         limits = {
-          completion_auto_timeout = 1,
-          completion_manual_timeout = 5,
+          completion_auto_timeout = 2,
+          completion_manual_timeout = 10,
         },
         clients = {
           lsp = {
-            resolve_timeout = 1,
+            resolve_timeout = 2,
             -- lsp should be prioritized
             weight_adjust = 2,
           },

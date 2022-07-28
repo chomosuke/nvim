@@ -15,7 +15,7 @@ end
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost */plugins/*.lua runtime lua/plugins/init.lua | PackerCompile
+    autocmd BufWritePost plugins/init.lua source <afile> | PackerSync
   augroup end
 ]])
 

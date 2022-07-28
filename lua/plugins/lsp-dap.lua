@@ -89,9 +89,12 @@ return function(use)
     config = function()
       local lsp_lines = require 'lsp_lines'
       lsp_lines.setup()
-      vim.diagnostic.config { virtual_text = false }
+      lsp_lines.toggle() -- turn off at first
       local map = require 'map'
-      map.nmap(',l', lsp_lines.toggle)
+      map.nmap(',l', function()
+        local virtual_lines = lsp_lines.toggle()
+        vim.diagnostic.config { virtual_text = not virtual_lines }
+      end)
     end,
   }
 

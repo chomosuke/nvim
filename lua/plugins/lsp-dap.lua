@@ -85,6 +85,17 @@ return function(use)
   }
 
   use {
+    'Maan2003/lsp_lines.nvim',
+    config = function()
+      local lsp_lines = require 'lsp_lines'
+      lsp_lines.setup()
+      vim.diagnostic.config { virtual_text = false }
+      local map = require 'map'
+      map.nmap(',l', lsp_lines.toggle)
+    end,
+  }
+
+  use {
     'rcarriga/nvim-dap-ui',
     requires = 'mfussenegger/nvim-dap',
     config = function()

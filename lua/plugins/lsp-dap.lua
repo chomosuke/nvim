@@ -61,6 +61,7 @@ return function(use)
         'yamlls',
         'jsonls',
         'clangd',
+        'hls',
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {

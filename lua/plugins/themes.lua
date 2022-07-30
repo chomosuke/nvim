@@ -16,4 +16,5 @@ return function(use)
     end,
   }
   use 'projekt0n/github-nvim-theme'
+  use 'folke/tokyonight.nvim'
 end

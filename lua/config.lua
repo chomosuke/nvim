@@ -41,6 +41,18 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- how many time do you use zm anyways.
 vim.opt.foldlevel = 99
 
+-- diagnostics gutter icons
+local signs = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " "
+}
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl })
+end
+
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_cursor_trail_length = 1

@@ -5,9 +5,7 @@ return function(use)
     'neovim/nvim-lspconfig',
     config = function()
       -- easy install lsp
-      require 'nvim-lsp-installer'.setup {
-        automatic_installation = { exclude = { 'rust_analyzer' } },
-      }
+      require 'nvim-lsp-installer'.setup {}
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
@@ -120,8 +118,8 @@ return function(use)
     'David-Kunz/jester',
     config = function()
       vim.cmd [[
-      command! JestDebug :lua require 'jester'.debug(require 'project-config'.get_jester_config())
-      command! JestRun :lua require 'jester'.run(require 'project-config'.get_jester_config())
+        command! JestDebug :lua require 'jester'.debug(require 'project-config'.get_jester_config())
+        command! JestRun :lua require 'jester'.run(require 'project-config'.get_jester_config())
       ]]
     end,
   }

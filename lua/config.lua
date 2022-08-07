@@ -37,6 +37,9 @@ vim.opt.shiftwidth = 4
 -- blink cursor after 5 seconds
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
 
+-- highlight the current line
+vim.opt.cursorline = true
+
 -- fold via treesitter
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'

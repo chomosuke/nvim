@@ -76,7 +76,7 @@ return require 'packer'.startup {
       config = function()
         require 'better_escape'.setup {
           mapping = { ',.' },
-          timeout = 128,
+          timeout = 256,
         }
         local map = require 'map'
         map.map(',.', '<Esc>')

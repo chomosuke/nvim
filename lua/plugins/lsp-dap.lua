@@ -60,6 +60,7 @@ return function(use)
         'jsonls',
         'clangd',
         'hls',
+        'jdtls',
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
@@ -73,13 +74,22 @@ return function(use)
           on_attach = on_attach,
         },
       }
-
       require 'flutter-tools'.setup {
         lsp = {
           on_attach = on_attach,
         },
       }
     end,
+  }
+
+  -- tools that uses the lsp
+  use {
+    'simrat39/rust-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+  }
+  use {
+    'akinsho/flutter-tools.nvim',
+    requires = 'nvim-lua/plenary.nvim',
   }
 
   use {
@@ -102,16 +112,6 @@ return function(use)
     config = function()
       require 'dapui'.setup {}
     end,
-  }
-
-  use {
-    'simrat39/rust-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-  }
-
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
   }
 
   use {

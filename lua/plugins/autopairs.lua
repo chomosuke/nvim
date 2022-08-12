@@ -3,7 +3,7 @@ return function(use)
     'windwp/nvim-autopairs',
     config = function()
       local remap = vim.api.nvim_set_keymap
-      local npairs = require('nvim-autopairs')
+      local npairs = require 'nvim-autopairs'
 
       npairs.setup {
         map_bs = false,
@@ -11,6 +11,13 @@ return function(use)
         fast_wrap = {
           map = '<C-e>',
         },
+        check_ts = true,
+      }
+
+      local Rule = require 'nvim-autopairs.rule'
+      npairs.add_rules {
+        Rule('\\(', '\\)', 'tex'),
+        Rule('\\[', '\\]', 'tex'),
       }
 
       vim.g.coq_settings = { keymap = { recommended = false } }

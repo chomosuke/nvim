@@ -59,6 +59,9 @@ for type, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl })
 end
 
+-- default .tex is latex
+vim.g.tex_flavor = 'latex'
+
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_cursor_trail_length = 1

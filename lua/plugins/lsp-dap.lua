@@ -61,6 +61,7 @@ return function(use)
         'clangd',
         'hls',
         'jdtls',
+        'texlab',
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {

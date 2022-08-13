@@ -113,6 +113,25 @@ return require 'packer'.startup {
       run = function() vim.fn['mkdp#util#install']() end,
     }
 
+    -- -- auto save latex files to trigger recompile
+    -- use {
+    --   'Pocco81/auto-save.nvim',
+    --   config = function()
+    --     require 'auto-save'.setup {
+    --       condition = function(buf)
+    --         local utils = require('auto-save.utils.data')
+    --         if
+    --           vim.fn.getbufvar(buf, '&modifiable') == 1 and
+    --           utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
+    --           vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+    --           return true
+    --         end
+    --         return false
+    --       end,
+    --     }
+    --   end,
+    -- }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then

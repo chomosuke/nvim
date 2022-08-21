@@ -8,10 +8,10 @@ map.nmap('<C-e>', '8<C-e>')
 map.nmap('<C-y>', '8<C-y>')
 
 -- mappings for navigating splits
-map.nmap('<Leader>h', '<C-w><C-h>')
-map.nmap('<Leader>j', '<C-w><C-j>')
-map.nmap('<Leader>k', '<C-w><C-k>')
-map.nmap('<Leader>l', '<C-w><C-l>')
+map.nmap('<leader>h', '<C-w><C-h>')
+map.nmap('<leader>j', '<C-w><C-j>')
+map.nmap('<leader>k', '<C-w><C-k>')
+map.nmap('<leader>l', '<C-w><C-l>')
 
 -- mappings for refresh after open fold
 map.nmap('zo', 'zo<cmd>IndentBlanklineRefresh<CR>')

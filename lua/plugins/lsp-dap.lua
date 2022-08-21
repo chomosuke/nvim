@@ -46,8 +46,8 @@ return function(use)
         end
       end
 
-      -- map <Leader>, back to , for actual , usage
-      map.nmap('<Leader>,', ',')
+      -- map <leader>, back to , for actual , usage
+      map.nmap('<leader>,', ',')
 
       -- setup lsps
       local lspconfig = require 'lspconfig'

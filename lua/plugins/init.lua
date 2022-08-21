@@ -99,7 +99,7 @@ return require 'packer'.startup {
       config = function()
         require 'toggleterm'.setup {
           size = 16,
-          open_mapping = '<Leader>t',
+          open_mapping = '<leader>t',
           start_in_insert = false,
           insert_mappings = false,
           terminal_mappings = false,

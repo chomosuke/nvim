@@ -36,8 +36,8 @@ return function(use)
 
       -- mapings
       local map = require 'map'
-      map.nmap('<Leader>n', '<cmd>NvimTreeToggle<CR>')
-      map.nmap('<Leader>r', '<cmd>NvimTreeRefresh<CR>')
+      map.nmap('<leader>n', '<cmd>NvimTreeToggle<CR>')
+      map.nmap('<leader>r', '<cmd>NvimTreeRefresh<CR>')
     end,
   }
 end

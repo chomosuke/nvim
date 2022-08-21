@@ -10,34 +10,54 @@ return function(use)
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
 
-      -- mappings
-      local map = require 'map'
-      map.nmap(',df', vim.diagnostic.open_float)
-      map.nmap(',dp', vim.diagnostic.goto_prev)
-      map.nmap(',dn', vim.diagnostic.goto_next)
-      map.nmap(',dl', vim.diagnostic.setloclist)
+      -- keymaps
+      local wk = require 'which-key'
+      wk.register {
+        [',d'] = {
+          name = 'diagnostic',
+          f = { vim.diagnostic.open_float, 'open float' },
+          p = { vim.diagnostic.goto_prev, 'go to previous' },
+          n = { vim.diagnostic.goto_next, 'go to next' },
+          l = { vim.diagnostic.setloclist, 'list' },
+        },
+        -- map <leader>, back to , for actual , usage
+        ['<leader>,'] = { ',', 'actual ,' },
+      }
 
       local function on_attach(client, bufnr)
         -- keymaps
-        local function bmap(keys, mapping)
-          map.nmap(keys, mapping, { buffer = bufnr })
-        end
-
-        bmap(',gD', vim.lsp.buf.declaration)
-        bmap(',gd', vim.lsp.buf.definition)
-        bmap(',gi', vim.lsp.buf.implementation)
-        bmap(',gr', vim.lsp.buf.references)
-        bmap(',h', vim.lsp.buf.hover)
-        bmap(',td', vim.lsp.buf.type_definition)
-        bmap(',rn', vim.lsp.buf.rename)
-        bmap(',ca', vim.lsp.buf.code_action)
-        bmap(',f', vim.lsp.buf.formatting)
-        bmap(',wa', vim.lsp.buf.add_workspace_folder)
-        bmap(',wr', vim.lsp.buf.remove_workspace_folder)
-        bmap(',wl', function()
-          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        end)
-        map.imap('<C-s>', vim.lsp.buf.signature_help, { buffer = bufnr })
+        wk.register(
+          {
+            [','] = {
+              name = 'lsp',
+              g = {
+                name = 'go to',
+                D = { vim.lsp.buf.declaration, 'declaration' },
+                d = { vim.lsp.buf.definition, 'definition' },
+                t = { vim.lsp.buf.type_definition, 'type definition' },
+                i = { vim.lsp.buf.implementation, 'implementation' },
+                r = { vim.lsp.buf.references, 'references' },
+              },
+              h = { vim.lsp.buf.hover, 'hover' },
+              rn = { vim.lsp.buf.rename, 'rename' },
+              ca = { vim.lsp.buf.code_action, 'code actions' },
+              f = { vim.lsp.buf.formatting, 'format' },
+              w = {
+                name = 'workspace',
+                a = { vim.lsp.buf.add_workspace_folder, 'add folder' },
+                r = { vim.lsp.buf.remove_workspace_folder, 'remove folder' },
+                l = { function()
+                  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end, 'list folder' }
+              }
+            },
+          },
+          { buffer = bufnr }
+        )
+        wk.register(
+          { ['<C-s>'] = { vim.lsp.buf.signature_help, 'signiture help' } },
+          { buffer = bufnr, mode = 'i' }
+        )
 
         -- load project specific settings for lsp
         local settings = require 'project-config'.get_lsp_config()[client.name]
@@ -45,9 +65,6 @@ return function(use)
           client.config.settings = settings
         end
       end
-
-      -- map <leader>, back to , for actual , usage
-      map.nmap('<leader>,', ',')
 
       -- setup lsps
       local lspconfig = require 'lspconfig'

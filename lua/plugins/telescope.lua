@@ -51,7 +51,7 @@ return function(use)
           },
           l = {
             name = "lsp",
-            r = { '<cmd>Telescope lsp_references<CR>', 'list references' }, 
+            r = { '<cmd>Telescope lsp_references<CR>', 'list references' },
             d = { '<cmd>Telescope diagnostics bufnr=0<CR>', 'list diagnostics' },
           },
           m = { '<cmd>Telescope keymaps<CR>', 'list keymaps' },

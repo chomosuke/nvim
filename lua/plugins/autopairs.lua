@@ -12,6 +12,7 @@ return function(use)
           map = '<C-e>',
         },
         check_ts = true,
+        enable_check_bracket_line = false,
       }
 
       local Rule = require 'nvim-autopairs.rule'

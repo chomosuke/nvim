@@ -6,13 +6,6 @@ return function(use)
     end
   }
   use {
-    'phaazon/hop.nvim',
-    config = function()
-      require 'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
-      require 'map'.map('<Leader>e', '<cmd>HopLine<CR>')
-    end
-  }
-  use {
     'ziontee113/syntax-tree-surfer',
     config = function()
       require 'syntax-tree-surfer'

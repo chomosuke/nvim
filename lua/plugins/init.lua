@@ -132,6 +132,15 @@ return require 'packer'.startup {
     --   end,
     -- }
 
+    -- interactive development
+    use {
+      'Olical/conjure',
+      config = function()
+        vim.g['conjure#mapping#prefix'] = " c"
+        vim.g['conjure#filetypes'] = { 'clojure' }
+      end,
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then

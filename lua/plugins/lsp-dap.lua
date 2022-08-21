@@ -62,6 +62,7 @@ return function(use)
         'hls',
         'jdtls',
         'texlab',
+        'clojure_lsp',
       }
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {

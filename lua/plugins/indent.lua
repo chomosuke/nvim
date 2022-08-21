@@ -2,17 +2,6 @@ return function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require 'indent_blankline'.setup {
-        use_treesitter = true,
-        use_treesitter_scope = true,
-        show_current_context = true,
-        show_trailing_blankline_indent = false,
-      }
-
-      -- set IndentBlanklineContextChar to slightly lighter than IndentBlanklineChar
-      -- to set IndentBlanklineChar
-      require 'indent_blankline.utils'.reset_highlights()
-
       local function fromhex(str)
         local chars = str:gsub('..', function(cc)
           return string.char(tonumber(cc, 16))
@@ -37,20 +26,32 @@ return function(use)
         end))
       end
 
-      local highlight_group = vim.fn.synIDtrans(vim.fn.hlID 'IndentBlanklineChar')
+      local highlight_group = vim.fn.synIDtrans(vim.fn.hlID 'Normal')
       local highlight = {
-        vim.fn.synIDattr(highlight_group, 'fg', 'gui'),
-        vim.fn.synIDattr(highlight_group, 'fg', 'cterm'),
+        vim.fn.synIDattr(highlight_group, 'bg', 'gui'),
+        vim.fn.synIDattr(highlight_group, 'bg', 'cterm'),
       }
 
       for i = 1, #highlight do
         if highlight[i] == '' then
           highlight[i] = 'NONE'
-        else
+        end
+      end
+
+      vim.cmd(
+        string.format(
+          'highlight IndentBlanklineIndent1 guibg=%s ctermbg=%s gui=nocombine cterm=nocombine',
+          highlight[1],
+          highlight[2]
+        )
+      )
+
+      for i = 1, #highlight do
+        if highlight[i] ~= 'NONE' then
           highlight[i] = string.sub(highlight[i], 2, 7)
           highlight[i] = fromhex(highlight[i])
           for j = 1, #highlight[i] do
-            highlight[i][j] = math.min(math.floor(highlight[i][j] * 1.6), 255)
+            highlight[i][j] = math.floor(highlight[i][j] * 0.88)
           end
           highlight[i] = '#' .. tohex(highlight[i])
         end
@@ -58,11 +59,25 @@ return function(use)
 
       vim.cmd(
         string.format(
-          'highlight IndentBlanklineContextChar guifg=%s ctermfg=%s gui=nocombine cterm=nocombine',
+          'highlight IndentBlanklineIndent2 guibg=%s ctermbg=%s gui=nocombine cterm=nocombine',
           highlight[1],
           highlight[2]
         )
       )
+
+      require 'indent_blankline'.setup {
+        use_treesitter = true,
+        show_trailing_blankline_indent = false,
+        char = '',
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+      }
     end,
   }
 

@@ -70,13 +70,22 @@ return function(use)
         show_trailing_blankline_indent = false,
         char = '',
         char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
+          'IndentBlanklineIndent1',
+          'IndentBlanklineIndent2',
         },
         space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
+          'IndentBlanklineIndent1',
+          'IndentBlanklineIndent2',
         },
+        filetype_exclude = {
+          'lspinfo',
+          'packer',
+          'checkhealth',
+          'help',
+          'man',
+          '',
+          'clojure'
+        }
       }
     end,
   }
@@ -84,7 +93,20 @@ return function(use)
   use {
     'nmac427/guess-indent.nvim',
     config = function()
-      require 'guess-indent'.setup {}
+      require 'guess-indent'.setup {
+        filetype_exclude = {
+          'netrw',
+          'tutor',
+          'clojure',
+        },
+      }
+
+      require 'util'.create_autocmds(
+        'set_indent_to_2_for_clojure',
+        {
+          { 'FileType', { pattern = 'clojure', command = 'setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2' } },
+        }
+      )
     end,
   }
 end

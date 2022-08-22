@@ -36,13 +36,13 @@ return function(use)
       local wk = require 'which-key'
       wk.register {
         ['<leader>f'] = {
-          name = "telescope",
+          name = 'telescope',
           f = { '<cmd>Telescope find_files<CR>', 'find files' },
           c = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', 'find in current buffer' },
           d = { '<cmd>Telescope live_grep<CR>', 'find in cwd' },
           u = { '<cmd>Telescope grep_string<CR>', 'find current word' },
           g = {
-            name = "git",
+            name = 'git',
             c = { '<cmd>Telescope git_commits<CR>', 'list commits' },
             u = { '<cmd>Telescope git_bcommits<CR>', 'list current buffer commits' },
             b = { '<cmd>Telescope git_branches<CR>', 'list branches' },
@@ -50,7 +50,7 @@ return function(use)
             h = { '<cmd>Telescope git_stash<CR>', 'list stashes' },
           },
           l = {
-            name = "lsp",
+            name = 'lsp',
             r = { '<cmd>Telescope lsp_references<CR>', 'list references' },
             d = { '<cmd>Telescope diagnostics bufnr=0<CR>', 'list diagnostics' },
           },

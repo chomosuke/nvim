@@ -117,11 +117,17 @@ return function(use)
       local lsp_lines = require 'lsp_lines'
       lsp_lines.setup()
       lsp_lines.toggle() -- turn off at first
-      local map = require 'map'
-      map.nmap(',l', function()
-        local virtual_lines = lsp_lines.toggle()
-        vim.diagnostic.config { virtual_text = not virtual_lines }
-      end)
+
+      local wk = require 'which-key'
+      wk.register {
+        [',l'] = {
+          function()
+            local virtual_lines = lsp_lines.toggle()
+            vim.diagnostic.config { virtual_text = not virtual_lines }
+          end,
+          'toggle diagnostic virtual lines',
+        },
+      }
     end,
   }
 

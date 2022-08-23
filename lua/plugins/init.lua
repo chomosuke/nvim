@@ -136,7 +136,7 @@ return require 'packer'.startup {
     use {
       'Olical/conjure',
       config = function()
-        vim.g['conjure#mapping#prefix'] = ' c'
+        vim.g['conjure#mapping#prefix'] = '<leader>c'
         vim.g['conjure#filetypes'] = { 'clojure' }
       end,
     }

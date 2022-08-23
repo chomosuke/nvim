@@ -1,11 +1,13 @@
 return function(use)
-  use 'williamboman/nvim-lsp-installer'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
 
   use {
     'neovim/nvim-lspconfig',
     config = function()
       -- easy install lsp
-      require 'nvim-lsp-installer'.setup {}
+      require 'mason'.setup {}
+      require 'mason-lspconfig'.setup {}
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)

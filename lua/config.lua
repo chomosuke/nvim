@@ -3,7 +3,7 @@ vim.opt.mouse = nil
 
 -- render space & tabs
 vim.opt.list = true
-vim.opt.listchars = 'tab: ,trail:·,nbsp:⍽'
+vim.opt.listchars = 'tab: ,trail:·,nbsp:⍽'
 
 -- show relative line numbers
 vim.opt.relativenumber = true

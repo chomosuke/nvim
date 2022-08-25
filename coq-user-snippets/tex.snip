@@ -3,6 +3,12 @@ snippet plain
 
 	\\usepackage{parskip}
 
+	\\usepackage{amsmath} % actually amsopn
+
+	\\makeatletter
+	\\DeclareRobustCommand{\\var}[1]{\\begingroup\\newmcodes@\\mathit{#1}\\endgroup}
+	\\makeatother
+
 	\\begin{document}
 	${0:body}
 	\\end{document}

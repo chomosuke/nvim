@@ -89,6 +89,11 @@ return function(use)
         }
       end
 
+      -- setup lsp with special settings
+      lspconfig.ltex.setup {
+        filetypes = { 'markdown', 'tex' },
+      }
+
       -- setup tools that uses the lsp
       require 'rust-tools'.setup {
         server = {

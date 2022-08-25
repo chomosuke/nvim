@@ -48,9 +48,7 @@ end
 -- update config when cwd changes
 util.create_autocmds(
   'update_project_config',
-  {
-    { 'DirChanged', { callback = M.update_config } }
-  }
+  { { 'DirChanged', { callback = M.update_config } } }
 )
 
 return M

@@ -141,6 +141,24 @@ return require 'packer'.startup {
       end,
     }
 
+    -- -- spell check
+    -- use {
+    --   'lewis6991/spellsitter.nvim',
+    --   config = function()
+    --     require 'util'.create_autocmds(
+    --       'set_spell_for_spell_check',
+    --       { { 'Filetype', {
+    --         callback = function() vim.opt.spell = true end,
+    --         pattern = {
+    --           'markdown',
+    --           'tex',
+    --         },
+    --       } } }
+    --     )
+    --     require 'spellsitter'.setup()
+    --   end,
+    -- }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then

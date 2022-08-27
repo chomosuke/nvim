@@ -12,13 +12,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
   }
 end
 
--- for auto PackerSync
-require 'util'.create_autocmds(
-  'packer_user_config',
-  {
-    { 'BufWritePost', { pattern = '*/plugins/init.lua', command = 'source <afile> | PackerSync' } },
-  }
-)
+-- -- for auto PackerSync
+-- require 'util'.create_autocmds(
+--   'packer_user_config',
+--   {
+--     { 'BufWritePost', { pattern = '*/plugins/init.lua', command = 'source <afile> | PackerSync' } },
+--   }
+-- )
 
 return require 'packer'.startup {
   function(use)

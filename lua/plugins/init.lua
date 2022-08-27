@@ -113,24 +113,24 @@ return require 'packer'.startup {
       run = function() vim.fn['mkdp#util#install']() end,
     }
 
-    -- -- auto save latex files to trigger recompile
-    -- use {
-    --   'Pocco81/auto-save.nvim',
-    --   config = function()
-    --     require 'auto-save'.setup {
-    --       condition = function(buf)
-    --         local utils = require('auto-save.utils.data')
-    --         if
-    --           vim.fn.getbufvar(buf, '&modifiable') == 1 and
-    --           utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
-    --           vim.fn.getbufvar(buf, '&filetype') == 'tex' then
-    --           return true
-    --         end
-    --         return false
-    --       end,
-    --     }
-    --   end,
-    -- }
+    -- auto save latex files to trigger recompile
+    use {
+      'Pocco81/auto-save.nvim',
+      config = function()
+        require 'auto-save'.setup {
+          condition = function(buf)
+            local utils = require('auto-save.utils.data')
+            if
+              vim.fn.getbufvar(buf, '&modifiable') == 1 and
+              utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
+              vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+              return true
+            end
+            return false
+          end,
+        }
+      end,
+    }
 
     -- interactive development
     use {

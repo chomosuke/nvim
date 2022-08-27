@@ -92,6 +92,13 @@ return function(use)
       -- setup lsp with special settings
       lspconfig.ltex.setup {
         filetypes = { 'markdown', 'tex' },
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          require 'ltex_extra'.setup {
+            load_langs = { 'en-US' },
+            path = './ltex_extra',
+          }
+        end,
       }
 
       -- setup tools that uses the lsp
@@ -107,6 +114,8 @@ return function(use)
       }
     end,
   }
+
+  use 'chomosuke/ltex_extra.nvim'
 
   -- tools that uses the lsp
   use {

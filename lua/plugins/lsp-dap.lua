@@ -97,7 +97,7 @@ return function(use)
           on_attach(client, bufnr)
           require 'ltex_extra'.setup {
             load_langs = { 'en-US' },
-            path = './ltex_extra',
+            path = vim.fn.stdpath('data') .. '/ltex_extra',
           }
         end,
       }

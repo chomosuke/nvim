@@ -77,7 +77,7 @@ return function(use)
         name1,
         name2,
         function(hi)
-          return math.max(hi - 4, 0)
+          return math.max(hi - 5, 0)
         end
       )
 

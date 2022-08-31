@@ -10,7 +10,6 @@ return function(use)
           local function map(mode, l, r, opts)
             opts = opts or {}
             opts.buffer = bufnr
-            opts.noremap = true
             vim.keymap.set(mode, l, r, opts)
           end
 
@@ -28,20 +27,20 @@ return function(use)
           end, { expr = true })
 
           -- Actions
-          map({ 'n', 'v' }, '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>')
-          map({ 'n', 'v' }, '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>')
-          map('n', '<leader>gS', '<cmd>Gitsigns stage_buffer<CR>')
-          map('n', '<leader>gu', '<cmd>Gitsigns undo_stage_hunk<CR>')
-          map('n', '<leader>gR', '<cmd>Gitsigns reset_buffer<CR>')
-          map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>')
+          map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<CR>')
+          map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<CR>')
+          map('n', '<leader>gS', gs.stage_buffer)
+          map('n', '<leader>gu', gs.undo_stage_hunk)
+          map('n', '<leader>gR', gs.reset_buffer)
+          map('n', '<leader>gp', gs.preview_hunk)
           map('n', '<leader>gb', function() gs.blame_line { full = true } end)
-          map('n', '<leader>gtb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
-          map('n', '<leader>gd', '<cmd>Gitsigns diffthis<CR>')
+          map('n', '<leader>gtb', gs.toggle_current_line_blame)
+          map('n', '<leader>gd', gs.diffthis)
           map('n', '<leader>gD', function() gs.diffthis('~') end)
-          map('n', '<leader>gtd', '<cmd>Gitsigns toggle_deleted<CR>')
+          map('n', '<leader>gtd', gs.toggle_deleted)
 
           -- Text object
-          map({ 'o', 'x' }, 'ih', '<cmd>Gitsigns select_hunk<CR>')
+          map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
         end
       }
     end,

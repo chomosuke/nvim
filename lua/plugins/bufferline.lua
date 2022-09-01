@@ -6,6 +6,7 @@ return function(use)
     config = function()
       require 'bufferline'.setup {
         options = {
+---@diagnostic disable-next-line: assign-type-mismatch
           numbers = function(opts)
             return string.format('%s', opts.id)
           end,
@@ -15,8 +16,9 @@ return function(use)
           offsets = { { filetype = 'NvimTree', text = 'File Explorer', text_align = 'left' } },
           show_buffer_close_icons = false,
           show_close_icon = false,
+---@diagnostic disable-next-line: assign-type-mismatch
           diagnostics = 'nvim_lsp',
-          diagnostics_indicator = function(count, level, diagnostics_dict, context)
+          diagnostics_indicator = function(_, level, _, _)
             local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and ''
                 or level:match 'hint' and '' or '?'
             return icon

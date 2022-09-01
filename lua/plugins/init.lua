@@ -54,13 +54,13 @@ return require 'packer'.startup {
     --   end,
     -- }
 
-    -- for smooth scrolling
-    use {
-      'chomosuke/neoscroll.nvim',
-      config = function()
-        require 'neoscroll'.setup()
-      end,
-    }
+    -- -- for smooth scrolling
+    -- use {
+    --   'chomosuke/neoscroll.nvim',
+    --   config = function()
+    --     require 'neoscroll'.setup()
+    --   end,
+    -- }
 
     -- for keybinding hint
     use {

@@ -12,14 +12,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   }
 end
 
--- -- for auto PackerSync
--- require 'util'.create_autocmds(
---   'packer_user_config',
---   {
---     { 'BufWritePost', { pattern = '*/plugins/init.lua', command = 'source <afile> | PackerSync' } },
---   }
--- )
-
 return require 'packer'.startup {
   function(use)
     -- for packer to host itself
@@ -27,6 +19,7 @@ return require 'packer'.startup {
 
     require 'plugins.treesitter' (use)
     require 'plugins.lsp-dap' (use)
+    require 'plugins.cmp' (use)
     require 'plugins.git' (use)
     require 'plugins.autopairs' (use)
     require 'plugins.telescope' (use)

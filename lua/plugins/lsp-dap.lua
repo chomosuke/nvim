@@ -155,45 +155,4 @@ return function(use)
       require 'dapui'.setup {}
     end,
   }
-
-  use {
-    'David-Kunz/jester',
-    config = function()
-      vim.cmd [[
-        command! JestDebug :lua require 'jester'.debug(require 'project-config'.get_jester_config())
-        command! JestRun :lua require 'jester'.run(require 'project-config'.get_jester_config())
-      ]]
-    end,
-  }
-
-  use {
-    'ms-jpq/coq_nvim',
-    branch = 'coq',
-    requires = {
-      { 'ms-jpq/coq.artifacts', branch = 'artifacts' },
-      { 'ms-jpq/coq.thirdparty', branch = '3p' },
-    },
-    config = function()
-      vim.g.coq_settings = {
-        auto_start = true,
-        display = {
-          icons = {
-            mode = 'short',
-          },
-        },
-        limits = {
-          completion_auto_timeout = 2,
-          completion_manual_timeout = 10,
-        },
-        clients = {
-          lsp = {
-            resolve_timeout = 2,
-            -- lsp should be prioritized
-            weight_adjust = 2,
-          },
-        },
-      }
-      require 'coq'
-    end,
-  }
 end

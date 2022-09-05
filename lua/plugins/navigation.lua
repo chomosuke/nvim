@@ -2,9 +2,43 @@ return function(use)
   use {
     'ggandor/leap.nvim',
     config = function()
+      require 'leap'.setup {
+        equivalence_classes = {
+          {
+            ' \t\r\n',
+            ')]}>',
+            '([{<',
+            { '"', "'", '`' },
+          }
+        },
+        safe_labels = {},
+        labels = {
+          'e', 'u', 'o', 'a', 'i', 't', 'h', 'n', 's', 'd',
+          '.', 'p', ';', 'y', 'c', 'g', 'r', 'z', 'f',
+          'k', 'q', 'j', 'x', 'm', 'v', 'w', 'b', "'", 'l',
+          'E', 'U', 'O', 'A', 'I', 'T', 'H', 'N', 'S', 'D',
+          '>', 'P', ':', 'Y', 'C', 'G', 'R', 'Z', 'F',
+          'K', 'Q', 'J', 'X', 'M', 'V', 'W', 'B', '"', 'L',
+        },
+      }
       require 'leap'.set_default_keymaps()
     end
   }
+
+  use {
+    'phaazon/hop.nvim',
+    config = function()
+      require 'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
+      require 'which-key'.register({
+        ['<leader>'] = {
+          e = { '<cmd>HopChar2<CR>', 'hop 2char' },
+          o = { '<cmd>HopWord<CR>', 'hop word' },
+          u = { '<cmd>HopLine<CR>', 'hop line' },
+        }
+      }, {})
+    end
+  }
+
   use {
     'ziontee113/syntax-tree-surfer',
     config = function()

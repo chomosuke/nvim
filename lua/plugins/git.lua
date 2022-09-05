@@ -52,10 +52,13 @@ return function(use)
               R = { gs.reset_buffer, 'reset buffer' },
               p = { gs.preview_hunk, 'preview hunk' },
               b = { function() gs.blame_line { full = true } end, 'blame line' },
-              tb = { gs.toggle_current_line_blame, 'toggle current line blame' },
+              t = {
+                name = 'toggle',
+                b = { gs.toggle_current_line_blame, 'current line blame' },
+                d = { gs.toggle_deleted, 'deleted' },
+              },
               d = { gs.diffthis, 'diff this' },
               D = { function() gs.diffthis('~') end, 'diff this' },
-              td = { gs.toggle_deleted, 'toggle deleted' },
             },
           }, {
             buffer = bufnr,

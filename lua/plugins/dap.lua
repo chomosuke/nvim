@@ -10,7 +10,9 @@ return function(use)
         type = 'server',
         port = '${port}',
         executable = {
-          command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb.cmd',
+          command = vim.fn.stdpath 'data' ..
+              '/mason/bin/codelldb' ..
+              (require 'util'.is_windows() and '.cmd' or ''),
           args = { '--port', '${port}' },
         }
       }

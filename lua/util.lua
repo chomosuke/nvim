@@ -30,4 +30,8 @@ function M.table_concat(t1,t2)
     return t1
 end
 
+function M.is_windows()
+  return vim.loop.os_uname().sysname == 'Windows_NT'
+end
+
 return M

@@ -4,11 +4,18 @@ snippet template
 	\\usepackage{parskip}
 
 	\\usepackage{amsmath} % actually amsopn
-
 	\\makeatletter
 	\\DeclareRobustCommand{\\var}[1]{\\begingroup\\newmcodes@\\mathit{#1}\\endgroup}
 	\\makeatother
 
+	\\usepackage[a4paper, margin=1in]{geometry}
+
+	\\usepackage{mathtools}
+	\\DeclarePairedDelimiter\\ceil{\\lceil}{\\rceil}
+	\\DeclarePairedDelimiter\\floor{\\lfloor}{\\rfloor}
+
 	\\begin{document}
-	${0:body}
+
+	${0:TARGET}
+
 	\\end{document}

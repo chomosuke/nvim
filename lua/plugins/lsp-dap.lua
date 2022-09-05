@@ -148,11 +148,35 @@ return function(use)
     end,
   }
 
-  use {
-    'rcarriga/nvim-dap-ui',
-    requires = 'mfussenegger/nvim-dap',
-    config = function()
-      require 'dapui'.setup {}
-    end,
-  }
+  -- use {
+  --   'rcarriga/nvim-dap-ui',
+  --   requires = 'mfussenegger/nvim-dap',
+  --   config = function()
+  --     local dap, dapui = require 'dap', require 'dapui'
+  --     dap.adapters.codelldb = {
+  --       type = 'server',
+  --       port = "${port}",
+  --       executable = {
+  --         command = 'C:\\Users\\a1332\\AppData\\Local\\nvim-data\\mason\\bin\\codelldb.cmd',
+  --         args = { "--port", "${port}" },
+  --
+  --         -- On windows you may have to uncomment this:
+  --         detached = false,
+  --       }
+  --     }
+  --     dap.configurations.cpp = {
+  --       {
+  --         name = "Launch file",
+  --         type = "codelldb",
+  --         request = "launch",
+  --         program = function()
+  --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  --         end,
+  --         cwd = '${workspaceFolder}',
+  --         stopOnEntry = true,
+  --       },
+  --     }
+  --     dapui.setup {}
+  --   end,
+  -- }
 end

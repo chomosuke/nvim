@@ -18,7 +18,8 @@ return require 'packer'.startup {
     use 'wbthomason/packer.nvim'
 
     require 'plugins.treesitter' (use)
-    require 'plugins.lsp-dap' (use)
+    require 'plugins.lsp' (use)
+    require 'plugins.dap' (use)
     require 'plugins.cmp' (use)
     require 'plugins.git' (use)
     require 'plugins.autopairs' (use)

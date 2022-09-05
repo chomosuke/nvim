@@ -123,6 +123,15 @@ return require 'packer'.startup {
       end,
     }
 
+    -- competitive programming auto test
+    use {
+      'xeluxee/competitest.nvim',
+      requires = 'MunifTanjim/nui.nvim',
+      config = function()
+        require 'competitest'.setup {}
+      end,
+    }
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PackerBootstrap then

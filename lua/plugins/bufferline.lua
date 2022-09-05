@@ -34,10 +34,16 @@ return function(use)
       map.nmap('<leader>p', '<cmd>BufferLineCyclePrev<CR>')
       map.nmap('][', '<cmd>BufferLineMoveNext<CR>')
       map.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
-      map.nmap('<leader>bp', '<cmd>BufferLinePick<CR>')
-      map.nmap('<leader>bc', '<cmd>BufferLinePickClose<CR>')
-      map.nmap('<leader>bl', '<cmd>BufferLineCloseLeft<CR>')
-      map.nmap('<leader>br', '<cmd>BufferLineCloseRight<CR>')
+      local wk = require 'which-key'
+      wk.register {
+        ['<leader>b'] = {
+          name = 'buffer',
+          p = { '<cmd>BufferLinePick<CR>', 'pick' },
+          c = { '<cmd>BufferLinePickClose<CR>', 'close' },
+          l = { '<cmd>BufferLineCloseLeft<CR>', 'close left' },
+          r = { '<cmd>BufferLineCloseRight<CR>', 'close right' },
+        },
+      }
     end,
   }
 end

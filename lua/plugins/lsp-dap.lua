@@ -14,53 +14,47 @@ return function(use)
 
       -- keymaps
       local wk = require 'which-key'
-      wk.register {
-        [',d'] = {
-          name = 'diagnostic',
-          f = { vim.diagnostic.open_float, 'open float' },
-          p = { vim.diagnostic.goto_prev, 'go to previous' },
-          n = { vim.diagnostic.goto_next, 'go to next' },
-          l = { vim.diagnostic.setloclist, 'list' },
+      wk.register
+      {
+        [','] = {
+          name = 'lsp',
+          g = {
+            name = 'go to',
+            D = { vim.lsp.buf.declaration, 'declaration' },
+            d = { vim.lsp.buf.definition, 'definition' },
+            t = { vim.lsp.buf.type_definition, 'type definition' },
+            i = { vim.lsp.buf.implementation, 'implementation' },
+            r = { vim.lsp.buf.references, 'references' },
+          },
+          h = { vim.lsp.buf.hover, 'hover' },
+          rn = { vim.lsp.buf.rename, 'rename' },
+          ca = { vim.lsp.buf.code_action, 'code actions' },
+          f = { vim.lsp.buf.formatting, 'format' },
+          w = {
+            name = 'workspace',
+            a = { vim.lsp.buf.add_workspace_folder, 'add folder' },
+            r = { vim.lsp.buf.remove_workspace_folder, 'remove folder' },
+            l = { function()
+              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end, 'list folder' }
+          },
+          d = {
+            name = 'diagnostic',
+            f = { vim.diagnostic.open_float, 'open float' },
+            p = { vim.diagnostic.goto_prev, 'go to previous' },
+            n = { vim.diagnostic.goto_next, 'go to next' },
+            l = { vim.diagnostic.setloclist, 'list' },
+          },
         },
         -- map <leader>, back to , for actual , usage
         ['<leader>,'] = { ',', 'actual ,' },
       }
+      wk.register(
+        { ['<C-s>'] = { vim.lsp.buf.signature_help, 'signiture help' } },
+        { mode = 'i' }
+      )
 
-      local function on_attach(client, bufnr)
-        -- keymaps
-        wk.register(
-          {
-            [','] = {
-              name = 'lsp',
-              g = {
-                name = 'go to',
-                D = { vim.lsp.buf.declaration, 'declaration' },
-                d = { vim.lsp.buf.definition, 'definition' },
-                t = { vim.lsp.buf.type_definition, 'type definition' },
-                i = { vim.lsp.buf.implementation, 'implementation' },
-                r = { vim.lsp.buf.references, 'references' },
-              },
-              h = { vim.lsp.buf.hover, 'hover' },
-              rn = { vim.lsp.buf.rename, 'rename' },
-              ca = { vim.lsp.buf.code_action, 'code actions' },
-              f = { vim.lsp.buf.formatting, 'format' },
-              w = {
-                name = 'workspace',
-                a = { vim.lsp.buf.add_workspace_folder, 'add folder' },
-                r = { vim.lsp.buf.remove_workspace_folder, 'remove folder' },
-                l = { function()
-                  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                end, 'list folder' }
-              }
-            },
-          },
-          { buffer = bufnr }
-        )
-        wk.register(
-          { ['<C-s>'] = { vim.lsp.buf.signature_help, 'signiture help' } },
-          { buffer = bufnr, mode = 'i' }
-        )
-
+      local function on_attach(client, _)
         -- load project specific settings for lsp
         local settings = require 'project-config'.get_lsp_config()[client.name]
         if settings ~= nil then
@@ -148,35 +142,75 @@ return function(use)
     end,
   }
 
-  -- use {
-  --   'rcarriga/nvim-dap-ui',
-  --   requires = 'mfussenegger/nvim-dap',
-  --   config = function()
-  --     local dap, dapui = require 'dap', require 'dapui'
-  --     dap.adapters.codelldb = {
-  --       type = 'server',
-  --       port = "${port}",
-  --       executable = {
-  --         command = 'C:\\Users\\a1332\\AppData\\Local\\nvim-data\\mason\\bin\\codelldb.cmd',
-  --         args = { "--port", "${port}" },
-  --
-  --         -- On windows you may have to uncomment this:
-  --         detached = false,
-  --       }
-  --     }
-  --     dap.configurations.cpp = {
-  --       {
-  --         name = "Launch file",
-  --         type = "codelldb",
-  --         request = "launch",
-  --         program = function()
-  --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-  --         end,
-  --         cwd = '${workspaceFolder}',
-  --         stopOnEntry = true,
-  --       },
-  --     }
-  --     dapui.setup {}
-  --   end,
-  -- }
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = 'mfussenegger/nvim-dap',
+    config = function()
+      local dap, dapui = require 'dap', require 'dapui'
+
+      -- cpp
+      dap.adapters.codelldb = {
+        type = 'server',
+        port = '${port}',
+        executable = {
+          command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb.cmd',
+          args = { '--port', '${port}' },
+        }
+      }
+      dap.configurations.cpp = {
+        {
+          name = 'Launch',
+          type = 'codelldb',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+        },
+      }
+
+      dapui.setup {}
+      -- auto open dapui
+      dap.listeners.after.event_initialized['dapui_config'] = function()
+        dapui.open {}
+      end
+      dap.listeners.before.event_terminated['dapui_config'] = function()
+        dapui.close {}
+      end
+      dap.listeners.before.event_exited['dapui_config'] = function()
+        dapui.close {}
+      end
+
+      -- dap keymap
+      local wk = require 'which-key'
+      wk.register {
+        [',e'] = {
+          name = 'debugger',
+          c = { dap.continue, 'start/continue' },
+          n = { dap.step_over, 'step over' },
+          i = { dap.step_into, 'step into' },
+          o = { dap.step_out, 'step out' },
+          b = {
+            t = { dap.toggle_breakpoint, 'toggle' },
+            c = {
+              function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+              'set conditional',
+            },
+            l = {
+              function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+              'set log point',
+            },
+            i = { dap.list_breakpoints, 'list' },
+            r = { dap.clear_breakpoints, 'clear' },
+          },
+          r = { dap.repl.toggle, 'toggle repl' },
+          l = { dap.run_last, 'run last' },
+          t = { dap.terminate, 'terminate' },
+          p = { dap.pause, 'pause' },
+          u = { dap.run_to_cursor, 'run until cursor' },
+        },
+      }
+    end,
+  }
 end

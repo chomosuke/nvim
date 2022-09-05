@@ -37,31 +37,6 @@ return require 'packer'.startup {
     require 'plugins.bufferline' (use)
     require 'plugins.themes' (use)
 
-    -- -- winbar
-    -- use {
-    --   'fgheng/winbar.nvim',
-    --   config = function()
-    --     local default_config = require 'winbar.config'.defaults
-    --     require 'winbar'.setup {
-    --       enabled = true,
-    --       exclude_filetype = require 'util'.table_concat(
-    --         default_config.exclude_filetype,
-    --         {
-    --           'gitcommit',
-    --         }
-    --       ),
-    --     }
-    --   end,
-    -- }
-
-    -- -- for smooth scrolling
-    -- use {
-    --   'chomosuke/neoscroll.nvim',
-    --   config = function()
-    --     require 'neoscroll'.setup()
-    --   end,
-    -- }
-
     -- for keybinding hint
     use {
       'folke/which-key.nvim',
@@ -119,11 +94,8 @@ return require 'packer'.startup {
       config = function()
         require 'auto-save'.setup {
           condition = function(buf)
-            local utils = require('auto-save.utils.data')
-            if
-              vim.fn.getbufvar(buf, '&modifiable') == 1 and
-              utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
-              vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
+                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
               return true
             end
             return false

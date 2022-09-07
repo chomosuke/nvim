@@ -1,11 +1,12 @@
 return function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+    run = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+    end,
     config = function()
-      require 'nvim-treesitter.install'.compilers = { 'clang' }
       require 'nvim-treesitter.configs'.setup {
-        ensure_installed = 'all',
+        -- ensure_installed = 'all',
         highlight = {
           enable = true,
         },

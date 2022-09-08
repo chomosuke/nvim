@@ -17,93 +17,26 @@ return require 'packer'.startup {
     -- for packer to host itself
     use 'wbthomason/packer.nvim'
 
-    require 'plugins.treesitter' (use)
-    require 'plugins.lsp' (use)
-    require 'plugins.dap' (use)
-    require 'plugins.cmp' (use)
-    require 'plugins.git' (use)
     require 'plugins.autopairs' (use)
-    require 'plugins.telescope' (use)
-    require 'plugins.statusline' (use)
-    require 'plugins.indent' (use)
-    require 'plugins.file-tree' (use)
-    require 'plugins.navigation' (use)
     require 'plugins.bufferline' (use)
+    require 'plugins.cmp' (use)
+    require 'plugins.dap' (use)
+    require 'plugins.file-tree' (use)
+    require 'plugins.git' (use)
+    require 'plugins.indent' (use)
+    require 'plugins.lsp' (use)
+    require 'plugins.navigation' (use)
+    require 'plugins.statusline' (use)
+    require 'plugins.telescope' (use)
     require 'plugins.themes' (use)
+    require 'plugins.treesitter' (use)
 
-    -- for keybinding hint
+    -- competitive programming auto test
     use {
-      'folke/which-key.nvim',
+      'xeluxee/competitest.nvim',
+      requires = 'MunifTanjim/nui.nvim',
       config = function()
-        require 'which-key'.setup {}
-      end
-    }
-
-    -- better escape mapping
-    use {
-      'max397574/better-escape.nvim',
-      config = function()
-        require 'better_escape'.setup {
-          mapping = { ',.' },
-          timeout = 256,
-        }
-        local map = require 'map'
-        map.map(',.', '<Esc>')
-        map.cmap(',.', '<Esc>')
-        map.tmap(',.', '<C-\\><C-n>')
-      end,
-    }
-
-    -- for comment toggle
-    use {
-      'numToStr/Comment.nvim',
-      config = function()
-        require 'Comment'.setup()
-      end
-    }
-
-    -- terminal
-    use {
-      'akinsho/toggleterm.nvim',
-      config = function()
-        require 'toggleterm'.setup {
-          size = 12,
-          open_mapping = '<leader>t',
-          start_in_insert = false,
-          insert_mappings = false,
-          terminal_mappings = false,
-        }
-      end,
-    }
-
-    -- markdown preview
-    use {
-      'iamcco/markdown-preview.nvim',
-      run = function() vim.fn['mkdp#util#install']() end,
-    }
-
-    -- auto save latex files to trigger recompile
-    use {
-      'Pocco81/auto-save.nvim',
-      config = function()
-        require 'auto-save'.setup {
-          condition = function(buf)
-            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
-                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
-              return true
-            end
-            return false
-          end,
-        }
-      end,
-    }
-
-    -- interactive development
-    use {
-      'Olical/conjure',
-      config = function()
-        vim.g['conjure#mapping#prefix'] = '<leader>c'
-        vim.g['conjure#filetypes'] = { 'clojure' }
+        require 'competitest'.setup {}
       end,
     }
 
@@ -124,13 +57,80 @@ return require 'packer'.startup {
       end,
     }
 
-    -- competitive programming auto test
+    -- interactive development
     use {
-      'xeluxee/competitest.nvim',
-      requires = 'MunifTanjim/nui.nvim',
+      'Olical/conjure',
       config = function()
-        require 'competitest'.setup {}
+        vim.g['conjure#mapping#prefix'] = '<leader>c'
+        vim.g['conjure#filetypes'] = { 'clojure' }
       end,
+    }
+
+    -- auto save latex files to trigger recompile
+    use {
+      'Pocco81/auto-save.nvim',
+      config = function()
+        require 'auto-save'.setup {
+          condition = function(buf)
+            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
+                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+              return true
+            end
+            return false
+          end,
+        }
+      end,
+    }
+
+    -- markdown preview
+    use {
+      'iamcco/markdown-preview.nvim',
+      run = function() vim.fn['mkdp#util#install']() end,
+    }
+
+    -- terminal
+    use {
+      'akinsho/toggleterm.nvim',
+      config = function()
+        require 'toggleterm'.setup {
+          size = 12,
+          open_mapping = '<leader>t',
+          start_in_insert = false,
+          insert_mappings = false,
+          terminal_mappings = false,
+        }
+      end,
+    }
+
+    -- for comment toggle
+    use {
+      'numToStr/Comment.nvim',
+      config = function()
+        require 'Comment'.setup()
+      end
+    }
+
+    -- better escape mapping
+    use {
+      'max397574/better-escape.nvim',
+      config = function()
+        require 'better_escape'.setup {
+          mapping = { ',.' },
+          timeout = 256,
+        }
+        local map = require 'map'
+        map.map(',.', '<Esc>')
+        map.cmap(',.', '<Esc>')
+        map.tmap(',.', '<C-\\><C-n>')
+      end,
+    }
+
+    -- for keybinding hint
+    use {
+      'folke/which-key.nvim',
+      config = function()
+        require 'which-key'.setup {}
+      end
     }
 
     -- Automatically set up your configuration after cloning packer.nvim

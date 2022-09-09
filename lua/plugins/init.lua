@@ -82,6 +82,35 @@ return require 'packer'.startup {
       end,
     }
 
+    -- winbar
+    if vim.version().minor > 7 or vim.version().major > 0 then
+      use {
+        'fgheng/winbar.nvim',
+        config = function()
+          local default_config = require 'winbar.config'.defaults
+          require 'winbar'.setup {
+            enabled = true,
+            exclude_filetype = require 'util'.table_concat(
+              default_config.exclude_filetype,
+              {
+                'gitcommit',
+              }
+            ),
+          }
+        end,
+      }
+    end
+
+    -- smooth scrolling
+    use {
+      'chomosuke/neoscroll.nvim',
+      config = function()
+        if vim.g.neovide == nil then
+          require 'neoscroll'.setup()
+        end
+      end,
+    }
+
     -- markdown preview
     use {
       'iamcco/markdown-preview.nvim',

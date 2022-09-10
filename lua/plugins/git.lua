@@ -1,3 +1,9 @@
+-- get rid of auto linewrap in git commit
+require 'util'.create_autocmds(
+  'git_commit_no_tw',
+  { { 'FileType', { command = 'setlocal tw=0', pattern =  'gitcommit' } } }
+)
+
 return function(use)
   use {
     'lewis6991/gitsigns.nvim',

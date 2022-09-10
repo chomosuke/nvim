@@ -19,6 +19,7 @@ return function(use)
       npairs.add_rules {
         Rule('\\(', '\\)', 'tex'),
         Rule('\\[', '\\]', 'tex'),
+        Rule('\\{', '\\}', 'tex'),
       }
 
       vim.g.coq_settings = { keymap = { recommended = false } }

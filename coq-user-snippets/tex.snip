@@ -3,10 +3,14 @@ snippet template
 
 	\\usepackage{parskip}
 
+	\\sloppy
+
 	\\usepackage{amsmath} % actually amsopn
 	\\makeatletter
 	\\DeclareRobustCommand{\\var}[1]{\\begingroup\\newmcodes@\\mathit{#1}\\endgroup}
 	\\makeatother
+
+	\\usepackge{amsfonts}
 
 	\\usepackage[a4paper, margin=1in]{geometry}
 

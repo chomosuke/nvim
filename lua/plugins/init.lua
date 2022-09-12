@@ -66,22 +66,6 @@ return require 'packer'.startup {
       end,
     }
 
-    -- auto save latex files to trigger recompile
-    use {
-      'Pocco81/auto-save.nvim',
-      config = function()
-        require 'auto-save'.setup {
-          condition = function(buf)
-            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
-                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
-              return true
-            end
-            return false
-          end,
-        }
-      end,
-    }
-
     -- winbar
     if vim.version().minor > 7 or vim.version().major > 0 then
       use {

@@ -27,8 +27,8 @@ return function(use)
             r = { vim.lsp.buf.references, 'references' },
           },
           h = { vim.lsp.buf.hover, 'hover' },
-          rn = { vim.lsp.buf.rename, 'rename' },
-          ca = { vim.lsp.buf.code_action, 'code actions' },
+          r = { vim.lsp.buf.rename, 'rename' },
+          a = { vim.lsp.buf.code_action, 'code actions' },
           f = { vim.lsp.buf.formatting, 'format' },
           w = {
             name = 'workspace',

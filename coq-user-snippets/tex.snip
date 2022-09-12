@@ -9,6 +9,9 @@ snippet template
 	\\makeatletter
 	\\DeclareRobustCommand{\\var}[1]{\\begingroup\\newmcodes@\\mathit{#1}\\endgroup}
 	\\makeatother
+	\\makeatletter
+	\\DeclareRobustCommand{\\varb}[1]{\\begingroup\\newmcodes@\\mathbf{#1}\\endgroup}
+	\\makeatother
 
 	\\usepackage{amsfonts}
 
@@ -17,6 +20,7 @@ snippet template
 	\\usepackage{mathtools}
 	\\DeclarePairedDelimiter\\ceil{\\lceil}{\\rceil}
 	\\DeclarePairedDelimiter\\floor{\\lfloor}{\\rfloor}
+	\\DeclarePairedDelimiter\\chevrons{\\langle}{\\rangle}
 
 	\\begin{document}
 

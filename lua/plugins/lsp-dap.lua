@@ -96,11 +96,111 @@ return function(use)
         end,
       }
 
+      -- dap
+      local dap, dapui = require 'dap', require 'dapui'
+
+      -- cpp
+      dap.adapters.codelldb = {
+        type = 'server',
+        port = '${port}',
+        executable = {
+          command = vim.fn.stdpath 'data' ..
+              '/mason/bin/codelldb' ..
+              (require 'util'.is_windows() and '.cmd' or ''),
+          args = { '--port', '${port}' },
+        }
+      }
+      dap.configurations.cpp = {
+        {
+          name = 'Launch',
+          type = 'codelldb',
+          request = 'launch',
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+        },
+      }
+
+      dapui.setup {
+        layouts = {
+          {
+            elements = {
+              { id = 'scopes', size = 0.55 },
+              { id = 'watches', size = 0.25 },
+              { id = 'breakpoints', size = 0.1 },
+              { id = 'stacks', size = 0.1 },
+            },
+            size = 40,
+            position = 'left',
+          },
+          {
+            elements = {
+              { id = 'console', size = 0.6},
+              { id = 'repl', size = 0.4 },
+            },
+            size = 15,
+            position = 'bottom',
+          },
+        },
+      }
+      -- auto open dapui
+      dap.listeners.after.event_initialized['dapui_config'] = function()
+        dapui.open {}
+        require 'nvim-tree.api'.tree.close()
+      end
+      dap.listeners.before.event_terminated['dapui_config'] = function()
+        dapui.close {}
+      end
+      dap.listeners.before.event_exited['dapui_config'] = function()
+        dapui.close {}
+      end
+
+      -- dap keymap
+      wk.register {
+        [',e'] = {
+          name = 'debugger',
+          c = { dap.continue, 'start/continue' },
+          n = { dap.step_over, 'step over' },
+          i = { dap.step_into, 'step into' },
+          o = { dap.step_out, 'step out' },
+          b = {
+            name = 'breakpoint',
+            t = { dap.toggle_breakpoint, 'toggle' },
+            c = {
+              function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+              'set conditional',
+            },
+            l = {
+              function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+              'set log point',
+            },
+            i = { dap.list_breakpoints, 'list' },
+            r = { dap.clear_breakpoints, 'clear' },
+          },
+          r = { dap.repl.toggle, 'toggle repl' },
+          l = { dap.run_last, 'run last' },
+          t = {
+            function()
+              dap.terminate()
+              dapui.close {}
+            end,
+            'terminate',
+          },
+          p = { dap.pause, 'pause' },
+          u = { dap.run_to_cursor, 'run until cursor' },
+        },
+      }
+
       -- setup tools that uses the lsp
       require 'rust-tools'.setup {
         server = {
           on_attach = on_attach,
         },
+        dap = {
+          adapter = dap.adapters.codelldb;
+        }
       }
       require 'flutter-tools'.setup {
         lsp = {
@@ -110,7 +210,10 @@ return function(use)
     end,
   }
 
-  use 'chomosuke/ltex_extra.nvim'
+  use {
+    'rcarriga/nvim-dap-ui',
+    requires = 'mfussenegger/nvim-dap',
+  }
 
   -- tools that uses the lsp
   use {
@@ -121,6 +224,7 @@ return function(use)
     'akinsho/flutter-tools.nvim',
     requires = 'nvim-lua/plenary.nvim',
   }
+  use 'chomosuke/ltex_extra.nvim'
 
   use {
     'Maan2003/lsp_lines.nvim',

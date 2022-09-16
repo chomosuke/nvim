@@ -56,6 +56,25 @@ return require 'packer'.startup {
       end,
     }
 
+    -- -- auto save latex files to trigger recompile
+    -- use {
+    --   'Pocco81/auto-save.nvim',
+    --   config = function()
+    --     require 'auto-save'.setup {
+    --       condition = function(buf)
+    --         local utils = require('auto-save.utils.data')
+    --         if
+    --           vim.fn.getbufvar(buf, '&modifiable') == 1 and
+    --           utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
+    --           vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+    --           return true
+    --         end
+    --         return false
+    --       end,
+    --     }
+    --   end,
+    -- }
+
     -- interactive development
     use {
       'Olical/conjure',
@@ -122,26 +141,35 @@ return require 'packer'.startup {
       end
     }
 
-    -- better escape mapping
-    use {
-      'max397574/better-escape.nvim',
-      config = function()
-        require 'better_escape'.setup {
-          mapping = { ',.' },
-          timeout = 256,
-        }
-        local map = require 'map'
-        map.map(',.', '<Esc>')
-        map.cmap(',.', '<Esc>')
-        map.tmap(',.', '<C-\\><C-n>')
-      end,
-    }
+    -- -- better escape mapping
+    -- use {
+    --   'max397574/better-escape.nvim',
+    --   config = function()
+    --     require 'better_escape'.setup {
+    --       mapping = { ',.' },
+    --       timeout = 256,
+    --     }
+    --     local map = require 'map'
+    --     map.map(',.', '<Esc>')
+    --     map.cmap(',.', '<Esc>')
+    --     map.tmap(',.', '<C-\\><C-n>')
+    --   end,
+    -- }
 
     -- for keybinding hint
     use {
       'folke/which-key.nvim',
       config = function()
-        require 'which-key'.setup {}
+        local wk = require 'which-key'
+        wk.setup {}
+        -- suppress ,. escape key mapping
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'n' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'i' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'c' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'x' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 's' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'o' })
+        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 't' })
       end
     }
 

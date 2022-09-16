@@ -24,9 +24,6 @@ vim.opt.termguicolors = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- faster timeout for keymaps
-vim.opt.timeoutlen = 256
-
 -- don't let cursor go to the top or bottom
 vim.opt.scrolloff = 8
 

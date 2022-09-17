@@ -14,8 +14,7 @@ return function(use)
 
       -- keymaps
       local wk = require 'which-key'
-      wk.register
-      {
+      wk.register {
         [','] = {
           name = 'lsp',
           g = {
@@ -29,7 +28,7 @@ return function(use)
           h = { vim.lsp.buf.hover, 'hover' },
           r = { vim.lsp.buf.rename, 'rename' },
           a = { vim.lsp.buf.code_action, 'code actions' },
-          f = { vim.lsp.buf.formatting, 'format' },
+          f = { function() vim.lsp.buf.format { async = true } end, 'format' },
           w = {
             name = 'workspace',
             a = { vim.lsp.buf.add_workspace_folder, 'add folder' },
@@ -137,7 +136,7 @@ return function(use)
           },
           {
             elements = {
-              { id = 'console', size = 0.6},
+              { id = 'console', size = 0.6 },
               { id = 'repl', size = 0.4 },
             },
             size = 15,

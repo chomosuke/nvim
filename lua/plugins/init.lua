@@ -62,11 +62,8 @@ return require 'packer'.startup {
       config = function()
         require 'auto-save'.setup {
           condition = function(buf)
-            local utils = require('auto-save.utils.data')
-            if
-              vim.fn.getbufvar(buf, '&modifiable') == 1 and
-              utils.not_in(vim.fn.getbufvar(buf, '&filetype'), {}) and
-              vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
+                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
               return true
             end
             return false
@@ -85,23 +82,21 @@ return require 'packer'.startup {
     }
 
     -- winbar
-    if vim.version().minor > 7 or vim.version().major > 0 then
-      use {
-        'fgheng/winbar.nvim',
-        config = function()
-          local default_config = require 'winbar.config'.defaults
-          require 'winbar'.setup {
-            enabled = true,
-            exclude_filetype = require 'util'.table_concat(
-              default_config.exclude_filetype,
-              {
-                'gitcommit',
-              }
-            ),
-          }
-        end,
-      }
-    end
+    use {
+      'fgheng/winbar.nvim',
+      config = function()
+        local default_config = require 'winbar.config'.defaults
+        require 'winbar'.setup {
+          enabled = true,
+          exclude_filetype = require 'util'.table_concat(
+            default_config.exclude_filetype,
+            {
+              'gitcommit',
+            }
+          ),
+        }
+      end,
+    }
 
     -- smooth scrolling
     use {
@@ -163,13 +158,13 @@ return require 'packer'.startup {
         local wk = require 'which-key'
         wk.setup {}
         -- suppress ,. escape key mapping
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'n' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'i' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'c' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'x' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 's' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 'o' })
-        wk.register({ [',.'] = 'which_key_ignore'}, { mode = 't' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'n' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'i' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'c' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'x' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 's' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'o' })
+        wk.register({ [',.'] = 'which_key_ignore' }, { mode = 't' })
       end
     }
 

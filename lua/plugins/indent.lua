@@ -3,6 +3,7 @@ return function(use)
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       --   helper functions definition   --
+
       local function fromhex(str)
         local chars = str:gsub('..', function(cc)
           return string.char(tonumber(cc, 16))
@@ -69,6 +70,7 @@ return function(use)
           )
         )
       end
+
       -- helper functions definition end --
 
       local name1 = 'IndentBlanklineIndent1'

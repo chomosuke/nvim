@@ -233,22 +233,11 @@ return function(use)
       lsp_lines.toggle() -- turn off at first
 
       local wk = require 'which-key'
-      DiagnosticVirtualLineConfigNum = 0
       wk.register {
         [',l'] = {
           function()
-            DiagnosticVirtualLineConfigNum = (DiagnosticVirtualLineConfigNum + 1) % 3
-            if DiagnosticVirtualLineConfigNum == 0 then
-              vim.diagnostic.config { virtual_text = true }
-            elseif DiagnosticVirtualLineConfigNum == 1 then
-              local virtual_lines = lsp_lines.toggle()
-              vim.diagnostic.config { virtual_text = false }
-              if not virtual_lines then
-                DiagnosticVirtualLineConfigNum = 2
-              end
-            else
-              lsp_lines.toggle()
-            end
+            local virtual_lines = lsp_lines.toggle()
+            vim.diagnostic.config { virtual_text = not virtual_lines }
           end,
           'toggle diagnostic virtual lines',
         },

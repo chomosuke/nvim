@@ -13,6 +13,7 @@ return function(use)
         },
         check_ts = true,
         enable_check_bracket_line = false,
+        disable_in_macro = true,
       }
 
       local Rule = require 'nvim-autopairs.rule'

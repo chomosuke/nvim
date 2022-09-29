@@ -30,6 +30,14 @@ return require 'packer'.startup {
     require 'plugins.themes' (use)
     require 'plugins.treesitter' (use)
 
+    -- marks
+    use {
+      'chentoast/marks.nvim',
+      config = function()
+        require 'marks'.setup {}
+      end,
+    }
+
     -- competitive programming auto test
     use {
       'xeluxee/competitest.nvim',

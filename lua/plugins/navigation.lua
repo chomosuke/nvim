@@ -31,9 +31,7 @@ return function(use)
       require 'hop'.setup { keys = 'aoeuhtnsidpgcrlyfqjkmwvzxb' }
       require 'which-key'.register({
         ['<leader>'] = {
-          e = { '<cmd>HopChar2<CR>', 'hop 2char' },
-          o = { '<cmd>HopWord<CR>', 'hop word' },
-          u = { '<cmd>HopLine<CR>', 'hop line' },
+          e = { '<cmd>HopLine<CR>', 'hop line' },
         }
       }, {})
     end

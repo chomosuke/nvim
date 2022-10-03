@@ -199,7 +199,12 @@ return function(use)
         },
         dap = {
           adapter = dap.adapters.codelldb;
-        }
+        },
+        tools = {
+          hover_actions = {
+            auto_focus = true,
+          },
+        },
       }
       require 'flutter-tools'.setup {
         lsp = {

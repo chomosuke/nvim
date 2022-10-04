@@ -30,6 +30,18 @@ return require 'packer'.startup {
     require 'plugins.themes' (use)
     require 'plugins.treesitter' (use)
 
+    -- scrollbar
+    use {
+      'dstein64/nvim-scrollview',
+      config = function()
+        require 'scrollview'.setup {
+          column = 1,
+          winblend = 80,
+        }
+        vim.cmd 'highlight ScrollView guibg=#ffffff'
+      end,
+    }
+
     -- marks
     use {
       'chentoast/marks.nvim',

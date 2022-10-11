@@ -4,6 +4,7 @@ return function(use)
     requires = 'kyazdani42/nvim-web-devicons', -- for file icon
     config = function()
       require 'nvim-tree'.setup {
+        open_on_setup = true,
         view = {
           preserve_window_proportions = true,
         },

@@ -30,6 +30,9 @@ return require 'packer'.startup {
     require 'plugins.themes' (use)
     require 'plugins.treesitter' (use)
 
+    -- startup time improvement
+    use 'lewis6991/impatient.nvim'
+
     -- scrollbar
     use {
       'dstein64/nvim-scrollview',

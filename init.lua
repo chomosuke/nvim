@@ -1,3 +1,7 @@
+if require 'util'.is_module_available 'impatient' then
+  M = require 'impatient'
+end
+
 require 'plugins'
 require 'config'
 require 'mapping'

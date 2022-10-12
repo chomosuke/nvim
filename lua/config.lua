@@ -59,6 +59,11 @@ vim.g.tex_flavor = 'latex'
 -- default fileformat is unix
 vim.opt.fileformats = 'unix,dos'
 
+-- default colorscheme if plugin is installed
+if require 'util'.is_module_available 'onedark' then
+  require 'onedark'.load()
+end
+
 -- alway show signs to stop it jumping around
 vim.opt.signcolumn = 'yes'
 

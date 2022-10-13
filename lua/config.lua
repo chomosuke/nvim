@@ -34,10 +34,9 @@ vim.opt.shiftwidth = 4
 -- blink cursor after 5 seconds
 vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
 
--- fold via treesitter
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
--- foldlevel 99 to prevent newly parsed treesitter nodes to be folded.
+-- fold via indent
+vim.opt.foldmethod = 'indent'
+-- foldlevel 99 to prevent folding on open file.
 -- how many time do you use zm anyways.
 vim.opt.foldlevel = 99
 

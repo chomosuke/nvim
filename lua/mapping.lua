@@ -47,3 +47,6 @@ map.nmap('zR', 'zR<cmd>IndentBlanklineRefresh<CR>')
 map.nmap('zn', 'zn<cmd>IndentBlanklineRefresh<CR>')
 map.nmap('zN', 'zN<cmd>IndentBlanklineRefresh<CR>')
 map.nmap('zi', 'zi<cmd>IndentBlanklineRefresh<CR>')
+
+-- force close current tab
+map.nmap('<leader>bf', '<cmd>bd!<CR>')

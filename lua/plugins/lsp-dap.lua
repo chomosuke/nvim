@@ -43,6 +43,8 @@ return function(use)
             p = { vim.diagnostic.goto_prev, 'go to previous' },
             n = { vim.diagnostic.goto_next, 'go to next' },
             l = { vim.diagnostic.setloclist, 'list' },
+            d = { vim.diagnostic.disable, 'disable'},
+            e = { vim.diagnostic.enable, 'enable'},
           },
         },
         -- map <leader>, back to , for actual , usage

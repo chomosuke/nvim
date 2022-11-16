@@ -14,6 +14,7 @@ return function(use)
 
       -- keymaps
       local wk = require 'which-key'
+      DiagnosticOn = true
       wk.register {
         [','] = {
           name = 'lsp',
@@ -43,8 +44,18 @@ return function(use)
             p = { vim.diagnostic.goto_prev, 'go to previous' },
             n = { vim.diagnostic.goto_next, 'go to next' },
             l = { vim.diagnostic.setloclist, 'list' },
-            d = { vim.diagnostic.disable, 'disable'},
-            e = { vim.diagnostic.enable, 'enable'},
+            t = {
+              function()
+                if DiagnosticOn then
+                  vim.diagnostic.disable()
+                  DiagnosticOn = false
+                else
+                  vim.diagnostic.enable()
+                  DiagnosticOn = true
+                end
+              end,
+              'toggle',
+            },
           },
         },
         -- map <leader>, back to , for actual , usage

@@ -101,6 +101,15 @@ return require 'packer'.startup {
       config = function()
         vim.g['conjure#mapping#prefix'] = '<leader>c'
         vim.g['conjure#filetypes'] = { 'clojure' }
+        require 'util'.create_autocmds(
+          'conjure_log_disable',
+          { { 'BufNewFile', {
+            callback = function() vim.diagnostic.disable(0) end,
+            pattern = {
+              'conjure-log-*',
+            },
+          } } }
+        )
       end,
     }
 

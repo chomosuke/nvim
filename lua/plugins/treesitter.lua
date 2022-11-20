@@ -16,5 +16,17 @@ return function(use)
     end,
   }
   -- bracket coloring
-  use 'p00f/nvim-ts-rainbow'
+  use {
+    'p00f/nvim-ts-rainbow',
+    config = function()
+      require 'which-key'.register {
+        [',c'] = {
+          function()
+            vim.cmd 'TSDisable rainbow | TSEnable rainbow'
+          end,
+          'Refresh parentheses coloring',
+        },
+      }
+    end,
+  }
 end

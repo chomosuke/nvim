@@ -74,6 +74,8 @@ return function(use)
         end
       end
 
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
       -- setup lsps
       local lspconfig = require 'lspconfig'
       local servers = {
@@ -93,6 +95,7 @@ return function(use)
       for _, lsp in pairs(servers) do
         lspconfig[lsp].setup {
           on_attach = on_attach,
+          capabilities = capabilities,
         }
       end
 
@@ -106,6 +109,7 @@ return function(use)
             path = vim.fn.stdpath 'data' .. '/ltex_extra',
           }
         end,
+        capabilities = capabilities,
       }
 
       -- dap
@@ -209,6 +213,7 @@ return function(use)
       require 'rust-tools'.setup {
         server = {
           on_attach = on_attach,
+          capabilities = capabilities,
         },
         dap = {
           adapter = dap.adapters.codelldb;
@@ -222,6 +227,7 @@ return function(use)
       require 'flutter-tools'.setup {
         lsp = {
           on_attach = on_attach,
+          capabilities = capabilities,
         },
       }
     end,

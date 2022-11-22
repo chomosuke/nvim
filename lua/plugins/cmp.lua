@@ -8,6 +8,7 @@ return function(use)
       'hrsh7th/cmp-cmdline',
 
       'SirVer/ultisnips',
+      'honza/vim-snippets',
       'quangnguyen30192/cmp-nvim-ultisnips',
 
       'kyazdani42/nvim-web-devicons',
@@ -27,6 +28,8 @@ return function(use)
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+          ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+          ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
           ['<C-Space>'] = cmp.mapping.complete(),
           ['<CR>'] = cmp.mapping.confirm({ select = false }),
         },

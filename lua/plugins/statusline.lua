@@ -12,18 +12,20 @@ return function(use)
         lualine_c = { 'lsp_progress', 'diagnostics' },
         lualine_x = { 'diff', 'branch' },
         lualine_y = {
-          {
-            'fileformat',
-            icons_enabled = false,
-            fmt = function(ff)
-              if ff == 'unix' then
-                ff = 'LF'
-              elseif ff == 'dos' then
-                ff = 'CRLF'
-              end
-              return ff
-            end,
-          },
+          function()
+            local ff = vim.bo.fileformat
+            local r
+            if ff == 'unix' then
+              r = 'LF'
+            elseif ff == 'dos' then
+              r = 'CRLF'
+            end
+            local eol = vim.bo.endofline
+            if not eol then
+              r = r .. ' NOEOL'
+            end
+            return r
+          end,
         },
         lualine_z = { '%{strwidth(getline("."))}:%L' },
       }

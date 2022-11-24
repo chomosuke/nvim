@@ -66,6 +66,9 @@ end
 -- alway show signs to stop it jumping around
 vim.opt.signcolumn = 'yes'
 
+-- don't add eol to the last line
+vim.opt.fixendofline = false
+
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_cursor_trail_length = 1

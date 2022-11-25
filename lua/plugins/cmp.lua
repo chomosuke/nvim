@@ -39,7 +39,14 @@ return function(use)
             { name = 'ultisnips' },
           },
           {
-            { name = 'buffer' },
+            {
+              name = 'buffer',
+              option = {
+                get_bufnrs = function()
+                  return vim.api.nvim_list_bufs()
+                end
+              },
+            },
           }
         ),
       }

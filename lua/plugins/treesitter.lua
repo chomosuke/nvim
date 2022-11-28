@@ -13,20 +13,22 @@ return function(use)
           enable = true,
         },
       }
-    end,
-  }
-  -- bracket coloring
-  use {
-    'p00f/nvim-ts-rainbow',
-    config = function()
+
       require 'which-key'.register {
         [',c'] = {
           function()
-            vim.cmd 'TSDisable rainbow | TSEnable rainbow'
+            vim.cmd [[
+              TSDisable rainbow
+              TSDisable highlight
+              TSEnable rainbow
+              TSEnable highlight
+            ]]
           end,
-          'Refresh parentheses coloring',
+          'Refresh treesitter',
         },
       }
     end,
   }
+  -- bracket coloring
+  use 'p00f/nvim-ts-rainbow'
 end

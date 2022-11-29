@@ -171,6 +171,11 @@ return require('packer').startup {
           start_in_insert = false,
           insert_mappings = false,
           terminal_mappings = false,
+          persist_size = false,
+          on_create = function(term)
+            term:send('export GIT_EDITOR=nvd', false)
+            term:clear()
+          end,
         }
       end,
     }
@@ -182,21 +187,6 @@ return require('packer').startup {
         require('Comment').setup()
       end,
     }
-
-    -- -- better escape mapping
-    -- use {
-    --   'max397574/better-escape.nvim',
-    --   config = function()
-    --     require 'better_escape'.setup {
-    --       mapping = { ',.' },
-    --       timeout = 256,
-    --     }
-    --     local map = require 'map'
-    --     map.map(',.', '<Esc>')
-    --     map.cmap(',.', '<Esc>')
-    --     map.tmap(',.', '<C-\\><C-n>')
-    --   end,
-    -- }
 
     -- for keybinding hint
     use {

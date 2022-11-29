@@ -20,7 +20,7 @@ return require 'packer'.startup {
     require 'plugins.autopairs' (use)
     require 'plugins.bufferline' (use)
     require 'plugins.cmp' (use)
-    require 'plugins.file-tree' (use)
+    require 'plugins.file-explorer' (use)
     require 'plugins.git' (use)
     require 'plugins.indent' (use)
     require 'plugins.lsp-dap' (use)

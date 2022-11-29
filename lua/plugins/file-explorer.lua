@@ -1,7 +1,7 @@
 return function(use)
   use {
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons', -- for file icon
+    'nvim-tree/nvim-tree.lua',
+    requires = 'nvim-tree/nvim-web-devicons', -- for file icon
     config = function()
       require 'nvim-tree'.setup {
         open_on_setup = true,
@@ -28,9 +28,12 @@ return function(use)
             error = '',
           },
           show_on_dirs = true,
+          show_on_open_dirs = false,
         },
         git = {
           ignore = false,
+          show_on_dirs = true,
+          show_on_open_dirs = false,
         },
       }
 

@@ -29,7 +29,7 @@ return function(use)
         },
         lualine_z = { '%{strwidth(getline("."))}:%L' },
       }
-      require 'lualine'.setup {
+      require('lualine').setup {
         options = {
           component_separators = '',
           section_separators = '',
@@ -41,7 +41,7 @@ return function(use)
         inactive_sections = {
           lualine_c = { 'filetype' },
           lualine_x = {},
-        }
+        },
       }
     end,
   }

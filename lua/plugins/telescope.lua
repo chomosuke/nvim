@@ -4,7 +4,7 @@ return function(use)
     config = function()
       local actions = require 'telescope.actions'
       local action_layout = require 'telescope.actions.layout'
-      require 'telescope'.setup {
+      require('telescope').setup {
         defaults = {
           file_ignore_patterns = {
             '%.git/',
@@ -30,7 +30,7 @@ return function(use)
           },
         },
       }
-      require 'telescope'.load_extension 'fzf'
+      require('telescope').load_extension 'fzf'
 
       -- mappings
       local wk = require 'which-key'
@@ -38,13 +38,19 @@ return function(use)
         ['<leader>f'] = {
           name = 'telescope',
           f = { '<cmd>Telescope find_files<CR>', 'find files' },
-          c = { '<cmd>Telescope current_buffer_fuzzy_find<CR>', 'find in current buffer' },
+          c = {
+            '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+            'find in current buffer',
+          },
           d = { '<cmd>Telescope live_grep<CR>', 'find in cwd' },
           u = { '<cmd>Telescope grep_string<CR>', 'find current word' },
           g = {
             name = 'git',
             c = { '<cmd>Telescope git_commits<CR>', 'list commits' },
-            u = { '<cmd>Telescope git_bcommits<CR>', 'list current buffer commits' },
+            u = {
+              '<cmd>Telescope git_bcommits<CR>',
+              'list current buffer commits',
+            },
             b = { '<cmd>Telescope git_branches<CR>', 'list branches' },
             s = { '<cmd>Telescope git_status<CR>', 'show status' },
             h = { '<cmd>Telescope git_stash<CR>', 'list stashes' },

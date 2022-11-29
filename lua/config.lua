@@ -32,7 +32,8 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 -- blink cursor after 5 seconds
-vim.opt.guicursor = 'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
+vim.opt.guicursor =
+  'n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait5000-blinkoff500-blinkon500'
 
 -- fold via indent
 vim.opt.foldmethod = 'indent'
@@ -45,7 +46,7 @@ local signs = {
   Error = ' ',
   Warn = ' ',
   Hint = ' ',
-  Info = ' '
+  Info = ' ',
 }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
@@ -59,8 +60,8 @@ vim.g.tex_flavor = 'latex'
 vim.opt.fileformats = 'unix,dos'
 
 -- default colorscheme if plugin is installed
-if require 'util'.is_module_available 'onedark' then
-  require 'onedark'.load()
+if require('util').is_module_available 'onedark' then
+  require('onedark').load()
 end
 
 -- alway show signs to stop it jumping around

@@ -3,7 +3,7 @@ return function(use)
     'nvim-tree/nvim-tree.lua',
     requires = 'nvim-tree/nvim-web-devicons', -- for file icon
     config = function()
-      require 'nvim-tree'.setup {
+      require('nvim-tree').setup {
         open_on_setup = true,
         view = {
           preserve_window_proportions = true,

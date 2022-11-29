@@ -6,8 +6,8 @@ return function(use)
     'neovim/nvim-lspconfig',
     config = function()
       -- easy install lsp
-      require 'mason'.setup {}
-      require 'mason-lspconfig'.setup {}
+      require('mason').setup {}
+      require('mason-lspconfig').setup {}
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
@@ -29,14 +29,22 @@ return function(use)
           h = { vim.lsp.buf.hover, 'hover' },
           r = { vim.lsp.buf.rename, 'rename' },
           a = { vim.lsp.buf.code_action, 'code actions' },
-          f = { function() vim.lsp.buf.format { async = true } end, 'format' },
+          f = {
+            function()
+              vim.lsp.buf.format { async = true }
+            end,
+            'format',
+          },
           w = {
             name = 'workspace',
             a = { vim.lsp.buf.add_workspace_folder, 'add folder' },
             r = { vim.lsp.buf.remove_workspace_folder, 'remove folder' },
-            l = { function()
-              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, 'list folder' }
+            l = {
+              function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+              end,
+              'list folder',
+            },
           },
           d = {
             name = 'diagnostic',
@@ -68,7 +76,7 @@ return function(use)
 
       local function on_attach(client, _)
         -- load project specific settings for lsp
-        local settings = require 'project-config'.get_lsp_config()[client.name]
+        local settings = require('project-config').get_lsp_config()[client.name]
         if settings ~= nil then
           client.config.settings = settings
         end
@@ -104,7 +112,7 @@ return function(use)
         filetypes = { 'markdown', 'tex' },
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-          require 'ltex_extra'.setup {
+          require('ltex_extra').setup {
             load_langs = { 'en-US' },
             path = vim.fn.stdpath 'data' .. '/ltex_extra',
           }
@@ -120,11 +128,11 @@ return function(use)
         type = 'server',
         port = '${port}',
         executable = {
-          command = vim.fn.stdpath 'data' ..
-              '/mason/bin/codelldb' ..
-              (require 'util'.is_windows() and '.cmd' or ''),
+          command = vim.fn.stdpath 'data'
+            .. '/mason/bin/codelldb'
+            .. (require('util').is_windows() and '.cmd' or ''),
           args = { '--port', '${port}' },
-        }
+        },
       }
       dap.configurations.cpp = {
         {
@@ -132,7 +140,11 @@ return function(use)
           type = 'codelldb',
           request = 'launch',
           program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input(
+              'Path to executable: ',
+              vim.fn.getcwd() .. '/',
+              'file'
+            )
           end,
           cwd = '${workspaceFolder}',
           stopOnEntry = false,
@@ -164,7 +176,7 @@ return function(use)
       -- auto open dapui
       dap.listeners.after.event_initialized['dapui_config'] = function()
         dapui.open {}
-        require 'nvim-tree.api'.tree.close()
+        require('nvim-tree.api').tree.close()
       end
       dap.listeners.before.event_terminated['dapui_config'] = function()
         dapui.close {}
@@ -185,11 +197,15 @@ return function(use)
             name = 'breakpoint',
             t = { dap.toggle_breakpoint, 'toggle' },
             c = {
-              function() dap.set_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+              function()
+                dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+              end,
               'set conditional',
             },
             l = {
-              function() dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end,
+              function()
+                dap.set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+              end,
               'set log point',
             },
             i = { dap.list_breakpoints, 'list' },
@@ -210,13 +226,13 @@ return function(use)
       }
 
       -- setup tools that uses the lsp
-      require 'rust-tools'.setup {
+      require('rust-tools').setup {
         server = {
           on_attach = on_attach,
           capabilities = capabilities,
         },
         dap = {
-          adapter = dap.adapters.codelldb;
+          adapter = dap.adapters.codelldb,
         },
         tools = {
           hover_actions = {
@@ -224,7 +240,7 @@ return function(use)
           },
         },
       }
-      require 'flutter-tools'.setup {
+      require('flutter-tools').setup {
         lsp = {
           on_attach = on_attach,
           capabilities = capabilities,

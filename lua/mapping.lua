@@ -3,13 +3,24 @@ local util = require 'util'
 
 -- normally timeout after 256 but in insert have faster timeout.
 vim.opt.timeoutlen = 256
-util.create_autocmds(
-  'change_timeoutlen_upon_insert',
+util.create_autocmds('change_timeoutlen_upon_insert', {
   {
-    { 'InsertEnter', { callback = function() vim.opt.timeoutlen = 128 end } },
-    { 'InsertLeave', { callback = function() vim.opt.timeoutlen = 256 end } },
-  }
-)
+    'InsertEnter',
+    {
+      callback = function()
+        vim.opt.timeoutlen = 128
+      end,
+    },
+  },
+  {
+    'InsertLeave',
+    {
+      callback = function()
+        vim.opt.timeoutlen = 256
+      end,
+    },
+  },
+})
 
 -- map ,. to Esc
 map.imap(',.', '<Esc>')

@@ -2,10 +2,10 @@ return function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function()
-      require 'nvim-treesitter.install'.update({ with_sync = true })
+      require('nvim-treesitter.install').update { with_sync = true }
     end,
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require('nvim-treesitter.configs').setup {
         highlight = {
           enable = true,
         },
@@ -14,7 +14,7 @@ return function(use)
         },
       }
 
-      require 'which-key'.register {
+      require('which-key').register {
         [',c'] = {
           function()
             vim.cmd [[

@@ -23,7 +23,7 @@ return function(use)
           end,
         },
         formatting = {
-          format = require 'lspkind'.cmp_format { mode = 'symbol' },
+          format = require('lspkind').cmp_format { mode = 'symbol' },
         },
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping.select_next_item(),
@@ -31,24 +31,21 @@ return function(use)
           ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
           ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
           ['<C-Space>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping.confirm({ select = false }),
+          ['<CR>'] = cmp.mapping.confirm { select = false },
         },
-        sources = cmp.config.sources(
+        sources = cmp.config.sources({
+          { name = 'nvim_lsp' },
+          { name = 'ultisnips' },
+        }, {
           {
-            { name = 'nvim_lsp' },
-            { name = 'ultisnips' },
-          },
-          {
-            {
-              name = 'buffer',
-              option = {
-                get_bufnrs = function()
-                  return vim.api.nvim_list_bufs()
-                end
-              },
+            name = 'buffer',
+            option = {
+              get_bufnrs = function()
+                return vim.api.nvim_list_bufs()
+              end,
             },
-          }
-        ),
+          },
+        }),
       }
 
       -- Use buffer source for `/` and `?`
@@ -56,20 +53,17 @@ return function(use)
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'buffer' },
-        }
+        },
       })
 
       -- Use cmdline & path source for ':'
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources(
-          {
-            { name = 'path' },
-          },
-          {
-            { name = 'cmdline' },
-          }
-        )
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          { name = 'cmdline' },
+        }),
       })
     end,
   }

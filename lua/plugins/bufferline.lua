@@ -4,7 +4,7 @@ return function(use)
     tag = 'v2.*',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require 'bufferline'.setup {
+      require('bufferline').setup {
         options = {
           ---@diagnostic disable-next-line: assign-type-mismatch
           numbers = function(opts)
@@ -13,14 +13,23 @@ return function(use)
           close_command = 'bdelete %d',
           max_name_length = 50,
           max_prefix_length = 30,
-          offsets = { { filetype = 'NvimTree', text = 'File Explorer', text_align = 'left' } },
+          offsets = {
+            {
+              filetype = 'NvimTree',
+              text = 'File Explorer',
+              text_align = 'left',
+            },
+          },
           show_buffer_close_icons = false,
           show_close_icon = false,
           ---@diagnostic disable-next-line: assign-type-mismatch
           diagnostics = 'nvim_lsp',
           diagnostics_indicator = function(_, level, _, _)
-            local icon = level:match 'error' and '' or level:match 'warning' and '' or level:match 'info' and ''
-                or level:match 'hint' and '' or '?'
+            local icon = level:match 'error' and ''
+              or level:match 'warning' and ''
+              or level:match 'info' and ''
+              or level:match 'hint' and ''
+              or '?'
             return icon
           end,
           sort_by = 'insert_after_current',

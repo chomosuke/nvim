@@ -12,23 +12,23 @@ if fn.empty(fn.glob(install_path)) > 0 then
   }
 end
 
-return require 'packer'.startup {
+return require('packer').startup {
   function(use)
     -- for packer to host itself
     use 'wbthomason/packer.nvim'
 
-    require 'plugins.autopairs' (use)
-    require 'plugins.bufferline' (use)
-    require 'plugins.cmp' (use)
-    require 'plugins.file-explorer' (use)
-    require 'plugins.git' (use)
-    require 'plugins.indent' (use)
-    require 'plugins.lsp-dap' (use)
-    require 'plugins.navigation' (use)
-    require 'plugins.statusline' (use)
-    require 'plugins.telescope' (use)
-    require 'plugins.themes' (use)
-    require 'plugins.treesitter' (use)
+    require 'plugins.autopairs'(use)
+    require 'plugins.bufferline'(use)
+    require 'plugins.cmp'(use)
+    require 'plugins.file-explorer'(use)
+    require 'plugins.git'(use)
+    require 'plugins.indent'(use)
+    require 'plugins.lsp-dap'(use)
+    require 'plugins.navigation'(use)
+    require 'plugins.statusline'(use)
+    require 'plugins.telescope'(use)
+    require 'plugins.themes'(use)
+    require 'plugins.treesitter'(use)
 
     -- startup time improvement
     use 'lewis6991/impatient.nvim'
@@ -37,7 +37,7 @@ return require 'packer'.startup {
     use {
       'dstein64/nvim-scrollview',
       config = function()
-        require 'scrollview'.setup {
+        require('scrollview').setup {
           column = 1,
           winblend = 80,
         }
@@ -49,7 +49,7 @@ return require 'packer'.startup {
     use {
       'chentoast/marks.nvim',
       config = function()
-        require 'marks'.setup {}
+        require('marks').setup {}
       end,
     }
 
@@ -58,7 +58,7 @@ return require 'packer'.startup {
       'xeluxee/competitest.nvim',
       requires = 'MunifTanjim/nui.nvim',
       config = function()
-        require 'competitest'.setup {}
+        require('competitest').setup {}
       end,
     }
 
@@ -66,16 +66,20 @@ return require 'packer'.startup {
     use {
       'lewis6991/spellsitter.nvim',
       config = function()
-        require 'util'.create_autocmds(
-          'set_spell_for_spell_check',
-          { { 'Filetype', {
-            callback = function() vim.opt.spell = true end,
-            pattern = {
-              'gitcommit',
+        require('util').create_autocmds('set_spell_for_spell_check', {
+          {
+            'Filetype',
+            {
+              callback = function()
+                vim.opt.spell = true
+              end,
+              pattern = {
+                'gitcommit',
+              },
             },
-          } } }
-        )
-        require 'spellsitter'.setup()
+          },
+        })
+        require('spellsitter').setup()
       end,
     }
 
@@ -83,10 +87,12 @@ return require 'packer'.startup {
     use {
       'Pocco81/auto-save.nvim',
       config = function()
-        require 'auto-save'.setup {
+        require('auto-save').setup {
           condition = function(buf)
-            if vim.fn.getbufvar(buf, '&modifiable') == 1 and
-                vim.fn.getbufvar(buf, '&filetype') == 'tex' then
+            if
+              vim.fn.getbufvar(buf, '&modifiable') == 1
+              and vim.fn.getbufvar(buf, '&filetype') == 'tex'
+            then
               return true
             end
             return false
@@ -101,15 +107,19 @@ return require 'packer'.startup {
       config = function()
         vim.g['conjure#mapping#prefix'] = '<leader>c'
         vim.g['conjure#filetypes'] = { 'clojure' }
-        require 'util'.create_autocmds(
-          'conjure_log_disable',
-          { { 'BufNewFile', {
-            callback = function() vim.diagnostic.disable(0) end,
-            pattern = {
-              'conjure-log-*',
+        require('util').create_autocmds('conjure_log_disable', {
+          {
+            'BufNewFile',
+            {
+              callback = function()
+                vim.diagnostic.disable(0)
+              end,
+              pattern = {
+                'conjure-log-*',
+              },
             },
-          } } }
-        )
+          },
+        })
       end,
     }
 
@@ -117,10 +127,10 @@ return require 'packer'.startup {
     use {
       'fgheng/winbar.nvim',
       config = function()
-        local default_config = require 'winbar.config'.defaults
-        require 'winbar'.setup {
+        local default_config = require('winbar.config').defaults
+        require('winbar').setup {
           enabled = true,
-          exclude_filetype = require 'util'.table_concat(
+          exclude_filetype = require('util').table_concat(
             default_config.exclude_filetype,
             {
               'gitcommit',
@@ -135,7 +145,7 @@ return require 'packer'.startup {
       'chomosuke/neoscroll.nvim',
       config = function()
         if vim.g.neovide == nil then
-          require 'neoscroll'.setup()
+          require('neoscroll').setup()
         end
       end,
     }
@@ -143,7 +153,9 @@ return require 'packer'.startup {
     -- markdown preview
     use {
       'iamcco/markdown-preview.nvim',
-      run = function() vim.fn['mkdp#util#install']() end,
+      run = function()
+        vim.fn['mkdp#util#install']()
+      end,
       config = function()
         vim.g.mkdp_auto_close = 0
       end,
@@ -153,7 +165,7 @@ return require 'packer'.startup {
     use {
       'akinsho/toggleterm.nvim',
       config = function()
-        require 'toggleterm'.setup {
+        require('toggleterm').setup {
           size = 12,
           open_mapping = '<leader>t',
           start_in_insert = false,
@@ -167,8 +179,8 @@ return require 'packer'.startup {
     use {
       'numToStr/Comment.nvim',
       config = function()
-        require 'Comment'.setup()
-      end
+        require('Comment').setup()
+      end,
     }
 
     -- -- better escape mapping
@@ -200,13 +212,13 @@ return require 'packer'.startup {
         wk.register({ [',.'] = 'which_key_ignore' }, { mode = 's' })
         wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'o' })
         wk.register({ [',.'] = 'which_key_ignore' }, { mode = 't' })
-      end
+      end,
     }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if PackerBootstrap then
-      require 'packer'.sync()
+      require('packer').sync()
     end
   end,
   config = {

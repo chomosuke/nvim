@@ -23,9 +23,11 @@ return function(use)
           chars = chars .. string.char(nums[i])
         end
 
-        return (chars:gsub('.', function(c)
-          return string.format('%02X', string.byte(c))
-        end))
+        return (
+          chars:gsub('.', function(c)
+            return string.format('%02X', string.byte(c))
+          end)
+        )
       end
 
       local function set_highlight(highlight_name1, highlight_name2, diff_func)
@@ -75,15 +77,11 @@ return function(use)
 
       local name1 = 'IndentBlanklineIndent1'
       local name2 = 'IndentBlanklineIndent2'
-      set_highlight(
-        name1,
-        name2,
-        function(hi)
-          return math.max(hi - 6, 0)
-        end
-      )
+      set_highlight(name1, name2, function(hi)
+        return math.max(hi - 6, 0)
+      end)
 
-      require 'indent_blankline'.setup {
+      require('indent_blankline').setup {
         use_treesitter = true,
         show_trailing_blankline_indent = false,
         char = '',
@@ -102,8 +100,8 @@ return function(use)
           'help',
           'man',
           '',
-          'clojure'
-        }
+          'clojure',
+        },
       }
     end,
   }
@@ -111,7 +109,7 @@ return function(use)
   use {
     'nmac427/guess-indent.nvim',
     config = function()
-      require 'guess-indent'.setup {
+      require('guess-indent').setup {
         filetype_exclude = {
           'netrw',
           'tutor',
@@ -119,12 +117,15 @@ return function(use)
         },
       }
 
-      require 'util'.create_autocmds(
-        'set_indent_to_2_for_clojure',
+      require('util').create_autocmds('set_indent_to_2_for_clojure', {
         {
-          { 'FileType', { pattern = 'clojure', command = 'setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2' } },
-        }
-      )
+          'FileType',
+          {
+            pattern = 'clojure',
+            command = 'setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2',
+          },
+        },
+      })
     end,
   }
 end

@@ -23,6 +23,7 @@ return function(use)
                 or level:match 'hint' and '' or '?'
             return icon
           end,
+          sort_by = 'insert_after_current',
         },
       }
 

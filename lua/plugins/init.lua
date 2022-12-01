@@ -27,6 +27,7 @@ return require('packer').startup {
     require 'plugins.navigation'(use)
     require 'plugins.statusline'(use)
     require 'plugins.telescope'(use)
+    require 'plugins.terminal'(use)
     require 'plugins.themes'(use)
     require 'plugins.treesitter'(use)
 
@@ -158,25 +159,6 @@ return require('packer').startup {
       end,
       config = function()
         vim.g.mkdp_auto_close = 0
-      end,
-    }
-
-    -- terminal
-    use {
-      'akinsho/toggleterm.nvim',
-      config = function()
-        require('toggleterm').setup {
-          size = 12,
-          open_mapping = '<leader>t',
-          start_in_insert = false,
-          insert_mappings = false,
-          terminal_mappings = false,
-          persist_size = false,
-          on_create = function(term)
-            term:send('export GIT_EDITOR=nvd', false)
-            term:clear()
-          end,
-        }
       end,
     }
 

@@ -75,8 +75,8 @@ return function(use)
 
       -- helper functions definition end --
 
-      local name1 = 'IndentBlanklineIndent1'
-      local name2 = 'IndentBlanklineIndent2'
+      local name1 = 'IndentBlankline1'
+      local name2 = 'IndentBlankline2'
       set_highlight(name1, name2, function(hi)
         return math.max(hi - 6, 0)
       end)

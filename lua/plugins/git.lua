@@ -10,6 +10,9 @@ return function(use)
     config = function()
       require('gitsigns').setup {
         numhl = true,
+        current_line_blame_opts = {
+          delay = 0,
+        },
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
           local wk = require 'which-key'

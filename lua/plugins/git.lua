@@ -107,6 +107,7 @@ return function(use)
     config = function()
       require('git-conflict').setup {
         default_mappings = false,
+        disable_diagnostics = true,
       }
     end,
   }

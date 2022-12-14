@@ -9,7 +9,8 @@ return function(use)
           preserve_window_proportions = true,
         },
         renderer = {
-          highlight_git = true,
+          highlight_opened_files = 'icon',
+          full_name = true,
           indent_markers = {
             enable = true,
           },

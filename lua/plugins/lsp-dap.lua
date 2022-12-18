@@ -84,42 +84,6 @@ return function(use)
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      -- setup lsps
-      local lspconfig = require 'lspconfig'
-      local servers = {
-        'intelephense',
-        'tsserver',
-        'csharp_ls',
-        'sumneko_lua',
-        'yamlls',
-        'jsonls',
-        'clangd',
-        'hls',
-        'jdtls',
-        'texlab',
-        'clojure_lsp',
-        'dockerls',
-      }
-      for _, lsp in pairs(servers) do
-        lspconfig[lsp].setup {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        }
-      end
-
-      -- setup lsp with special settings
-      lspconfig.ltex.setup {
-        filetypes = { 'markdown', 'tex' },
-        on_attach = function(client, bufnr)
-          on_attach(client, bufnr)
-          require('ltex_extra').setup {
-            load_langs = { 'en-US' },
-            path = vim.fn.stdpath 'data' .. '/ltex_extra',
-          }
-        end,
-        capabilities = capabilities,
-      }
-
       -- dap
       local dap, dapui = require 'dap', require 'dapui'
 
@@ -225,21 +189,46 @@ return function(use)
         },
       }
 
-      -- setup tools that uses the lsp
-      require('rust-tools').setup {
-        server = {
-          on_attach = on_attach,
-          capabilities = capabilities,
-        },
-        dap = {
-          adapter = dap.adapters.codelldb,
-        },
-        tools = {
-          hover_actions = {
-            auto_focus = true,
-          },
-        },
+      -- setup lsps
+      local lspconfig = require 'lspconfig'
+      require('mason-lspconfig').setup_handlers {
+        function(server_name)
+          lspconfig[server_name].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+          }
+        end,
+        ltex = function()
+          lspconfig.ltex.setup {
+            filetypes = { 'markdown', 'tex' },
+            on_attach = function(client, bufnr)
+              on_attach(client, bufnr)
+              require('ltex_extra').setup {
+                load_langs = { 'en-US' },
+                path = vim.fn.stdpath 'data' .. '/ltex_extra',
+              }
+            end,
+            capabilities = capabilities,
+          }
+        end,
+        rust_analyzer = function()
+          require('rust-tools').setup {
+            server = {
+              on_attach = on_attach,
+              capabilities = capabilities,
+            },
+            dap = {
+              adapter = dap.adapters.codelldb,
+            },
+            tools = {
+              hover_actions = {
+                auto_focus = true,
+              },
+            },
+          }
+        end,
       }
+
       require('flutter-tools').setup {
         lsp = {
           on_attach = on_attach,

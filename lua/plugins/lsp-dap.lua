@@ -1,6 +1,7 @@
 return function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
+  use 'jay-babu/mason-nvim-dap.nvim'
 
   use {
     'neovim/nvim-lspconfig',
@@ -8,6 +9,7 @@ return function(use)
       -- easy install lsp
       require('mason').setup {}
       require('mason-lspconfig').setup {}
+      require('mason-nvim-dap').setup { automatic_setup = true }
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
@@ -87,32 +89,40 @@ return function(use)
       -- dap
       local dap, dapui = require 'dap', require 'dapui'
 
-      -- cpp
-      dap.adapters.codelldb = {
-        type = 'server',
-        port = '${port}',
-        executable = {
-          command = vim.fn.stdpath 'data'
-            .. '/mason/bin/codelldb'
-            .. (require('util').is_windows() and '.cmd' or ''),
-          args = { '--port', '${port}' },
-        },
-      }
-      dap.configurations.cpp = {
-        {
-          name = 'Launch',
-          type = 'codelldb',
-          request = 'launch',
-          program = function()
-            return vim.fn.input(
-              'Path to executable: ',
-              vim.fn.getcwd() .. '/',
-              'file'
-            )
-          end,
-          cwd = '${workspaceFolder}',
-          stopOnEntry = false,
-        },
+      require('mason-nvim-dap').setup_handlers {
+        function(source_name)
+          require('mason-nvim-dap.automatic_setup')(source_name)
+        end,
+        codelldb = function()
+          -- so that it doesn't config rust
+          dap.adapters.codelldb = {
+            type = 'server',
+            port = '${port}',
+            executable = {
+              command = vim.fn.stdpath 'data'
+                  .. '/mason/bin/codelldb'
+                  .. (require('util').is_windows() and '.cmd' or ''),
+              args = { '--port', '${port}' },
+            },
+          }
+          dap.configurations.cpp = {
+            {
+              name = 'Launch',
+              type = 'codelldb',
+              request = 'launch',
+              program = function()
+                return vim.fn.input(
+                  'Path to executable: ',
+                  vim.fn.getcwd() .. '/',
+                  'file'
+                )
+              end,
+              cwd = '${workspaceFolder}',
+              stopOnEntry = false,
+            },
+          }
+          dap.configurations.c = dap.configurations.cpp
+        end,
       }
 
       dapui.setup {
@@ -236,23 +246,19 @@ return function(use)
         },
       }
     end,
-  }
+    requires = {
+      'rcarriga/nvim-dap-ui',
+      'mfussenegger/nvim-dap',
+      'mfussenegger/nvim-dap-python',
 
-  use {
-    'rcarriga/nvim-dap-ui',
-    requires = 'mfussenegger/nvim-dap',
+      -- tools that uses the lsp
+      'simrat39/rust-tools.nvim',
+      'nvim-lua/plenary.nvim',
+      'akinsho/flutter-tools.nvim',
+      'nvim-lua/plenary.nvim',
+      'chomosuke/ltex_extra.nvim',
+    },
   }
-
-  -- tools that uses the lsp
-  use {
-    'simrat39/rust-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-  }
-  use {
-    'akinsho/flutter-tools.nvim',
-    requires = 'nvim-lua/plenary.nvim',
-  }
-  use 'chomosuke/ltex_extra.nvim'
 
   use {
     'Maan2003/lsp_lines.nvim',

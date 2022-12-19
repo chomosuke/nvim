@@ -1,17 +1,12 @@
 return function(use)
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'jay-babu/mason-nvim-dap.nvim'
-
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      -- easy install lsp
+      -- easy install
       require('mason').setup {}
+
+      -- lsp
       require('mason-lspconfig').setup {}
-      require('mason-nvim-dap').setup {
-        automatic_setup = { filetypes = { codelldb = { 'c', 'cpp' } } },
-      }
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
@@ -35,7 +30,13 @@ return function(use)
           a = { vim.lsp.buf.code_action, 'code actions' },
           f = {
             function()
-              vim.lsp.buf.format { async = true }
+              vim.lsp.buf.format {
+                async = true,
+                filter = function(client)
+                  return client.name ~= 'sumneko_lua'
+                    or not require('mason-registry').is_installed 'stylua'
+                end,
+              }
             end,
             'format',
           },
@@ -91,6 +92,9 @@ return function(use)
       -- dap
       local dap, dapui = require 'dap', require 'dapui'
 
+      require('mason-nvim-dap').setup {
+        automatic_setup = { filetypes = { codelldb = { 'c', 'cpp' } } },
+      }
       require('mason-nvim-dap').setup_handlers()
 
       dapui.setup {
@@ -213,11 +217,27 @@ return function(use)
           capabilities = capabilities,
         },
       }
+
+      -- null-ls
+      require('mason-null-ls').setup {
+        automatic_setup = true,
+      }
+      require('mason-null-ls').setup_handlers {}
+      require('null-ls').setup()
     end,
     requires = {
+      -- mason
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'jay-babu/mason-nvim-dap.nvim',
+      'jay-babu/mason-null-ls.nvim',
+
+      -- null-ls
+      'jose-elias-alvarez/null-ls.nvim',
+
+      -- dap
       'rcarriga/nvim-dap-ui',
       'mfussenegger/nvim-dap',
-      'mfussenegger/nvim-dap-python',
 
       -- tools that uses the lsp
       'simrat39/rust-tools.nvim',

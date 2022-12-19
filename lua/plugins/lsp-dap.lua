@@ -9,7 +9,9 @@ return function(use)
       -- easy install lsp
       require('mason').setup {}
       require('mason-lspconfig').setup {}
-      require('mason-nvim-dap').setup { automatic_setup = true }
+      require('mason-nvim-dap').setup {
+        automatic_setup = { filetypes = { codelldb = { 'c', 'cpp' } } },
+      }
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
@@ -89,41 +91,7 @@ return function(use)
       -- dap
       local dap, dapui = require 'dap', require 'dapui'
 
-      require('mason-nvim-dap').setup_handlers {
-        function(source_name)
-          require('mason-nvim-dap.automatic_setup')(source_name)
-        end,
-        codelldb = function()
-          -- so that it doesn't config rust
-          dap.adapters.codelldb = {
-            type = 'server',
-            port = '${port}',
-            executable = {
-              command = vim.fn.stdpath 'data'
-                  .. '/mason/bin/codelldb'
-                  .. (require('util').is_windows() and '.cmd' or ''),
-              args = { '--port', '${port}' },
-            },
-          }
-          dap.configurations.cpp = {
-            {
-              name = 'Launch',
-              type = 'codelldb',
-              request = 'launch',
-              program = function()
-                return vim.fn.input(
-                  'Path to executable: ',
-                  vim.fn.getcwd() .. '/',
-                  'file'
-                )
-              end,
-              cwd = '${workspaceFolder}',
-              stopOnEntry = false,
-            },
-          }
-          dap.configurations.c = dap.configurations.cpp
-        end,
-      }
+      require('mason-nvim-dap').setup_handlers()
 
       dapui.setup {
         layouts = {

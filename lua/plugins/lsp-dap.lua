@@ -31,7 +31,6 @@ return function(use)
           f = {
             function()
               vim.lsp.buf.format {
-                async = true,
                 filter = function(client)
                   return client.name ~= 'sumneko_lua'
                     or not require('mason-registry').is_installed 'stylua'

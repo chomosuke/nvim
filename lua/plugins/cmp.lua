@@ -2,15 +2,18 @@ return function(use)
   use {
     'hrsh7th/nvim-cmp',
     requires = {
+      -- sources
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
 
+      -- snippets
       'SirVer/ultisnips',
       'honza/vim-snippets',
       'quangnguyen30192/cmp-nvim-ultisnips',
 
+      -- icons
       'kyazdani42/nvim-web-devicons',
       'onsails/lspkind.nvim',
     },

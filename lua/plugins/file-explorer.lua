@@ -6,7 +6,11 @@ return function(use)
       require('nvim-tree').setup {
         open_on_setup = true,
         view = {
-          preserve_window_proportions = true,
+          mappings = {
+            list = {
+              { key = 'r', action = 'full_rename' },
+            },
+          },
         },
         renderer = {
           highlight_opened_files = 'icon',

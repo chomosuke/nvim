@@ -1,17 +1,20 @@
 local M = {}
 
-local util = require 'util'
-
 ---@param name string
+---@param path string
 ---@return string|table|integer|nil
-local function get_config(name)
-  local config_file =
-    io.open(vim.fn.getcwd() .. '/.nvim-config/' .. name .. '.json')
+local function get_config(name, path)
+  local dir = vim.fn.fnamemodify(path, ':p:h')
+  while dir ~= '/' and vim.fn.isdirectory(dir .. '/.nvim-config') == 0 do
+    dir = vim.fn.fnamemodify(dir, ':h')
+  end
+
+  local config_file = io.open(dir .. '/.nvim-config/' .. name .. '.json')
   if config_file == nil then
     return nil
   end
 
-  local config = config_file:read('*all')
+  local config = config_file:read '*all'
   config_file:close()
 
   config = vim.fn.json_decode(config)
@@ -19,24 +22,21 @@ local function get_config(name)
 end
 
 ---@param client_name string
+---@param bufnr integer
 ---@return string|integer|table|nil
-function M.get_lsp_config(client_name)
-  local config = get_config 'lsp'
+function M.get_lsp_config(client_name, bufnr)
+  local config = get_config('lsp', vim.api.nvim_buf_get_name(bufnr))
   if config then
     config = config[client_name]
   end
   return config
 end
 
----@return string|integer|table|nil
-function M.get_jester_config()
-  return get_config 'jest'
-end
-
 ---@param client_name string
+---@param bufnr integer
 ---@return boolean
-function M.get_formatter_enabled(client_name)
-  local config = get_config 'no-format'
+function M.get_formatter_enabled(client_name, bufnr)
+  local config = get_config('no-format', vim.api.nvim_buf_get_name(bufnr))
   if config == nil then
     return true
   end
@@ -48,27 +48,5 @@ function M.get_formatter_enabled(client_name)
   end
   return true
 end
-
-local function update_lsp_config()
-  for _, client in ipairs(vim.lsp.get_active_clients()) do
-    local new_settings = M.get_lsp_config(client.name)
-    if new_settings ~= nil then
-      client.notify('workspace/didChangeConfiguration', {
-        settings = new_settings,
-      })
-      client.config.settings = new_settings
-    end
-  end
-end
-
-function M.update_config()
-  update_lsp_config()
-end
-
--- update config when cwd changes
-util.create_autocmds(
-  'update_project_config',
-  { { 'DirChanged', { callback = M.update_config } } }
-)
 
 return M

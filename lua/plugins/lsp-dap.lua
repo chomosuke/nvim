@@ -33,7 +33,8 @@ return function(use)
               vim.lsp.buf.format {
                 filter = function(client)
                   return require('project-config').get_formatter_enabled(
-                    client.name
+                    client.name,
+                    0
                   )
                 end,
               }
@@ -79,9 +80,10 @@ return function(use)
         { mode = 'i' }
       )
 
-      local function on_attach(client, _)
+      local function on_attach(client, bufnr)
         -- load project specific settings for lsp
-        local settings = require('project-config').get_lsp_config(client.name)
+        local settings =
+          require('project-config').get_lsp_config(client.name, bufnr)
         if settings ~= nil then
           client.config.settings = settings
         end

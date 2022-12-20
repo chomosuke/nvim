@@ -3,6 +3,5 @@
     "Lua.diagnostics.globals": [
         "vim"
     ],
-    "runtime.version": "LuaJIT",
-    "workspace.checkThirdParty": false
+    "runtime.version": "LuaJIT"
 }

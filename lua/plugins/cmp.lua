@@ -33,7 +33,7 @@ return function(use)
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
           ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-Space>'] = cmp.mapping.complete {},
           ['<CR>'] = cmp.mapping.confirm { select = false },
         },
         sources = cmp.config.sources({

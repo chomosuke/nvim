@@ -32,8 +32,9 @@ return function(use)
             function()
               vim.lsp.buf.format {
                 filter = function(client)
-                  return client.name ~= 'sumneko_lua'
-                    or not require('mason-registry').is_installed 'stylua'
+                  return require('project-config').get_formatter_enabled(
+                    client.name
+                  )
                 end,
               }
             end,
@@ -80,7 +81,7 @@ return function(use)
 
       local function on_attach(client, _)
         -- load project specific settings for lsp
-        local settings = require('project-config').get_lsp_config()[client.name]
+        local settings = require('project-config').get_lsp_config(client.name)
         if settings ~= nil then
           client.config.settings = settings
         end

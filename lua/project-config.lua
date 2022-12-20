@@ -49,4 +49,22 @@ function M.get_formatter_enabled(client_name, bufnr)
   return true
 end
 
+---@param params table
+---@param source_name string
+---@return boolean
+function M.get_null_ls_source_enabled(params, source_name)
+  local config = get_config('null-ls', params.bufname)
+  if config == nil then
+    return true
+  end
+  config = config.disable
+  assert(type(config) == 'table')
+  for _, name in pairs(config) do
+    if name == source_name then
+      return false
+    end
+  end
+  return true
+end
+
 return M

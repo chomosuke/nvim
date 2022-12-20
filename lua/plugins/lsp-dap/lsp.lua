@@ -1,4 +1,4 @@
-require('mason-lspconfig').setup {}
+require('mason-lspconfig').setup()
 
 local function on_attach(client, bufnr)
   -- load project specific settings for lsp

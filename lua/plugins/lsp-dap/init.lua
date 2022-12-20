@@ -2,7 +2,7 @@ return function(use)
   use {
     'neovim/nvim-lspconfig',
     config = function()
-      require('mason').setup {}
+      require('mason').setup { ui = { border = 'rounded' } }
 
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)

@@ -211,6 +211,17 @@ return function(use)
             },
           }
         end,
+        sumneko_lua = function()
+          lspconfig.sumneko_lua.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = {
+              workspace = {
+                library = vim.api.nvim_get_runtime_file('', true),
+              },
+            },
+          }
+        end,
       }
 
       require('flutter-tools').setup {
@@ -236,6 +247,7 @@ return function(use)
 
       -- null-ls
       'jose-elias-alvarez/null-ls.nvim',
+      'nvim-lua/plenary.nvim',
 
       -- dap
       'rcarriga/nvim-dap-ui',

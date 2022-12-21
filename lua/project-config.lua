@@ -35,15 +35,17 @@ end
 ---@param client_name string
 ---@param bufnr integer
 ---@return boolean
-function M.get_formatter_enabled(client_name, bufnr)
-  local config = get_config('no-format', vim.api.nvim_buf_get_name(bufnr))
+function M.get_format_enabled(client_name, bufnr)
+  local config = get_config('lsp-disable', vim.api.nvim_buf_get_name(bufnr))
   if config == nil then
     return true
   end
-  assert(type(config) == 'table')
-  for _, name in pairs(config) do
-    if name == client_name then
-      return false
+  config = config[client_name]
+  if type(config) == 'table' then
+    for _, disabled in pairs(config) do
+      if disabled == 'format' then
+        return false
+      end
     end
   end
   return true

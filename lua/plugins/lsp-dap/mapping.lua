@@ -19,7 +19,7 @@ wk.register {
       function()
         vim.lsp.buf.format {
           filter = function(client)
-            return require('project-config').get_formatter_enabled(
+            return require('project-config').get_format_enabled(
               client.name,
               0
             )

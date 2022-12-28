@@ -40,6 +40,9 @@ return function(use)
           show_on_dirs = true,
           show_on_open_dirs = false,
         },
+        modified = {
+          enable = true,
+        },
       }
 
       -- mapings

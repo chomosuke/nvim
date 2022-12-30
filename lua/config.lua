@@ -70,6 +70,27 @@ vim.opt.signcolumn = 'yes'
 -- don't add eol to the last line
 vim.opt.fixendofline = false
 
+-- set title to cwd always
+vim.opt.title = true
+local titlestring = vim.fn.expand '%:p:t'
+if titlestring == '' then
+  titlestring = vim.fn.expand '%:p:h:t'
+end
+if titlestring == '' then
+  titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+end
+vim.opt.titlestring = titlestring
+require('util').create_autocmds('set_title_to_cwd', {
+  {
+    'DirChanged',
+    {
+      callback = function()
+        vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+      end,
+    },
+  },
+})
+
 -- for neovide
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_cursor_trail_length = 1

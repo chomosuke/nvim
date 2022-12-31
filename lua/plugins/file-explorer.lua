@@ -22,6 +22,9 @@ return function(use)
             show = {
               folder_arrow = false,
             },
+            glyphs = {
+              modified = '[+]',
+            },
           },
         },
         diagnostics = {

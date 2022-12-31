@@ -10,7 +10,7 @@ return function(use)
         terminal_mappings = false,
         persist_size = false,
         on_create = function(term)
-          term:send('export GIT_EDITOR=nvd', false)
+          term:send("export GIT_EDITOR='nvd --nofork'", false)
           term:clear()
         end,
       }

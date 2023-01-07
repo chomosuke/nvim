@@ -1,6 +1,7 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
+    event = 'VimEnter', -- for calculating highlight color based on colorscheme
     config = function()
       --   helper functions definition   --
       local function fromhex(str)

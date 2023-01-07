@@ -1,6 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
     config = function()
       require('mason').setup { ui = { border = 'rounded' } }
 
@@ -40,6 +41,7 @@ return {
 
   {
     'Maan2003/lsp_lines.nvim',
+    keys = ',l',
     config = function()
       local lsp_lines = require 'lsp_lines'
       lsp_lines.setup()

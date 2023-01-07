@@ -1,6 +1,7 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    event = 'VeryLazy',
     config = function()
       require('gitsigns').setup {
         numhl = true,
@@ -49,8 +50,8 @@ return {
           local nv_actions_mappings = {
             ['<leader>g'] = {
               name = 'git',
-              s = { ':Gitsigns stage_hunk<CR>', 'stage hunk' },
-              r = { ':Gitsigns reset_hunk<CR>', 'reset hunk' },
+              s = { '<cmd>Gitsigns stage_hunk<CR>', 'stage hunk' },
+              r = { '<cmd>Gitsigns reset_hunk<CR>', 'reset hunk' },
             },
           }
           wk.register(nv_actions_mappings, { buffer = bufnr })
@@ -87,7 +88,7 @@ return {
 
           -- Text object
           local text_object_mappings = {
-            ih = { ':<C-U>Gitsigns select_hunk<CR>', 'select hunk' },
+            ih = { '<cmd><C-U>Gitsigns select_hunk<CR>', 'select hunk' },
           }
           wk.register(text_object_mappings, { buffer = bufnr, mode = 'o' })
           wk.register(text_object_mappings, { buffer = bufnr, mode = 'x' })
@@ -96,10 +97,14 @@ return {
     end,
   },
 
-  'tpope/vim-fugitive',
+  {
+    'tpope/vim-fugitive',
+    event = 'VeryLazy',
+  },
 
   {
     'akinsho/git-conflict.nvim',
+    event = 'VeryLazy',
     version = '*',
     config = function()
       require('git-conflict').setup {

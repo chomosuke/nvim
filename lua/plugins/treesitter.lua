@@ -1,9 +1,14 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    event = 'VeryLazy',
     build = function()
       require('nvim-treesitter.install').update { with_sync = true }
     end,
+    dependencies = {
+      -- bracket coloring
+      'p00f/nvim-ts-rainbow',
+    },
     config = function()
       require('nvim-treesitter.configs').setup {
         highlight = {
@@ -29,6 +34,4 @@ return {
       }
     end,
   },
-  -- bracket coloring
-  'p00f/nvim-ts-rainbow',
 }

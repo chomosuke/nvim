@@ -2,6 +2,7 @@ return {
   -- scrollbar
   {
     'dstein64/nvim-scrollview',
+    lazy = false,
     config = function()
       require('scrollview').setup {
         column = 1,
@@ -14,6 +15,7 @@ return {
   -- marks
   {
     'chentoast/marks.nvim',
+    event = 'VeryLazy',
     config = function()
       require('marks').setup {}
     end,
@@ -22,6 +24,7 @@ return {
   -- spell check
   {
     'lewis6991/spellsitter.nvim',
+    ft = 'gitcommit',
     config = function()
       require('util').create_autocmds('set_spell_for_spell_check', {
         {
@@ -43,6 +46,7 @@ return {
   -- auto save latex files to trigger recompile
   {
     'Pocco81/auto-save.nvim',
+    ft = 'tex',
     config = function()
       require('auto-save').setup {
         condition = function(buf)
@@ -61,6 +65,7 @@ return {
   -- interactive development
   {
     'Olical/conjure',
+    ft = { 'clojure' },
     config = function()
       vim.g['conjure#mapping#prefix'] = '<leader>c'
       vim.g['conjure#filetypes'] = { 'clojure' }
@@ -83,6 +88,7 @@ return {
   -- winbar
   {
     'fgheng/winbar.nvim',
+    event = 'VeryLazy',
     config = function()
       local default_config = require('winbar.config').defaults
       require('winbar').setup {
@@ -100,6 +106,7 @@ return {
   -- smooth scrolling
   {
     'chomosuke/neoscroll.nvim',
+    event = 'VeryLazy',
     config = function()
       if vim.g.neovide == nil then
         require('neoscroll').setup()
@@ -110,6 +117,7 @@ return {
   -- markdown preview
   {
     'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
     build = function()
       vim.fn['mkdp#util#install']()
     end,
@@ -121,6 +129,7 @@ return {
   -- for comment toggle
   {
     'numToStr/Comment.nvim',
+    event = 'VeryLazy',
     config = function()
       require('Comment').setup()
     end,

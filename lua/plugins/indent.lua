@@ -1,7 +1,7 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'VimEnter', -- for calculating highlight color based on colorscheme
+    event = 'VeryLazy',
     config = function()
       --   helper functions definition   --
       local function fromhex(str)
@@ -108,6 +108,7 @@ return {
 
   {
     'nmac427/guess-indent.nvim',
+    event = 'VeryLazy',
     config = function()
       require('guess-indent').setup {
         filetype_exclude = {

@@ -1,6 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
+    keys = '<leader>f',
     config = function()
       local actions = require 'telescope.actions'
       local action_layout = require 'telescope.actions.layout'

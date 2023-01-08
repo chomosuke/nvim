@@ -14,14 +14,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
   defaults = {
-   lazy = true,
+    lazy = true,
+  },
+  dev = {
+    path = '~/code',
+  },
+  change_detection = {
+    notify = false,
   },
   performance = {
     rtp = {
       disabled_plugins = {
         'netrwPlugin',
         'tutor',
-      }
+      },
     },
   },
 })

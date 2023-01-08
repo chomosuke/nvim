@@ -33,7 +33,7 @@ return function(use)
       'nvim-lua/plenary.nvim',
       'akinsho/flutter-tools.nvim',
       'nvim-lua/plenary.nvim',
-      'chomosuke/ltex_extra.nvim',
+      'barreiroleo/ltex_extra.nvim',
       'folke/neodev.nvim',
     },
   }

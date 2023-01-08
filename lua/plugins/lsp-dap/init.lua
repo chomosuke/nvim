@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    lazy = false, -- single file start
+    event = { 'BufReadPre', 'BufNewFile', 'CmdlineEnter' },
     config = function()
       require('mason').setup { ui = { border = 'rounded' } }
 

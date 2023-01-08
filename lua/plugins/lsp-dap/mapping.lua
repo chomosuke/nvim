@@ -38,7 +38,7 @@ wk.register {
     },
     d = {
       name = 'diagnostic',
-      f = { vim.diagnostic.open_float, 'open float' },
+      f = { function() vim.diagnostic.open_float { source = 'if_many' } end, 'open float' },
       p = { vim.diagnostic.goto_prev, 'go to previous' },
       n = { vim.diagnostic.goto_next, 'go to next' },
       l = { vim.diagnostic.setloclist, 'list' },

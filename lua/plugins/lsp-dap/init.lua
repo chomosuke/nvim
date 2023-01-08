@@ -1,7 +1,7 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    lazy = false, -- single file start
     config = function()
       require('mason').setup { ui = { border = 'rounded' } }
 

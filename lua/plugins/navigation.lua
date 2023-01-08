@@ -1,7 +1,7 @@
 return {
   {
     'ggandor/leap.nvim',
-    event = 'VeryLazy',
+    lazy = false, -- Lazy loading won't work
     config = function()
       require('leap').setup {
         equivalence_classes = {

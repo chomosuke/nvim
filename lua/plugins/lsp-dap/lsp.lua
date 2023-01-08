@@ -47,8 +47,20 @@ require('mason-lspconfig').setup_handlers {
   end,
 }
 
-vim.api.nvim_set_hl(0, 'LspInfoBorder', {
-  fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID 'Comment'), 'fg#'),
+require('util').create_autocmds('set_LspInfoBorder', {
+  {
+    'VimEnter',
+    {
+      callback = function()
+        vim.api.nvim_set_hl(0, 'LspInfoBorder', {
+          fg = vim.fn.synIDattr(
+            vim.fn.synIDtrans(vim.fn.hlID 'Comment'),
+            'fg#'
+          ),
+        })
+      end,
+    },
+  },
 })
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 

@@ -88,7 +88,7 @@ return {
   -- winbar
   {
     'fgheng/winbar.nvim',
-    event = 'VeryLazy',
+    lazy = false, -- single file start
     config = function()
       local default_config = require('winbar.config').defaults
       require('winbar').setup {

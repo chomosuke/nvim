@@ -1,7 +1,9 @@
 return {
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'VeryLazy',
+    -- VeryLazy isn't early enough for single file start
+    -- lazy = false won't allow calculating highlights
+    event = 'VimEnter',
     config = function()
       --   helper functions definition   --
       local function fromhex(str)
@@ -108,7 +110,7 @@ return {
 
   {
     'nmac427/guess-indent.nvim',
-    event = 'VeryLazy',
+    lazy = false, -- single file start
     config = function()
       require('guess-indent').setup {
         filetype_exclude = {

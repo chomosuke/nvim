@@ -1,9 +1,8 @@
-return function(use)
-  use {
+return {
+  {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       --   helper functions definition   --
-
       local function fromhex(str)
         local chars = str:gsub('..', function(cc)
           return string.char(tonumber(cc, 16))
@@ -55,6 +54,7 @@ return function(use)
         for i = 1, #highlight do
           if highlight[i] ~= 'NONE' then
             highlight[i] = string.sub(highlight[i], 2, 7)
+            ---@diagnostic disable-next-line: assign-type-mismatch
             highlight[i] = fromhex(highlight[i])
             for j = 1, #highlight[i] do
               highlight[i][j] = diff_func(highlight[i][j])
@@ -72,7 +72,6 @@ return function(use)
           )
         )
       end
-
       -- helper functions definition end --
 
       local name1 = 'IndentBlankline1'
@@ -104,9 +103,9 @@ return function(use)
         },
       }
     end,
-  }
+  },
 
-  use {
+  {
     'nmac427/guess-indent.nvim',
     config = function()
       require('guess-indent').setup {
@@ -127,5 +126,5 @@ return function(use)
         },
       })
     end,
-  }
-end
+  },
+}

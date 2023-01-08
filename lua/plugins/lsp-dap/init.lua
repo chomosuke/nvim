@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'neovim/nvim-lspconfig',
     config = function()
       require('mason').setup { ui = { border = 'rounded' } }
@@ -13,7 +13,7 @@ return function(use)
       require 'plugins.lsp-dap.both'(on_attach, capabilities)
       require 'plugins.lsp-dap.mapping'
     end,
-    requires = {
+    dependencies = {
       -- mason
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
@@ -36,9 +36,9 @@ return function(use)
       'barreiroleo/ltex_extra.nvim',
       'folke/neodev.nvim',
     },
-  }
+  },
 
-  use {
+  {
     'Maan2003/lsp_lines.nvim',
     config = function()
       local lsp_lines = require 'lsp_lines'
@@ -56,5 +56,5 @@ return function(use)
         },
       }
     end,
-  }
-end
+  },
+}

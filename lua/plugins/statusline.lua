@@ -1,8 +1,8 @@
-return function(use)
-  use {
+return {
+  {
     'nvim-lualine/lualine.nvim',
-    requires = {
-      'kyazdani42/nvim-web-devicons',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
       'arkav/lualine-lsp-progress',
     },
     config = function()
@@ -44,5 +44,5 @@ return function(use)
         },
       }
     end,
-  }
-end
+  },
+}

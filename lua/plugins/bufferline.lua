@@ -1,8 +1,8 @@
-return function(use)
-  use {
+return {
+  {
     'akinsho/bufferline.nvim',
-    tag = 'v3.*',
-    requires = 'kyazdani42/nvim-web-devicons',
+    version = '3.*',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('bufferline').setup {
         options = {
@@ -55,5 +55,5 @@ return function(use)
         },
       }
     end,
-  }
-end
+  },
+}

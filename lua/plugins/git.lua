@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup {
@@ -94,18 +94,18 @@ return function(use)
         end,
       }
     end,
-  }
+  },
 
-  use 'tpope/vim-fugitive'
+  'tpope/vim-fugitive',
 
-  use {
+  {
     'akinsho/git-conflict.nvim',
-    tag = '*',
+    version = '*',
     config = function()
       require('git-conflict').setup {
         default_mappings = false,
         disable_diagnostics = true,
       }
     end,
-  }
-end
+  },
+}

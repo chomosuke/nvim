@@ -1,7 +1,7 @@
-return function(use)
-  use {
+return {
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       -- sources
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
@@ -14,7 +14,7 @@ return function(use)
       'quangnguyen30192/cmp-nvim-ultisnips',
 
       -- icons
-      'kyazdani42/nvim-web-devicons',
+      'nvim-tree/nvim-web-devicons',
       'onsails/lspkind.nvim',
     },
     config = function()
@@ -69,5 +69,5 @@ return function(use)
         }),
       })
     end,
-  }
-end
+  },
+}

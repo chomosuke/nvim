@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'akinsho/toggleterm.nvim',
     config = function()
       require('toggleterm').setup {
@@ -15,5 +15,5 @@ return function(use)
         end,
       }
     end,
-  }
-end
+  },
+}

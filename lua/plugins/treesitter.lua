@@ -1,7 +1,7 @@
-return function(use)
-  use {
+return {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = function()
+    build = function()
       require('nvim-treesitter.install').update { with_sync = true }
     end,
     config = function()
@@ -28,7 +28,7 @@ return function(use)
         },
       }
     end,
-  }
+  },
   -- bracket coloring
-  use 'p00f/nvim-ts-rainbow'
-end
+  'p00f/nvim-ts-rainbow',
+}

@@ -1,7 +1,7 @@
-return function(use)
-  use {
+return {
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = 'nvim-tree/nvim-web-devicons', -- for file icon
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- for file icon
     config = function()
       require('nvim-tree').setup {
         open_on_setup = true,
@@ -55,5 +55,5 @@ return function(use)
       map.nmap('<leader>n', '<cmd>NvimTreeToggle<CR>')
       map.nmap('<leader>r', '<cmd>NvimTreeRefresh<CR>')
     end,
-  }
-end
+  },
+}

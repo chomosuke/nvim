@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'nvim-telescope/telescope.nvim',
     config = function()
       local actions = require 'telescope.actions'
@@ -65,12 +65,12 @@ return function(use)
         },
       }
     end,
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       },
     },
-  }
-end
+  },
+}

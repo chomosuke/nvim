@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'windwp/nvim-autopairs',
     config = function()
       local npairs = require 'nvim-autopairs'
@@ -20,5 +20,5 @@ return function(use)
         Rule('\\{', '\\}', 'tex'),
       }
     end,
-  }
-end
+  },
+}

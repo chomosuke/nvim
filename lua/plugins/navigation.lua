@@ -1,5 +1,5 @@
-return function(use)
-  use {
+return {
+  {
     'ggandor/leap.nvim',
     config = function()
       require('leap').setup {
@@ -22,9 +22,9 @@ return function(use)
       }
       require('leap').set_default_keymaps()
     end,
-  }
+  },
 
-  use {
+  {
     'ziontee113/syntax-tree-surfer',
     config = function()
       require 'syntax-tree-surfer'
@@ -66,5 +66,5 @@ return function(use)
       vim.keymap.set('x', '<A-j>', '<cmd>STSSwapNextVisual<CR>', opts)
       vim.keymap.set('x', '<A-k>', '<cmd>STSSwapPrevVisual<CR>', opts)
     end,
-  }
-end
+  },
+}

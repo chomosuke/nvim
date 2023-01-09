@@ -15,11 +15,27 @@ function M.is_module_available(name)
   end
 end
 
+---@class AutocmdOpts
+---@field pattern? string[]|string
+---@field buffer? integer
+---@field desc? string
+---@field callback? function|string
+---@field command? string
+---@field once? boolean
+---@field nested? boolean
+
+---@class Autocmd
+---@field event string[]|string
+---@field opts AutocmdOpts
+
+---create autocmds
+---@param name string
+---@param autocmds Autocmd[]
 function M.create_autocmds(name, autocmds)
   local id = vim.api.nvim_create_augroup(name, {})
   for _, autocmd in ipairs(autocmds) do
-    autocmd[2]['group'] = id
-    vim.api.nvim_create_autocmd(autocmd[1], autocmd[2])
+    autocmd.opts.group = id
+    vim.api.nvim_create_autocmd(autocmd.event, autocmd.opts)
   end
 end
 

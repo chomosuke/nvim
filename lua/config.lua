@@ -82,8 +82,8 @@ end
 vim.opt.titlestring = titlestring
 require('util').create_autocmds('set_title_to_cwd', {
   {
-    'DirChanged',
-    {
+    event = 'DirChanged',
+    opts = {
       callback = function()
         vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
       end,

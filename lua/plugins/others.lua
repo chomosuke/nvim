@@ -28,8 +28,8 @@ return {
     config = function()
       require('util').create_autocmds('set_spell_for_spell_check', {
         {
-          'Filetype',
-          {
+          event = 'Filetype',
+          opts = {
             callback = function()
               vim.opt.spell = true
             end,
@@ -71,8 +71,8 @@ return {
       vim.g['conjure#filetypes'] = { 'clojure' }
       require('util').create_autocmds('conjure_log_disable', {
         {
-          'BufNewFile',
-          {
+          event = 'BufNewFile',
+          opts = {
             callback = function()
               vim.diagnostic.disable(0)
             end,

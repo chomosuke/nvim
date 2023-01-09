@@ -122,8 +122,8 @@ return {
 
       require('util').create_autocmds('set_indent_to_2_for_clojure', {
         {
-          'FileType',
-          {
+          event = 'FileType',
+          opts = {
             pattern = 'clojure',
             command = 'setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2',
           },

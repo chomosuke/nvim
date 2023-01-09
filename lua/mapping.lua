@@ -4,16 +4,16 @@ local util = require 'util'
 vim.opt.timeoutlen = 256
 util.create_autocmds('change_timeoutlen_upon_insert', {
   {
-    'InsertEnter',
-    {
+    event = 'InsertEnter',
+    opts = {
       callback = function()
         vim.opt.timeoutlen = 128
       end,
     },
   },
   {
-    'InsertLeave',
-    {
+    event = 'InsertLeave',
+    opts = {
       callback = function()
         vim.opt.timeoutlen = 256
       end,

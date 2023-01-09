@@ -52,9 +52,13 @@ return {
       }
 
       -- mapings
-      local map = require 'map'
-      map.nmap('<leader>n', '<cmd>NvimTreeToggle<CR>')
-      map.nmap('<leader>r', '<cmd>NvimTreeRefresh<CR>')
+      local wk = require 'which-key'
+      wk.register {
+        ['<leader>'] = {
+          n = { '<cmd>NvimTreeToggle<CR>', 'toggle file tree' },
+          r = { '<cmd>NvimTreeRefresh<CR>', 'refresh file tree' },
+        },
+      }
     end,
   },
 }

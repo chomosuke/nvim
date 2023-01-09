@@ -38,13 +38,13 @@ return {
       }
 
       -- mappings
-      local map = require 'map'
-      map.nmap(']]', '<cmd>BufferLineCycleNext<CR>')
-      map.nmap('[[', '<cmd>BufferLineCyclePrev<CR>')
-      map.nmap('<leader>y', '<cmd>BufferLineCycleNext<CR>')
-      map.nmap('<leader>p', '<cmd>BufferLineCyclePrev<CR>')
-      map.nmap('][', '<cmd>BufferLineMoveNext<CR>')
-      map.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
+      local util = require 'util'
+      util.nmap(']]', '<cmd>BufferLineCycleNext<CR>')
+      util.nmap('[[', '<cmd>BufferLineCyclePrev<CR>')
+      util.nmap('<leader>y', '<cmd>BufferLineCycleNext<CR>')
+      util.nmap('<leader>p', '<cmd>BufferLineCyclePrev<CR>')
+      util.nmap('][', '<cmd>BufferLineMoveNext<CR>')
+      util.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
       local wk = require 'which-key'
       wk.register {
         ['<leader>b'] = {

@@ -47,15 +47,20 @@ return {
           })
 
           -- Actions
-          local nv_actions_mappings = {
+          wk.register({
             ['<leader>g'] = {
               name = 'git',
               s = { '<cmd>Gitsigns stage_hunk<CR>', 'stage hunk' },
               r = { '<cmd>Gitsigns reset_hunk<CR>', 'reset hunk' },
             },
-          }
-          wk.register(nv_actions_mappings, { buffer = bufnr })
-          wk.register(nv_actions_mappings, { mode = 'v', buffer = bufnr })
+          }, { buffer = bufnr })
+          wk.register({
+            ['<leader>g'] = {
+              name = 'git',
+              s = { ":'<,'>Gitsigns stage_hunk<CR>", 'stage hunk' },
+              r = { ":'<,'>Gitsigns reset_hunk<CR>", 'reset hunk' },
+            },
+          }, { mode = 'v', buffer = bufnr })
           wk.register({
             ['<leader>g'] = {
               name = 'git',

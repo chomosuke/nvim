@@ -1,7 +1,7 @@
 return {
   {
     'nvim-telescope/telescope.nvim',
-    keys = '<leader>f',
+    keys = '<leader>e',
     config = function()
       local actions = require 'telescope.actions'
       local action_layout = require 'telescope.actions.layout'
@@ -36,7 +36,7 @@ return {
       -- mappings
       local wk = require 'which-key'
       wk.register {
-        ['<leader>f'] = {
+        ['<leader>e'] = {
           name = 'telescope',
           f = { '<cmd>Telescope find_files<CR>', 'find files' },
           c = {

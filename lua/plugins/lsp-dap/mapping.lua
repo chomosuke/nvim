@@ -40,7 +40,7 @@ wk.register {
       name = 'diagnostic',
       f = {
         function()
-          vim.diagnostic.open_float { source = 'if_many' }
+          vim.diagnostic.open_float { source = true }
         end,
         'open float',
       },

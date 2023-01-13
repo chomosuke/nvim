@@ -17,4 +17,9 @@ return {
       }
     end,
   },
+
+  {
+    'chomosuke/term-edit.nvim',
+    ft = 'toggleterm',
+  },
 }

@@ -50,6 +50,7 @@
   "syntax-tree-surfer": { "branch": "master", "commit": "d6d518f48dcc4441b11ee3e6cefd48fa1e09568a" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "fab3e2212e206f4f8b3bbaa656e129443c9b802e" },
   "telescope.nvim": { "branch": "master", "commit": "1ba7278cf08da8048e7f589ef6b65a39fd3e4dbf" },
+  "term-edit.nvim": { "branch": "master", "commit": "658fb6d13b11001bb8d194ad07bfa0f0ed741a12" },
   "toggleterm.nvim": { "branch": "main", "commit": "528d6375745dc3c5db6ab7d5fba0ddbdec5bf4e0" },
   "tokyonight.nvim": { "branch": "main", "commit": "def91651c41f6d1d43ebcb50763324d35331baee" },
   "ultisnips": { "branch": "master", "commit": "e99fdf15cd55a4a8e0cb0a80a6810c1867a5c401" },

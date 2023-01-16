@@ -46,6 +46,18 @@ function M.is_windows()
   return vim.loop.os_uname().sysname == 'Windows_NT'
 end
 
+function M.table_index(table, ...)
+  local keys = {...}
+  for _, key in pairs(keys) do
+    if type(table) == 'table' then
+      table = table[key]
+    else
+      return table
+    end
+  end
+  return table
+end
+
 -- mapping --
 
 -- for all modes

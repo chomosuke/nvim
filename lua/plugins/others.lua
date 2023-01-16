@@ -105,9 +105,8 @@ return {
 
   -- smooth scrolling
   {
-    'chomosuke/neoscroll.nvim',
+    'karb94/neoscroll.nvim',
     event = 'VeryLazy',
-    branch = 'fix-zz',
     config = function()
       if vim.g.neovide == nil then
         require('neoscroll').setup()

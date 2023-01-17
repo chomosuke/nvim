@@ -1,0 +1,23 @@
+*.nvim-config.json*  Local config file for NeoVim
+
+```json
+{
+    "lsp": {
+        "client-name": {
+            "settings": "passed to config",
+            "disable": [
+                "format",
+                "potentinally other components to disable"
+            ]
+        }
+    },
+    "null-ls": {
+        "disable": [
+            "luacheck",
+            "other stuff to disable"
+        ]
+    }
+}
+```
+
+ vim:tw=78:ts=4:sw=4:et:ft=help:norl:

@@ -13,6 +13,7 @@ return {
           },
         },
         safe_labels = {},
+        -- stylua: ignore
         labels = {
           'e', 'u', 'o', 'a', 'i', 't', 'h', 'n', 's', 'd', '.', 'p', ';', 'y',
           'c', 'g', 'r', 'z', 'f', 'k', 'q', 'j', 'x', 'm', 'v', 'w', 'b', "'",

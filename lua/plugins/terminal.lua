@@ -23,8 +23,7 @@ return {
     ft = 'toggleterm',
     config = function()
       require('term-edit').setup {
-        prompt_start = ' \\$ ',
-        prompt_start = ' %$ ',
+        prompt_start = require 'machine-specific'.prompt_start,
       }
     end,
   },

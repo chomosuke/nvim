@@ -21,5 +21,10 @@ return {
   {
     'chomosuke/term-edit.nvim',
     ft = 'toggleterm',
+    config = function()
+      require('term-edit').setup {
+        prompt_start = ' \\$ ',
+      }
+    end,
   },
 }

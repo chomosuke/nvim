@@ -1,14 +1,8 @@
 {
-	"lsp": {
-		"sumneko_lua": {
-			"disable": [
-				"format"
-			]
-		}
-	},
-	"null-ls": {
-		"disable": [
-			"luacheck"
-		]
-	}
+	"lsp.sumneko_lua.disable": [
+		"format"
+	],
+	"null-ls.disable": [
+		"luacheck"
+	]
 }

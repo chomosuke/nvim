@@ -47,7 +47,7 @@ function M.is_windows()
 end
 
 function M.table_index(table, ...)
-  local keys = {...}
+  local keys = { ... }
   for _, key in pairs(keys) do
     if type(table) == 'table' then
       table = table[key]
@@ -56,6 +56,17 @@ function M.table_index(table, ...)
     end
   end
   return table
+end
+
+function M.split(inputstr, sep)
+  if sep == nil then
+    sep = '%s'
+  end
+  local t = {}
+  for str in string.gmatch(inputstr, '([^' .. sep .. ']+)') do
+    table.insert(t, str)
+  end
+  return t
 end
 
 -- mapping --

@@ -1,5 +1,28 @@
-local util = require "util"
+local util = require 'util'
 local M = {}
+
+local function expand_json_dot(obj)
+  local new_obj = {}
+  for k, v in pairs(obj) do
+    local keys
+    if type(k) == 'string' then
+      keys = util.split(k, '%.')
+    else
+      keys = { k }
+    end
+    local o = new_obj
+    local last_key = table.remove(keys, #keys)
+    for _, key in pairs(keys) do
+      o[key] = o[key] or {}
+      o = o[key]
+    end
+    if type(v) == 'table' then
+      v = expand_json_dot(v)
+    end
+    o[last_key] = v
+  end
+  return new_obj
+end
 
 ---@param path string
 ---@return string|table|integer|nil
@@ -18,7 +41,7 @@ local function get_config(path)
   local config = config_file:read '*all'
   config_file:close()
 
-  config = vim.fn.json_decode(config)
+  config = expand_json_dot(vim.fn.json_decode(config))
   return config
 end
 

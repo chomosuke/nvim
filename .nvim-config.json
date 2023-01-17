@@ -1,8 +1,15 @@
 {
-	"lsp.sumneko_lua.disable": [
-		"format"
-	],
-	"null-ls.disable": [
-		"luacheck"
-	]
+	"$schema": "./nvim-config-schema.json",
+	"lsp": {
+		"sumneko_lua": {
+			"disable": [
+				"format"
+			]
+		}
+	},
+	"null-ls": {
+		"disable": [
+			"luacheck"
+		]
+	}
 }

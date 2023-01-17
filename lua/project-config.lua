@@ -89,4 +89,16 @@ function M.get_null_ls_source_enabled(params, source_name)
   return true
 end
 
+vim.api.nvim_create_user_command('NvimConfig', function()
+  -- generate .nvim-config.json
+  vim.cmd(':e ' .. vim.fn.getcwd() .. '/.nvim-config.json')
+  ---@diagnostic disable-next-line: param-type-mismatch
+  vim.defer_fn(function()
+    vim.api.nvim_buf_set_lines(0, 0, 0, false, {
+      '{ "$schema": "' .. vim.fn.stdpath 'config' .. '/nvim-config-schema.json" }',
+    })
+    ---@diagnostic disable-next-line: param-type-mismatch
+  end, 10)
+end, {})
+
 return M

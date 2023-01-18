@@ -24,6 +24,7 @@ return {
     config = function()
       require('term-edit').setup {
         prompt_start = ' \\$ ',
+        prompt_start = ' %$ ',
       }
     end,
   },

@@ -83,12 +83,14 @@ wk.register {
       t = { dap.toggle_breakpoint, 'toggle' },
       c = {
         function()
+          ---@diagnostic disable-next-line: param-type-mismatch
           dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,
         'set conditional',
       },
       l = {
         function()
+          ---@diagnostic disable-next-line: param-type-mismatch
           dap.set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
         end,
         'set log point',

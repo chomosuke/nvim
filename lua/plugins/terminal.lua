@@ -24,6 +24,13 @@ return {
     config = function()
       require('term-edit').setup {
         prompt_end = require('machine-specific').prompt_start,
+        feedkeys_delay = 2,
+        mapping = {
+          n = {
+            s = false,
+            S = false,
+          }
+        }
       }
     end,
   },

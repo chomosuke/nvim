@@ -28,7 +28,7 @@ return {
             return r
           end,
         },
-        lualine_z = { '%{strwidth(getline("."))}:%L' },
+        lualine_z = { '%c/%{strwidth(getline("."))}:%L' },
       }
       require('lualine').setup {
         options = {

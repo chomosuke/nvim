@@ -20,10 +20,11 @@ return {
 
   {
     'chomosuke/term-edit.nvim',
+    version = '1.*',
     ft = 'toggleterm',
     config = function()
       require('term-edit').setup {
-        prompt_end = require('machine-specific').prompt_start,
+        prompt_end = require('machine-config').prompt_end,
         feedkeys_delay = 2,
         mapping = {
           n = {

@@ -14,13 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup('plugins', {
   install = {
-    colorscheme = { "onedark" },
+    colorscheme = { 'onedark' },
   },
   defaults = {
     lazy = true,
   },
   dev = {
-    path = '~/code',
+    path = require('machine-config').dev_path,
   },
   change_detection = {
     notify = false,

@@ -40,7 +40,7 @@ return {
   },
 
   {
-    'Maan2003/lsp_lines.nvim',
+    url = 'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
     keys = ',l',
     config = function()
       local lsp_lines = require 'lsp_lines'

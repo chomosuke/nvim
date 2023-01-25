@@ -1,3 +1,4 @@
+local util = require "util"
 return {
   {
     'akinsho/toggleterm.nvim',
@@ -25,7 +26,7 @@ return {
     config = function()
       require('term-edit').setup {
         prompt_end = require('machine-config').prompt_end,
-        feedkeys_delay = 2,
+        feedkeys_delay = util.is_windows() and 100 or 2,
         mapping = {
           n = {
             s = false,

@@ -8,7 +8,11 @@ return {
         column = 1,
         winblend = 80,
       }
-      vim.cmd 'highlight ScrollView guibg=#ffffff'
+      ---@diagnostic disable-next-line: param-type-mismatch
+      vim.defer_fn(function()
+        vim.cmd 'highlight ScrollView guibg=#ffffff'
+        ---@diagnostic disable-next-line: param-type-mismatch
+      end, 0)
     end,
   },
 

@@ -11,8 +11,11 @@ end
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require('neodev').setup {}
+
 local lspconfig = require 'lspconfig'
+local function null() end
 require('mason-lspconfig').setup_handlers {
+  rust_analyzer = null,
   function(server_name)
     lspconfig[server_name].setup {
       on_attach = on_attach,

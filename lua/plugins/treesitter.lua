@@ -8,6 +8,8 @@ return {
     dependencies = {
       -- bracket coloring
       'p00f/nvim-ts-rainbow',
+      -- xml autotag
+      'windwp/nvim-ts-autotag',
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -15,6 +17,9 @@ return {
           enable = true,
         },
         rainbow = {
+          enable = true,
+        },
+        autotag = {
           enable = true,
         },
       }

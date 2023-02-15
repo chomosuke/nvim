@@ -51,6 +51,7 @@ return {
               end,
             },
           },
+          { name = 'path' },
         }),
       }
 

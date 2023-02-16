@@ -19,4 +19,23 @@ return function(on_attach, capabilities)
       capabilities = capabilities,
     },
   }
+  require('util').create_autocmds('load_jdtls_upon_ft_java', {
+    {
+      event = 'FileType',
+      opts = {
+        pattern = 'java',
+        callback = function()
+          require('jdtls').start_or_attach {
+            cmd = {
+              require('mason-registry').get_package('jdtls'):get_install_path()
+                .. '/bin/jdtls',
+            },
+            root_dir = vim.fs.dirname(
+              vim.fs.find({ '.gradlew', '.git', 'mvnw' }, { upward = true })[1]
+            ),
+          }
+        end,
+      },
+    },
+  })
 end

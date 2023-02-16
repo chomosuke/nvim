@@ -32,10 +32,15 @@ return {
       -- tools that uses the lsp
       'simrat39/rust-tools.nvim',
       'nvim-lua/plenary.nvim',
+
       'akinsho/flutter-tools.nvim',
       'nvim-lua/plenary.nvim',
+
       'barreiroleo/ltex_extra.nvim',
+
       'folke/neodev.nvim',
+
+      'mfussenegger/nvim-jdtls',
     },
   },
 

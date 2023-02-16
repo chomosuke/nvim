@@ -16,6 +16,7 @@ local lspconfig = require 'lspconfig'
 local function null() end
 require('mason-lspconfig').setup_handlers {
   rust_analyzer = null,
+  jdtls = null,
   function(server_name)
     lspconfig[server_name].setup {
       on_attach = on_attach,

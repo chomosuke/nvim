@@ -1,7 +1,7 @@
 {
 	"$schema": "./nvim-config-schema.json",
 	"lsp": {
-		"sumneko_lua": {
+		"lua_ls": {
 			"disable": [
 				"format"
 			]

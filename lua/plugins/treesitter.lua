@@ -23,16 +23,20 @@ return {
           enable = true,
         },
       }
-
+      local function refresh()
+        vim.cmd [[
+          TSDisable rainbow
+          TSDisable highlight
+          TSEnable rainbow
+          TSEnable highlight
+        ]]
+        ---@diagnostic disable-next-line: param-type-mismatch
+        vim.defer_fn(refresh, 1000)
+      end
       require('which-key').register {
         [',c'] = {
           function()
-            vim.cmd [[
-              TSDisable rainbow
-              TSDisable highlight
-              TSEnable rainbow
-              TSEnable highlight
-            ]]
+            refresh()
           end,
           'Refresh treesitter',
         },

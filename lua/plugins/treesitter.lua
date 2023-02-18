@@ -33,14 +33,7 @@ return {
         ---@diagnostic disable-next-line: param-type-mismatch
         vim.defer_fn(refresh, 1000)
       end
-      require('which-key').register {
-        [',c'] = {
-          function()
-            refresh()
-          end,
-          'Refresh treesitter',
-        },
-      }
+      refresh()
     end,
   },
 }

@@ -30,10 +30,11 @@ return {
           TSEnable rainbow
           TSEnable highlight
         ]]
-        ---@diagnostic disable-next-line: param-type-mismatch
-        vim.defer_fn(refresh, 1000)
       end
-      refresh()
+      require('util').create_autocmds(
+        'refresh_treesitter',
+        { { event = 'InsertLeave', opts = { callback = refresh } } }
+      )
     end,
   },
 }

@@ -19,6 +19,9 @@ return function(on_attach, capabilities)
       on_attach = on_attach,
       capabilities = capabilities,
     },
+    debugger = {
+      enabled = true,
+    }
   }
 
   require('util').create_autocmds('load_jdtls_upon_ft_java', {

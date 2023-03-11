@@ -31,10 +31,25 @@ return {
           TSEnable highlight
         ]]
       end
-      require('util').create_autocmds(
-        'refresh_treesitter',
-        { { event = 'InsertLeave', opts = { callback = refresh } } }
-      )
+      require('util').create_autocmds('refresh_treesitter', {
+        {
+          event = { 'TextChanged', 'TextChangedI' },
+          opts = {
+            callback = function()
+              vim.cmd [[
+                TSDisable rainbow
+                TSEnable rainbow
+              ]]
+            end,
+          },
+        },
+      })
+      require('which-key').register {
+        [',c'] = {
+          refresh,
+          'Refresh treesitter',
+        },
+      }
     end,
   },
 }

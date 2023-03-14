@@ -24,6 +24,7 @@ util.create_autocmds('change_timeoutlen_upon_insert', {
 -- map ,. to Esc
 util.imap(',.', '<Esc>')
 util.map(',.', '<Esc>')
+util.smap(',.', '<Esc>')
 util.cmap(',.', '<Esc>')
 util.tmap(',.', '<C-\\><C-n>')
 

@@ -86,6 +86,10 @@ function M.tmap(keys, mapping, opts)
   vim.keymap.set('t', keys, mapping, opts)
 end
 
+function M.smap(keys, mapping, opts)
+  vim.keymap.set('s', keys, mapping, opts)
+end
+
 function M.imap(keys, mapping, opts)
   vim.keymap.set('i', keys, mapping, opts)
 end

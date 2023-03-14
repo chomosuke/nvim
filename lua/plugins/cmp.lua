@@ -53,6 +53,8 @@ return {
           },
           { name = 'path' },
         }),
+        -- Never preselect
+        preselect = cmp.PreselectMode.None,
       }
 
       -- Use buffer source for `/` and `?`

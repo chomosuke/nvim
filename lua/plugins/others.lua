@@ -1,4 +1,22 @@
 return {
+  -- undo
+  {
+    'mbbill/undotree',
+    keys = '<leader>u',
+    init = function()
+      vim.o.undofile = true
+    end,
+    config = function()
+      local wk = require 'which-key'
+      wk.register {
+        ['<leader>u'] = { vim.cmd.UndotreeToggle, 'toggle undo tree' },
+      }
+      vim.g.undotree_WindowLayout = 3
+      vim.g.undotree_ShortIndicators = 1
+      vim.g.undotree_SetFocusWhenToggle = 1
+    end,
+  },
+
   -- scrollbar
   {
     'dstein64/nvim-scrollview',

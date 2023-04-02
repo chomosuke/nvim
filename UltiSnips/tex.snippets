@@ -27,7 +27,18 @@ snippet temp "template"
 \usepackage{graphicx}
 \graphicspath{{./}}
 
+\usepackage{color}
+
+\definecolor{hyperref}{rgb}{0, 0, 0.4}
 \usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=hyperref,
+	}
+
+\newcommand{\n}{\\ \-}
+
+\usepackage{enumitem}
 
 \begin{document}
 

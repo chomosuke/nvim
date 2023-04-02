@@ -10,6 +10,8 @@ return {
       'p00f/nvim-ts-rainbow',
       -- xml autotag
       'windwp/nvim-ts-autotag',
+      -- debounce refresh
+      'runiq/neovim-throttle-debounce',
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -31,16 +33,20 @@ return {
           TSEnable highlight
         ]]
       end
+      local refresh_rainbow = require('throttle-debounce').debounce_trailing(
+        function()
+          vim.cmd [[
+            TSDisable rainbow
+            TSEnable rainbow
+          ]]
+        end,
+        1200
+      )
       require('util').create_autocmds('refresh_treesitter', {
         {
           event = { 'TextChanged', 'TextChangedI' },
           opts = {
-            callback = function()
-              vim.cmd [[
-                TSDisable rainbow
-                TSEnable rainbow
-              ]]
-            end,
+            callback = refresh_rainbow,
           },
         },
       })

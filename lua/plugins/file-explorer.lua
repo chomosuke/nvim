@@ -26,14 +26,25 @@ return {
           },
         },
       })
-      require('nvim-tree').setup {
-        view = {
-          mappings = {
-            list = {
-              { key = 'r', action = 'full_rename' },
-            },
-          },
+
+      -- mapings
+      local wk = require 'which-key'
+      wk.register {
+        ['<leader>'] = {
+          n = { '<cmd>NvimTreeToggle<CR>', 'toggle file tree' },
+          r = { '<cmd>NvimTreeRefresh<CR>', 'refresh file tree' },
         },
+      }
+
+      require('nvim-tree').setup {
+        on_attach = function(bufnr)
+          local api = require 'nvim-tree.api'
+          api.config.mappings.default_on_attach(bufnr)
+          wk.register(
+            { r = { api.fs.rename_sub, 'full rename' } },
+            { bufnr = bufnr }
+          )
+        end,
         renderer = {
           highlight_opened_files = 'icon',
           full_name = true,
@@ -76,15 +87,6 @@ return {
           enable = true,
           show_on_dirs = true,
           show_on_open_dirs = false,
-        },
-      }
-
-      -- mapings
-      local wk = require 'which-key'
-      wk.register {
-        ['<leader>'] = {
-          n = { '<cmd>NvimTreeToggle<CR>', 'toggle file tree' },
-          r = { '<cmd>NvimTreeRefresh<CR>', 'refresh file tree' },
         },
       }
     end,

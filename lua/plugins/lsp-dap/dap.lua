@@ -2,8 +2,14 @@ local dap, dapui = require 'dap', require 'dapui'
 
 require('mason-nvim-dap').setup {
   automatic_setup = { filetypes = { codelldb = { 'c', 'cpp' } } },
+  handlers = {
+    require 'mason-nvim-dap'.default_setup,
+    codelldb = function(config)
+      config.filetypes = {'c', 'cpp'}
+      require 'mason-nvim-dap'.default_setup(config)
+    end
+  }
 }
-require('mason-nvim-dap').setup_handlers()
 
 dapui.setup {
   layouts = {

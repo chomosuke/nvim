@@ -37,14 +37,6 @@ return {
       }
 
       require('nvim-tree').setup {
-        on_attach = function(bufnr)
-          local api = require 'nvim-tree.api'
-          api.config.mappings.default_on_attach(bufnr)
-          wk.register(
-            { r = { api.fs.rename_sub, 'full rename' } },
-            { bufnr = bufnr }
-          )
-        end,
         renderer = {
           highlight_opened_files = 'icon',
           full_name = true,

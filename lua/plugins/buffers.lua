@@ -57,4 +57,11 @@ return {
       }
     end,
   },
+  {
+    'chrisgrieser/nvim-early-retirement',
+    opts = {
+      minimumBufferNum = 4,
+    },
+    event = 'VeryLazy',
+  },
 }

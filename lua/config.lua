@@ -1,3 +1,5 @@
+local util = require 'util'
+
 -- no mouse
 vim.opt.mouse = nil
 
@@ -60,7 +62,7 @@ vim.g.tex_flavor = 'latex'
 vim.opt.fileformats = 'unix,dos'
 
 -- default colorscheme if plugin is installed
-if require('util').is_module_available 'onedark' then
+if util.is_module_available 'onedark' then
   require('onedark').load()
 end
 
@@ -80,7 +82,7 @@ if titlestring == '' then
   titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
 end
 vim.opt.titlestring = titlestring
-require('util').create_autocmds('set_title_to_cwd', {
+util.create_autocmds('set_title_to_cwd', {
   {
     event = 'DirChanged',
     opts = {

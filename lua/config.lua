@@ -94,6 +94,7 @@ util.create_autocmds('set_title_to_cwd', {
 })
 
 -- for neovide
+-- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025
 vim.g.neovide_cursor_trail_length = 1
 vim.g.neovide_floating_blur_amount_x = 0

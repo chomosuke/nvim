@@ -46,10 +46,10 @@ local function get_config(path)
 end
 
 ---@param client_name string
----@param bufnr integer
+---@param path string
 ---@return string|integer|table|nil
-function M.get_lsp_config(client_name, bufnr)
-  local config = get_config(vim.api.nvim_buf_get_name(bufnr))
+function M.get_lsp_config(client_name, path)
+  local config = get_config(path)
   return util.table_index(config, 'lsp', client_name, 'settings')
 end
 

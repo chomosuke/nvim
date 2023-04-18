@@ -1,14 +1,23 @@
 require('mason-lspconfig').setup()
 
-local function on_attach(client, bufnr)
-  -- load project specific settings for lsp
-  local settings = require('project-config').get_lsp_config(client.name, bufnr)
-  if settings ~= nil then
-    client.config.settings = settings
-  end
-end
+local M = {}
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+function M.gen_config(server_name, config)
+  config = config or {}
+  config.capabilities = require('cmp_nvim_lsp').default_capabilities()
+  config.before_init = function(_, config_)
+    if type(config_.cmd_cwd) ~= 'string' then
+      print('config.cmd_cwd is not a string: ' .. config_.cmd_cwd)
+      return
+    end
+    local settings =
+      require('project-config').get_lsp_config(server_name, config_.cmd_cwd)
+    if settings ~= nil then
+      config_.settings = settings
+    end
+  end
+  return config
+end
 
 require('neodev').setup {}
 
@@ -18,28 +27,21 @@ require('mason-lspconfig').setup_handlers {
   rust_analyzer = null,
   jdtls = null,
   function(server_name)
-    lspconfig[server_name].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+    lspconfig[server_name].setup(M.gen_config(server_name))
   end,
   ltex = function()
-    lspconfig.ltex.setup {
+    lspconfig.ltex.setup(M.gen_config('ltex', {
       filetypes = { 'markdown', 'tex' },
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
+      on_attach = function()
         require('ltex_extra').setup {
           load_langs = { 'en-US' },
           path = vim.fn.stdpath 'data' .. '/ltex_extra',
         }
       end,
-      capabilities = capabilities,
-    }
+    }))
   end,
   lua_ls = function()
-    lspconfig.lua_ls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.lua_ls.setup(M.gen_config('lua_ls', {
       settings = {
         Lua = {
           workspace = {
@@ -47,7 +49,7 @@ require('mason-lspconfig').setup_handlers {
           },
         },
       },
-    }
+    }))
   end,
 }
 
@@ -56,4 +58,4 @@ vim.api.nvim_set_hl(0, 'LspInfoBorder', {
 })
 require('lspconfig.ui.windows').default_options.border = 'rounded'
 
-return on_attach, capabilities
+return M

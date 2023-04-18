@@ -8,10 +8,10 @@ return {
       -- more logging -> better debugging
       -- vim.lsp.set_log_level(0)
 
-      local on_attach, capabilities = require 'plugins.lsp-dap.lsp'
+      require 'plugins.lsp-dap.lsp'
       require 'plugins.lsp-dap.null-ls'
       require 'plugins.lsp-dap.dap'
-      require 'plugins.lsp-dap.both'(on_attach, capabilities)
+      require 'plugins.lsp-dap.both'
       require 'plugins.lsp-dap.mapping'
     end,
     dependencies = {

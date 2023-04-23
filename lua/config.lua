@@ -72,22 +72,37 @@ vim.opt.signcolumn = 'yes'
 -- don't add eol to the last line
 vim.opt.fixendofline = false
 
+-- find cwd
+local cwd = vim.fn.expand '%:p'
+if vim.fn.fnamemodify(cwd, ':t') == '' then
+  cwd = vim.fn.expand '%:p:h'
+end
+if vim.fn.fnamemodify(cwd, ':t') == '' then
+  cwd = vim.fn.getcwd()
+end
 -- set title to cwd always
 vim.opt.title = true
-local titlestring = vim.fn.expand '%:p:t'
-if titlestring == '' then
-  titlestring = vim.fn.expand '%:p:h:t'
-end
-if titlestring == '' then
-  titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
-end
-vim.opt.titlestring = titlestring
+vim.opt.titlestring = vim.fn.fnamemodify(cwd, ':t')
 util.create_autocmds('set_title_to_cwd', {
   {
     event = 'DirChanged',
     opts = {
       callback = function()
         vim.opt.titlestring = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+      end,
+    },
+  },
+})
+-- read .nvim.lua in cwd
+util.create_autocmds('read_dot_nvim_dot_lua', {
+  {
+    event = 'VimEnter',
+    opts = {
+      callback = function()
+        local nvim_lua = vim.secure.read(cwd .. '/.nvim.lua')
+        if type(nvim_lua) == 'string' then
+          loadstring(nvim_lua)()
+        end
       end,
     },
   },

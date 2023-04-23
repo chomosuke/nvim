@@ -21,7 +21,7 @@ dapui.setup {
         { id = 'stacks', size = 0.1 },
       },
       size = 40,
-      position = 'right',
+      position = 'left',
     },
     {
       elements = {

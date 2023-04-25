@@ -90,6 +90,10 @@ function M.smap(keys, mapping, opts)
   vim.keymap.set('s', keys, mapping, opts)
 end
 
+function M.vmap(keys, mapping, opts)
+  vim.keymap.set('v', keys, mapping, opts)
+end
+
 function M.imap(keys, mapping, opts)
   vim.keymap.set('i', keys, mapping, opts)
 end

@@ -1,4 +1,7 @@
 return {
+  -- colorcolumn
+  { 'Bekaboo/deadcolumn.nvim' },
+
   -- sync system clipbaord
   {
     'EtiamNullam/deferred-clipboard.nvim',

@@ -1,6 +1,9 @@
 return {
   -- colorcolumn
-  { 'Bekaboo/deadcolumn.nvim' },
+  {
+    'Bekaboo/deadcolumn.nvim',
+    event = 'VeryLazy',
+  },
 
   -- sync system clipbaord
   {

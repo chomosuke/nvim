@@ -94,8 +94,10 @@ vim.api.nvim_create_user_command('NvimConfig', function()
   vim.cmd(':e ' .. vim.fn.getcwd() .. '/.nvim-config.json')
   ---@diagnostic disable-next-line: param-type-mismatch
   vim.defer_fn(function()
+    local schema_path = vim.fn.fnamemodify(vim.fn.stdpath 'config', ':p') .. 'nvim-config-schema.json'
+    schema_path = schema_path:gsub('\\', '/')
     vim.api.nvim_buf_set_lines(0, 0, 0, false, {
-      '{ "$schema": "' .. vim.fn.stdpath 'config' .. '/nvim-config-schema.json" }',
+      '{ "$schema": "' .. schema_path .. '" }',
     })
     ---@diagnostic disable-next-line: param-type-mismatch
   end, 10)

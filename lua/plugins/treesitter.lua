@@ -33,23 +33,20 @@ return {
           TSEnable highlight
         ]]
       end
-      -- local refresh_rainbow = require('throttle-debounce').debounce_trailing(
-      --   function()
-      --     vim.cmd [[
-      --       TSDisable rainbow
-      --       TSEnable rainbow
-      --     ]]
-      --   end,
-      --   1200
-      -- )
-      -- require('util').create_autocmds('refresh_treesitter', {
-      --   {
-      --     event = { 'TextChanged', 'TextChangedI' },
-      --     opts = {
-      --       callback = refresh_rainbow,
-      --     },
-      --   },
-      -- })
+      local function refresh_rainbow()
+        vim.cmd [[
+          TSDisable rainbow
+          TSEnable rainbow
+        ]]
+      end
+      require('util').create_autocmds('refresh_treesitter', {
+        {
+          event = 'BufWrite',
+          opts = {
+            callback = refresh_rainbow,
+          },
+        },
+      })
       require('which-key').register {
         [',c'] = {
           refresh,

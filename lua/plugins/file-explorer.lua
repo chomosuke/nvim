@@ -63,10 +63,10 @@ return {
         diagnostics = {
           enable = true,
           icons = {
-            hint = '',
-            info = '',
-            warning = '',
-            error = '',
+            hint = '󰌶',
+            info = '󰋽',
+            warning = '󰀪',
+            error = '󰅚',
           },
           show_on_dirs = true,
           show_on_open_dirs = false,

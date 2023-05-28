@@ -26,10 +26,10 @@ return {
           ---@diagnostic disable-next-line: assign-type-mismatch
           diagnostics = 'nvim_lsp',
           diagnostics_indicator = function(_, level, _, _)
-            local icon = level:match 'error' and ''
-              or level:match 'warning' and ''
-              or level:match 'info' and ''
-              or level:match 'hint' and ''
+            local icon = level:match 'error' and '󰅚'
+              or level:match 'warning' and '󰀪'
+              or level:match 'info' and '󰋽'
+              or level:match 'hint' and '󰌶'
               or '?'
             return icon
           end,

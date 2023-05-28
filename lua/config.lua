@@ -42,10 +42,10 @@ vim.opt.foldlevel = 99
 
 -- diagnostics gutter icons
 local signs = {
-  Error = ' ',
-  Warn = ' ',
-  Hint = ' ',
-  Info = ' ',
+  Hint = '󰌶 ',
+  Info = '󰋽 ',
+  Warn = '󰀪 ',
+  Error = '󰅚 ',
 }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type

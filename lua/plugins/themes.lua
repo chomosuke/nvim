@@ -17,7 +17,6 @@ local themes = {
   { 'projekt0n/github-nvim-theme' },
   { 'folke/tokyonight.nvim' },
   {
-    dev = true,
     'navarasu/onedark.nvim',
   },
 }

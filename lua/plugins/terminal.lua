@@ -21,6 +21,7 @@ return {
     'chomosuke/term-edit.nvim',
     version = '1.*',
     ft = 'toggleterm',
+    dev = true,
     opts = {
       prompt_end = require('machine-config').prompt_end,
       feedkeys_delay = util.is_windows() and 100 or 2,

@@ -7,11 +7,9 @@ return {
     end,
     dependencies = {
       -- bracket coloring
-      'p00f/nvim-ts-rainbow',
+      'HiPhish/nvim-ts-rainbow2',
       -- xml autotag
       'windwp/nvim-ts-autotag',
-      -- debounce refresh
-      'runiq/neovim-throttle-debounce',
     },
     config = function()
       require('nvim-treesitter.configs').setup {
@@ -33,20 +31,6 @@ return {
           TSEnable highlight
         ]]
       end
-      local function refresh_rainbow()
-        vim.cmd [[
-          TSDisable rainbow
-          TSEnable rainbow
-        ]]
-      end
-      require('util').create_autocmds('refresh_treesitter', {
-        {
-          event = 'BufWrite',
-          opts = {
-            callback = refresh_rainbow,
-          },
-        },
-      })
       require('which-key').register {
         [',c'] = {
           refresh,

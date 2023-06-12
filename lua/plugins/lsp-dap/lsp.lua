@@ -51,6 +51,11 @@ require('mason-lspconfig').setup_handlers {
       },
     }))
   end,
+  als = function()
+    lspconfig.als.setup(M.gen_config('als', {
+      cmd = { 'ada_language_server' },
+    }))
+  end,
 }
 
 vim.api.nvim_set_hl(0, 'LspInfoBorder', {

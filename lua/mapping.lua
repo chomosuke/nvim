@@ -61,6 +61,3 @@ util.nmap('zi', 'zi<cmd>IndentBlanklineRefresh<CR>')
 
 -- force close current tab
 util.nmap('<leader>bf', '<cmd>bd!<CR>')
-
--- don't yank pasted over content
-util.vmap('p', '"_dP')

@@ -109,6 +109,9 @@ vim.api.nvim_create_user_command('AdaTagFile', function()
   print 'To prevent ada#Map_Popup messing keymap up.'
 end, {})
 
+-- sync system clipboard
+vim.cmd 'set clipboard+=unnamedplus'
+
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025

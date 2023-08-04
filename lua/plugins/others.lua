@@ -93,10 +93,10 @@ return {
   -- interactive development
   {
     'Olical/conjure',
-    ft = { 'clojure' },
-    config = function()
-      vim.g['conjure#mapping#prefix'] = '<leader>c'
-      vim.g['conjure#filetypes'] = { 'clojure' }
+    ft = { 'clojure', 'python' },
+    config = function(_, opts)
+      require('conjure.main').main()
+      require('conjure.mapping')['on-filetype']()
       require('util').create_autocmds('conjure_log_disable', {
         {
           event = 'BufNewFile',
@@ -110,6 +110,10 @@ return {
           },
         },
       })
+    end,
+    init = function()
+      vim.g['conjure#mapping#prefix'] = '<leader>c'
+      vim.g['conjure#filetypes'] = { 'clojure', 'python' }
     end,
   },
 

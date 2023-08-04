@@ -11,9 +11,14 @@ return {
       terminal_mappings = false,
       persist_size = false,
       on_create = function(term)
+        -- TermInit can be set in .nvim.lua so that project specific command can be ran upon terminal start
+        -- Example config
+        -- _G.TermInit = function(term)
+        --   term:send('conda activate', false)
+        -- end
+
         ---@diagnostic disable-next-line: undefined-field
         if _G.TermInit ~= nil then
-          -- TermInit can be set in .nvim.lua so that project specific command can be ran upon terminal start
           ---@diagnostic disable-next-line: undefined-field
           _G.TermInit(term)
         end

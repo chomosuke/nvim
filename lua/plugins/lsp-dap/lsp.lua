@@ -56,6 +56,23 @@ require('mason-lspconfig').setup_handlers {
       cmd = { 'ada_language_server' },
     }))
   end,
+  pylsp = function()
+    lspconfig.pylsp.setup {
+      settings = {
+        pylsp = {
+          plugins = {
+            autopep8 = {
+              -- use yapf
+              enabled = false,
+            },
+            pycodestyle = {
+              maxLineLength = 88,
+            },
+          },
+        },
+      },
+    }
+  end,
 }
 
 vim.api.nvim_set_hl(0, 'LspInfoBorder', {

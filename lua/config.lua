@@ -112,6 +112,9 @@ end, {})
 -- sync system clipboard
 vim.cmd 'set clipboard+=unnamedplus'
 
+-- set .pl filetype to prolog
+vim.g.filetype_pl = 'prolog'
+
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025

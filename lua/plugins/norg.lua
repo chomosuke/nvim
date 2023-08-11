@@ -18,8 +18,8 @@ require('util').create_autocmds('setup_keybind_for_norg', {
         vim.bo.shiftwidth = 4
         vim.bo.tabstop = 4
         vim.bo.expandtab = true
-        vim.bo.tw = 120
-        vim.cmd 'setlocal colorcolumn=121'
+        vim.bo.tw = 100
+        vim.cmd 'setlocal colorcolumn=101'
         vim.cmd 'setlocal conceallevel=3'
       end,
       pattern = 'norg',

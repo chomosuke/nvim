@@ -110,7 +110,7 @@ vim.api.nvim_create_user_command('AdaTagFile', function()
 end, {})
 
 -- sync system clipboard
-vim.cmd 'set clipboard+=unnamedplus'
+vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 
 -- set .pl filetype to prolog
 vim.g.filetype_pl = 'prolog'

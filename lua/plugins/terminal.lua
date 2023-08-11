@@ -16,7 +16,6 @@ return {
         -- _G.TermInit = function(term)
         --   term:send('conda activate', false)
         -- end
-
         ---@diagnostic disable-next-line: undefined-field
         if _G.TermInit ~= nil then
           ---@diagnostic disable-next-line: undefined-field

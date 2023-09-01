@@ -115,6 +115,23 @@ vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 -- set .pl filetype to prolog
 vim.g.filetype_pl = 'prolog'
 
+-- set up spell for specific file
+require('util').create_autocmds('set_spell_for_spell_check', {
+  {
+    event = 'Filetype',
+    opts = {
+      callback = function()
+        vim.opt.spell = true
+        vim.opt.spellfile = vim.fn.stdpath 'data' .. '/spell/en.utf-8.add'
+      end,
+      pattern = {
+        'gitcommit',
+        'norg',
+      },
+    },
+  },
+})
+
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025

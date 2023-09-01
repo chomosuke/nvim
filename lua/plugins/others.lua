@@ -49,28 +49,6 @@ return {
     end,
   },
 
-  -- spell check
-  {
-    'lewis6991/spellsitter.nvim',
-    ft = 'gitcommit',
-    config = function()
-      require('util').create_autocmds('set_spell_for_spell_check', {
-        {
-          event = 'Filetype',
-          opts = {
-            callback = function()
-              vim.opt.spell = true
-            end,
-            pattern = {
-              'gitcommit',
-            },
-          },
-        },
-      })
-      require('spellsitter').setup()
-    end,
-  },
-
   -- auto save latex files to trigger recompile
   {
     'Pocco81/auto-save.nvim',

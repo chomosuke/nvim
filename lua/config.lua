@@ -132,6 +132,18 @@ require('util').create_autocmds('set_spell_for_spell_check', {
   },
 })
 
+require('util').create_autocmds('set_tw_for_tex', {
+  {
+    event = 'FileType',
+    opts = {
+      callback = function()
+        vim.bo.tw = 100
+        vim.cmd 'setlocal colorcolumn=101'
+      end,
+      pattern = 'tex',
+    },
+  },
+})
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025

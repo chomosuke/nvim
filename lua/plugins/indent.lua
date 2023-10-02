@@ -4,6 +4,7 @@ return {
     -- VeryLazy isn't early enough for single file start
     -- lazy = false won't allow calculating highlights
     event = 'VimEnter',
+    version = '2.*',
     config = function()
       --   helper functions definition   --
       local function fromhex(str)

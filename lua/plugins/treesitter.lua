@@ -5,36 +5,40 @@ return {
     build = function()
       require('nvim-treesitter.install').update { with_sync = true }
     end,
-    dependencies = {
-      -- bracket coloring
-      'HiPhish/nvim-ts-rainbow2',
-      -- xml autotag
-      'windwp/nvim-ts-autotag',
-    },
     config = function()
       require('nvim-treesitter.configs').setup {
         highlight = {
           enable = true,
         },
-        rainbow = {
-          enable = true,
-        },
-        autotag = {
-          enable = true,
-        },
       }
-      local function refresh()
-        vim.cmd [[
-          TSDisable rainbow
-          TSDisable highlight
-          TSEnable rainbow
-          TSEnable highlight
-        ]]
-      end
-      require('which-key').register {
-        [',c'] = {
-          refresh,
-          'Refresh treesitter',
+    end,
+  },
+
+  {
+    'hiphish/rainbow-delimiters.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+      require 'rainbow-delimiters.setup' {
+        strategy = {
+          [''] = rainbow_delimiters.strategy['global'],
+        },
+        query = {
+          [''] = 'rainbow-delimiters',
+          -- latex = 'rainbow-blocks',
+          -- lua = 'rainbow-blocks',
+        },
+        highlight = {
+          'TSRainbowRed',
+          'TSRainbowYellow',
+          'TSRainbowBlue',
+          'TSRainbowOrange',
+          'TSRainbowGreen',
+          'TSRainbowViolet',
+          'TSRainbowCyan',
         },
       }
     end,

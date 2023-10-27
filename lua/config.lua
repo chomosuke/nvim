@@ -132,7 +132,7 @@ require('util').create_autocmds('set_spell_for_spell_check', {
   },
 })
 
-require('util').create_autocmds('set_tw_for_tex', {
+require('util').create_autocmds('set_tw_for_tex_and_md', {
   {
     event = 'FileType',
     opts = {
@@ -140,7 +140,7 @@ require('util').create_autocmds('set_tw_for_tex', {
         vim.bo.tw = 100
         vim.cmd 'setlocal colorcolumn=101'
       end,
-      pattern = 'tex',
+      pattern = { 'tex', 'markdown' },
     },
   },
 })

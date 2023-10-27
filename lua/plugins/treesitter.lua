@@ -22,7 +22,7 @@ return {
     },
     config = function()
       local rainbow_delimiters = require 'rainbow-delimiters'
-      require 'rainbow-delimiters.setup' {
+      vim.g.rainbow_delimiters = {
         strategy = {
           [''] = rainbow_delimiters.strategy['global'],
         },

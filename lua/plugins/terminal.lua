@@ -34,7 +34,7 @@ return {
     ft = 'toggleterm',
     opts = {
       prompt_end = require('machine-config').prompt_end,
-      feedkeys_delay = util.is_windows() and 100 or 10,
+      feedkeys_delay = util.is_windows() and 100 or 20,
       mapping = {
         n = {
           s = false,

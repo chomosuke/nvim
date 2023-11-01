@@ -69,6 +69,24 @@ function M.split(inputstr, sep)
   return t
 end
 
+---set textwidth
+---@param filetype string
+---@param tw integer
+function M.set_tw(filetype, tw)
+  require('util').create_autocmds('set_tw_for_' .. filetype, {
+    {
+      event = 'FileType',
+      opts = {
+        callback = function()
+          vim.bo.tw = tw
+          vim.cmd('setlocal colorcolumn=' .. (tw + 1))
+        end,
+        pattern = filetype,
+      },
+    },
+  })
+end
+
 -- mapping --
 
 -- for all modes

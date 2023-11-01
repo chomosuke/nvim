@@ -116,7 +116,7 @@ vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 vim.g.filetype_pl = 'prolog'
 
 -- set up spell for specific file
-require('util').create_autocmds('set_spell_for_spell_check', {
+util.create_autocmds('set_spell_for_spell_check', {
   {
     event = 'Filetype',
     opts = {
@@ -132,18 +132,9 @@ require('util').create_autocmds('set_spell_for_spell_check', {
   },
 })
 
-require('util').create_autocmds('set_tw_for_tex_and_md', {
-  {
-    event = 'FileType',
-    opts = {
-      callback = function()
-        vim.bo.tw = 100
-        vim.cmd 'setlocal colorcolumn=101'
-      end,
-      pattern = { 'tex', 'markdown' },
-    },
-  },
-})
+util.set_tw('tex', 100)
+util.set_tw('markdown', 100)
+
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3
 vim.g.neovide_cursor_animation_length = 0.025

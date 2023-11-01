@@ -52,6 +52,10 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl })
 end
 
+-- filetypes
+vim.filetype.add { extension = { typ = 'typst' } }
+-- set .pl filetype to prolog
+vim.g.filetype_pl = 'prolog'
 -- default .tex is latex
 vim.g.tex_flavor = 'latex'
 
@@ -111,9 +115,6 @@ end, {})
 
 -- sync system clipboard
 vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
-
--- set .pl filetype to prolog
-vim.g.filetype_pl = 'prolog'
 
 -- set up spell for specific file
 util.create_autocmds('set_spell_for_spell_check', {

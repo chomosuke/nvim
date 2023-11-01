@@ -61,3 +61,6 @@ util.nmap('zi', 'zi<cmd>IndentBlanklineRefresh<CR>')
 
 -- force close current tab
 util.nmap('<leader>bf', '<cmd>bd!<CR>')
+
+-- Always reflow paragraph with gq
+util.map('gq', 'gw')

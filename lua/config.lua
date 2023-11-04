@@ -122,12 +122,13 @@ util.create_autocmds('set_spell_for_spell_check', {
     event = 'Filetype',
     opts = {
       callback = function()
-        vim.opt.spell = true
-        vim.opt.spellfile = vim.fn.stdpath 'data' .. '/spell/en.utf-8.add'
+        vim.opt_local.spell = true
+        vim.opt_local.spellfile = vim.fn.stdpath 'data' .. '/spell/en.utf-8.add'
       end,
       pattern = {
         'gitcommit',
         'norg',
+        'typst',
       },
     },
   },
@@ -135,6 +136,7 @@ util.create_autocmds('set_spell_for_spell_check', {
 
 util.set_tw('tex', 100)
 util.set_tw('markdown', 100)
+util.set_tw('typst', 100)
 
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3

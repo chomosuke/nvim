@@ -136,6 +136,16 @@ return {
     end,
   },
 
+  -- typst preview
+  {
+    'chomosuke/typst-preview.nvim',
+    ft = 'typst',
+    dev = true,
+    config = function()
+      require('typst-preview').setup { debug = true }
+    end,
+  },
+
   -- for comment toggle
   {
     'numToStr/Comment.nvim',

@@ -13,6 +13,7 @@ wk.register {
       r = { vim.lsp.buf.references, 'references' },
     },
     h = { vim.lsp.buf.hover, 'hover' },
+    s = { vim.lsp.buf.signature_help, 'signiture help' },
     r = { vim.lsp.buf.rename, 'rename' },
     a = { vim.lsp.buf.code_action, 'code actions' },
     f = {
@@ -66,7 +67,7 @@ wk.register {
 }
 wk.register(
   { ['<C-s>'] = { vim.lsp.buf.signature_help, 'signiture help' } },
-  { mode = 'i' }
+  { mode = { 'i', 'n' } }
 )
 
 -- dap

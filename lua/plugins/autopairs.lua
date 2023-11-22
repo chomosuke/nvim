@@ -21,6 +21,11 @@ return {
         Rule('\\[', '\\]', 'tex'),
         Rule('\\{', '\\}', 'tex'),
       }
+      local cond = require 'nvim-autopairs.conds'
+      table.insert(
+        npairs.get_rule('`').pair_cond,
+        cond.not_filetypes { 'ocaml' }
+      )
     end,
   },
 }

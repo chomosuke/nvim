@@ -72,7 +72,7 @@ return {
   {
     'Olical/conjure',
     ft = { 'clojure', 'python' },
-    config = function(_, opts)
+    config = function()
       require('conjure.main').main()
       require('conjure.mapping')['on-filetype']()
       require('util').create_autocmds('conjure_log_disable', {
@@ -140,8 +140,26 @@ return {
   {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
-    dev = true,
+    -- dev= true,
+    version = '0.1.*',
+    build = function()
+      require('typst-preview').update()
+    end,
     config = function()
+      local tp = require 'typst-preview'
+      local wk = require 'which-key'
+      wk.register({
+        ['<leader>o'] = {
+          name = 'typst-preview',
+          s = { tp.sync_with_cursor, 'Scroll preview' },
+          t = {
+            function()
+              tp.set_follow_cursor(not tp.get_follow_cursor())
+            end,
+            'Toggle preview scroll mode',
+          },
+        },
+      }, { mode = 'n' })
       require('typst-preview').setup { debug = true }
     end,
   },

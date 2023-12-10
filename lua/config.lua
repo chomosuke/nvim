@@ -119,7 +119,7 @@ vim.o.clipboard = vim.o.clipboard .. 'unnamedplus'
 -- set up spell for specific file
 util.create_autocmds('set_spell_for_spell_check', {
   {
-    event = 'Filetype',
+    event = 'FileType',
     opts = {
       callback = function()
         vim.opt_local.spell = true
@@ -128,7 +128,7 @@ util.create_autocmds('set_spell_for_spell_check', {
       pattern = {
         'gitcommit',
         'norg',
-        'typst',
+        -- 'typst',
       },
     },
   },

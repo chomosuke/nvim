@@ -18,6 +18,7 @@ local themes = {
   { 'folke/tokyonight.nvim' },
   {
     'navarasu/onedark.nvim',
+    dev = true,
   },
 }
 

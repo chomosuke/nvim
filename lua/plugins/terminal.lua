@@ -30,6 +30,7 @@ return {
 
   {
     'chomosuke/term-edit.nvim',
+    dev = true,
     version = '1.*',
     ft = 'toggleterm',
     opts = {

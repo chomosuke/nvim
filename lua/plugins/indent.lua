@@ -81,7 +81,7 @@ return {
       local name1 = 'IndentBlankline1'
       local name2 = 'IndentBlankline2'
       set_highlight(name1, name2, function(hi)
-        return math.max(hi - 6, 0)
+        return math.max(hi - 8, 0)
       end)
 
       require('indent_blankline').setup {

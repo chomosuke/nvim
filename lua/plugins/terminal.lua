@@ -23,7 +23,7 @@ return {
         end
 
         term:send("export GIT_EDITOR='nvd --nofork --size=800x500'", false)
-        term:clear()
+        term:send("clear", false)
       end,
     },
   },

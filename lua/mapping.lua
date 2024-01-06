@@ -64,3 +64,6 @@ util.nmap('<leader>bf', '<cmd>bd!<CR>')
 
 -- Always reflow paragraph with gq
 util.map('gq', 'gw')
+
+-- Less carpal tunnel inducing save
+util.map('<leader>w', '<cmd>w<CR>')

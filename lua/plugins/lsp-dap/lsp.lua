@@ -22,10 +22,15 @@ end
 require('neodev').setup {}
 
 local lspconfig = require 'lspconfig'
+
+-- Self installed lsps:
+lspconfig.ocamllsp.setup {}
+
 local function null() end
 require('mason-lspconfig').setup_handlers {
   rust_analyzer = null,
   jdtls = null,
+  ocamllsp = null,
   function(server_name)
     lspconfig[server_name].setup(M.gen_config(server_name))
   end,

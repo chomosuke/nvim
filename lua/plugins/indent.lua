@@ -85,7 +85,8 @@ return {
       end)
 
       require('indent_blankline').setup {
-        use_treesitter = true,
+        -- Because dart treesitter indent is broken
+        -- use_treesitter = true,
         show_trailing_blankline_indent = false,
         char = '',
         char_highlight_list = {

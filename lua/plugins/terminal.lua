@@ -21,9 +21,6 @@ return {
           ---@diagnostic disable-next-line: undefined-field
           _G.TermInit(term)
         end
-
-        term:send("export GIT_EDITOR='nvd --nofork --size=800x500'", false)
-        term:send("clear", false)
       end,
     },
   },

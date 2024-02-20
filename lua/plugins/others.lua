@@ -140,7 +140,7 @@ return {
   {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
-    dev= true,
+    dev = true,
     version = '0.1.*',
     build = function()
       require('typst-preview').update()

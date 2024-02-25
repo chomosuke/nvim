@@ -31,6 +31,7 @@ return {
       require('scrollview').setup {
         column = 1,
         winblend = 80,
+        winblend_gui = 80,
       }
       ---@diagnostic disable-next-line: param-type-mismatch
       vim.defer_fn(function()

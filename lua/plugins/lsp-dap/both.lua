@@ -51,7 +51,6 @@ require('util').create_autocmds('load_jdtls_upon_ft_java', {
           },
           on_attach = function()
             jdtls.setup_dap()
-            require('jdtls.setup').add_commands()
           end,
         }))
       end,

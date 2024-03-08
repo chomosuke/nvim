@@ -45,12 +45,27 @@ local function get_config(path)
   return config
 end
 
----@param client_name string
+---@param server_name string
 ---@param path string
 ---@return string|integer|table|nil
-function M.get_lsp_config(client_name, path)
+function M.get_lsp_config(server_name, path)
   local config = get_config(path)
-  return util.table_index(config, 'lsp', client_name, 'settings')
+  config = util.table_index(config, 'lsp', server_name, 'settings')
+  if config == nil and _G.LspSetting ~= nil then
+    -- Lsp settings can be set in .nvim.lua so that project specific settings can be applied
+    -- Example:
+    -- _G.LspSetting = {
+    --   rust_analyzer = {
+    --     ['rust-analyzer'] = {
+    --       check = {
+    --         command = 'clippy'
+    --       }
+    --     }
+    --   }
+    -- }
+    config = _G.LspSetting[server_name]
+  end
+  return config
 end
 
 ---@param client_name string

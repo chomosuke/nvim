@@ -134,9 +134,9 @@ util.create_autocmds('set_spell_for_spell_check', {
   },
 })
 
-util.set_tw('tex', 100)
-util.set_tw('markdown', 100)
-util.set_tw('typst', 100)
+util.set_tw('tex', 80)
+util.set_tw('markdown', 80)
+util.set_tw('typst', 80)
 
 -- for neovide
 -- vim.g.neovide_scroll_animation_length = 3

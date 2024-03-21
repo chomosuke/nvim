@@ -9,10 +9,11 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
 
-      -- snippets
-      'SirVer/ultisnips',
-      'honza/vim-snippets',
-      'quangnguyen30192/cmp-nvim-ultisnips',
+      -- Disabled for now cause they were really slow.
+      -- -- snippets
+      -- 'SirVer/ultisnips',
+      -- 'honza/vim-snippets',
+      -- 'quangnguyen30192/cmp-nvim-ultisnips',
 
       -- icons
       'nvim-tree/nvim-web-devicons',

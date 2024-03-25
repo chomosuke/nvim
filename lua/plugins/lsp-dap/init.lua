@@ -28,6 +28,7 @@ return {
       -- dap
       'rcarriga/nvim-dap-ui',
       'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
 
       -- tools that uses the lsp
       'simrat39/rust-tools.nvim',

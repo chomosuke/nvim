@@ -9,11 +9,9 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
 
-      -- Disabled for now cause they were really slow.
-      -- -- snippets
-      -- 'SirVer/ultisnips',
-      -- 'honza/vim-snippets',
-      -- 'quangnguyen30192/cmp-nvim-ultisnips',
+      -- snippets
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
 
       -- icons
       'nvim-tree/nvim-web-devicons',
@@ -24,7 +22,7 @@ return {
       cmp.setup {
         snippet = {
           expand = function(args)
-            vim.fn['UltiSnips#Anon'](args.body)
+            require('luasnip').lsp_expand(args.body)
           end,
         },
         formatting = {
@@ -42,7 +40,7 @@ return {
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-          { name = 'ultisnips' },
+          { name = 'luasnip' },
         }, {
           {
             name = 'buffer',
@@ -60,7 +58,7 @@ return {
 
       -- Neorg
       cmp.setup.filetype('norg', {
-        sources = cmp.config.sources {{ name = 'neorg' }},
+        sources = cmp.config.sources { { name = 'neorg' } },
       })
 
       -- Use buffer source for `/` and `?`

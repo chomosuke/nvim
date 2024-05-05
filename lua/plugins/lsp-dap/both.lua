@@ -1,14 +1,20 @@
 local gen_config = require('plugins.lsp-dap.lsp').gen_config
-
-require('rust-tools').setup {
-  server = gen_config 'rust_analyzer',
+local wk = require 'which-key'
+local rt = require 'rust-tools'
+rt.setup {
+  server = gen_config('rust_analyzer', {
+    on_attach = function(_, bufnr)
+      wk.register({
+        [','] = {
+          name = 'lsp',
+          h = { rt.hover_actions.hover_actions, 'hover' },
+          -- a = { rt.code_action_group.code_action_group, 'code actions' }
+        },
+      }, { buffer = bufnr })
+    end,
+  }),
   dap = {
     adapter = require('dap').adapters.codelldb,
-  },
-  tools = {
-    hover_actions = {
-      auto_focus = true,
-    },
   },
 }
 

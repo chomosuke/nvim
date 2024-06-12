@@ -94,6 +94,9 @@ function M.get_null_ls_source_enabled(params, source_name)
   local config = get_config(params.bufname)
   config = util.table_index(config, 'null-ls', 'disable')
   if config == nil then
+    config = _G.NullLsDisable
+  end
+  if config == nil then
     return true
   end
   for _, name in pairs(config) do

@@ -51,19 +51,24 @@ end
 function M.get_lsp_config(server_name, path)
   local config = get_config(path)
   config = util.table_index(config, 'lsp', server_name, 'settings')
-  if config == nil and _G.LspSetting ~= nil then
+  if config == nil and _G.LspConfig ~= nil then
     -- Lsp settings can be set in .nvim.lua so that project specific settings can be applied
     -- Example:
-    -- _G.LspSetting = {
-    --   rust_analyzer = {
-    --     ['rust-analyzer'] = {
-    --       check = {
-    --         command = 'clippy'
-    --       }
-    --     }
-    --   }
+    -- _G.LspConfig = {
+    --   settings = {
+    --     rust_analyzer = {
+    --       ['rust-analyzer'] = {
+    --         check = {
+    --           command = 'clippy',
+    --         },
+    --       },
+    --     },
+    --   },
+    --   clangd = {
+    --     cmd = { "clangd", "--clang-tidy" },
+    --   },
     -- }
-    config = _G.LspSetting[server_name]
+    config = _G.LspConfig[server_name]
   end
   return config
 end
@@ -112,7 +117,8 @@ vim.api.nvim_create_user_command('NvimConfig', function()
   vim.cmd(':e ' .. vim.fn.getcwd() .. '/.nvim-config.json')
   ---@diagnostic disable-next-line: param-type-mismatch
   vim.defer_fn(function()
-    local schema_path = vim.fn.fnamemodify(vim.fn.stdpath 'config', ':p') .. 'nvim-config-schema.json'
+    local schema_path = vim.fn.fnamemodify(vim.fn.stdpath 'config', ':p')
+      .. 'nvim-config-schema.json'
     schema_path = schema_path:gsub('\\', '/')
     vim.api.nvim_buf_set_lines(0, 0, 0, false, {
       '{ "$schema": "' .. schema_path .. '" }',

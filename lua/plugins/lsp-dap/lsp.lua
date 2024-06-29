@@ -10,10 +10,15 @@ function M.gen_config(server_name, config)
       print('config.cmd_cwd is not a string: ' .. config_.cmd_cwd)
       return
     end
-    local settings =
+    local p_config =
       require('project-config').get_lsp_config(server_name, config_.cmd_cwd)
-    if settings ~= nil then
-      config_.settings = settings
+    if p_config ~= nil then
+      if p_config.settings ~= nil then
+        config_.settings = p_config.settings
+      end
+      if p_config.cmd ~= nil then
+        config_.cmd = p_config.cmd
+      end
     end
   end
   return config

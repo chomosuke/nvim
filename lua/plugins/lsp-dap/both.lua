@@ -1,22 +1,29 @@
+local util = require 'util'
 local gen_config = require('plugins.lsp-dap.lsp').gen_config
+
 local wk = require 'which-key'
-local rt = require 'rust-tools'
-rt.setup {
-  server = gen_config('rust_analyzer', {
-    on_attach = function(_, bufnr)
-      wk.register({
-        [','] = {
-          name = 'lsp',
-          h = { rt.hover_actions.hover_actions, 'hover' },
-          -- a = { rt.code_action_group.code_action_group, 'code actions' }
-        },
-      }, { buffer = bufnr })
-    end,
-  }),
-  dap = {
-    adapter = require('dap').adapters.codelldb,
+util.create_autocmds('set_spell_for_spell_check', {
+  {
+    event = 'FileType',
+    opts = {
+      callback = function(opts)
+        -- wk.add {
+        --   {
+        --     ',a',
+        --     function()
+        --       vim.cmd.RustLsp 'codeAction' -- supports rust-analyzer's grouping
+        --       -- or vim.lsp.buf.codeAction() if you don't want grouping.
+        --     end,
+        --     bufnr = opts.buf,
+        --   },
+        -- }
+      end,
+      pattern = {
+        'rust',
+      },
+    },
   },
-}
+})
 
 require('flutter-tools').setup {
   lsp = gen_config 'dartls',

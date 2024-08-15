@@ -2,6 +2,8 @@ require('mason-lspconfig').setup()
 
 local M = {}
 
+vim.lsp.inlay_hint.enable()
+
 function M.gen_config(server_name, config)
   config = config or {}
   config.capabilities = require('cmp_nvim_lsp').default_capabilities()

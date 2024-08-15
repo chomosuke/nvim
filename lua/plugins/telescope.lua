@@ -35,35 +35,47 @@ return {
 
       -- mappings
       local wk = require 'which-key'
-      wk.register {
-        ['<leader>e'] = {
-          name = 'telescope',
-          f = { '<cmd>Telescope find_files<CR>', 'find files' },
-          c = {
-            '<cmd>Telescope current_buffer_fuzzy_find<CR>',
-            'find in current buffer',
-          },
-          d = { '<cmd>Telescope live_grep<CR>', 'find in cwd' },
-          u = { '<cmd>Telescope grep_string<CR>', 'find current word' },
-          g = {
-            name = 'git',
-            c = { '<cmd>Telescope git_commits<CR>', 'list commits' },
-            u = {
-              '<cmd>Telescope git_bcommits<CR>',
-              'list current buffer commits',
-            },
-            b = { '<cmd>Telescope git_branches<CR>', 'list branches' },
-            s = { '<cmd>Telescope git_status<CR>', 'show status' },
-            h = { '<cmd>Telescope git_stash<CR>', 'list stashes' },
-          },
-          l = {
-            name = 'lsp',
-            r = { '<cmd>Telescope lsp_references<CR>', 'list references' },
-            d = { '<cmd>Telescope diagnostics bufnr=0<CR>', 'list diagnostics' },
-          },
-          m = { '<cmd>Telescope keymaps<CR>', 'list keymaps' },
-          b = { '<cmd>Telescope buffers<CR>', 'list buffers' },
+      wk.add {
+        { '<leader>e', group = 'telescope' },
+        { '<leader>ef', '<cmd>Telescope find_files<CR>', desc = 'find files' },
+        {
+          '<leader>ec',
+          '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+          desc = 'find in current buffer',
         },
+        { '<leader>ed', '<cmd>Telescope live_grep<CR>', desc = 'find in cwd' },
+        {
+          '<leader>eu',
+          '<cmd>Telescope grep_string<CR>',
+          desc = 'find current word',
+        },
+        { 'g', group = 'git' },
+        { '<leader>egc', '<cmd>Telescope git_commits<CR>', desc = 'list commits' },
+        {
+          '<leader>egu',
+          '<cmd>Telescope git_bcommits<CR>',
+          desc = 'list current buffer commits',
+        },
+        {
+          '<leader>egb',
+          '<cmd>Telescope git_branches<CR>',
+          desc = 'list branches',
+        },
+        { '<leader>egs', '<cmd>Telescope git_status<CR>', desc = 'show status' },
+        { '<leader>egh', '<cmd>Telescope git_stash<CR>', desc = 'list stashes' },
+        { 'l', group = 'lsp' },
+        {
+          '<leader>egr',
+          '<cmd>Telescope lsp_references<CR>',
+          desc = 'list references',
+        },
+        {
+          '<leader>egd',
+          '<cmd>Telescope diagnostics bufnr=0<CR>',
+          desc = 'list diagnostics',
+        },
+        { '<leader>em', '<cmd>Telescope keymaps<CR>', desc = 'list keymaps' },
+        { '<leader>eb', '<cmd>Telescope buffers<CR>', desc = 'list buffers' },
       }
     end,
     dependencies = {

@@ -14,8 +14,10 @@ return {
     end,
     config = function()
       local wk = require 'which-key'
-      wk.register {
-        ['<leader>u'] = { vim.cmd.UndotreeToggle, 'toggle undo tree' },
+      wk.add {
+        '<leader>u',
+        vim.cmd.UndotreeToggle,
+        desc = 'toggle undo tree',
       }
       vim.g.undotree_WindowLayout = 3
       vim.g.undotree_ShortIndicators = 1
@@ -149,18 +151,18 @@ return {
     config = function()
       local tp = require 'typst-preview'
       local wk = require 'which-key'
-      wk.register({
-        ['<leader>o'] = {
-          name = 'typst-preview',
-          s = { tp.sync_with_cursor, 'Scroll preview' },
-          t = {
-            function()
-              tp.set_follow_cursor(not tp.get_follow_cursor())
-            end,
-            'Toggle preview scroll mode',
-          },
+      wk.add {
+        mode = 'n',
+        { '<leader>o', group = 'typst-preview' },
+        { '<leader>os', tp.sync_with_cursor, desc = 'Scroll preview' },
+        {
+          '<leader>ot',
+          function()
+            tp.set_follow_cursor(not tp.get_follow_cursor())
+          end,
+          desc = 'Toggle preview scroll mode',
         },
-      }, { mode = 'n' })
+      }
       require('typst-preview').setup { debug = true }
     end,
   },
@@ -181,13 +183,11 @@ return {
       local wk = require 'which-key'
       wk.setup {}
       -- suppress ,. escape key mapping
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'n' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'i' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'c' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'x' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 's' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 'o' })
-      wk.register({ [',.'] = 'which_key_ignore' }, { mode = 't' })
+      wk.add {
+        ',.',
+        hidden = true,
+        mode = { 'n', 'i', 'c', 'x', 's', 'o', 't' },
+      }
     end,
   },
 }

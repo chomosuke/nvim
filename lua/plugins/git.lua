@@ -47,56 +47,68 @@ return {
           })
 
           -- Actions
-          wk.register({
-            ['<leader>g'] = {
-              name = 'git',
-              s = { '<cmd>Gitsigns stage_hunk<CR>', 'stage hunk' },
-              r = { '<cmd>Gitsigns reset_hunk<CR>', 'reset hunk' },
-            },
-          }, { buffer = bufnr })
-          wk.register({
-            ['<leader>g'] = {
-              name = 'git',
-              s = { ":'<,'>Gitsigns stage_hunk<CR>", 'stage hunk' },
-              r = { ":'<,'>Gitsigns reset_hunk<CR>", 'reset hunk' },
-            },
-          }, { mode = 'v', buffer = bufnr })
-          wk.register({
-            ['<leader>g'] = {
-              name = 'git',
-              S = { gs.stage_buffer, 'stage buffer' },
-              u = { gs.undo_stage_hunk, 'undo stage hunk' },
-              R = { gs.reset_buffer, 'reset buffer' },
-              p = { gs.preview_hunk, 'preview hunk' },
-              b = {
-                function()
-                  gs.blame_line { full = true }
-                end,
-                'blame line',
-              },
-              t = {
-                name = 'toggle',
-                b = { gs.toggle_current_line_blame, 'current line blame' },
-                d = { gs.toggle_deleted, 'deleted' },
-              },
-              d = { gs.diffthis, 'diff this' },
-              D = {
-                function()
-                  gs.diffthis '~'
-                end,
-                'diff this',
-              },
-            },
-          }, {
+          wk.add {
             buffer = bufnr,
-          })
+            { '<leader>g', group = 'git' },
+            {
+              '<leader>gs',
+              '<cmd>Gitsigns stage_hunk<CR>',
+              desc = 'stage hunk',
+            },
+            {
+              '<leader>gr',
+              '<cmd>Gitsigns reset_hunk<CR>',
+              desc = 'reset hunk',
+            },
+            { '<leader>gS', gs.stage_buffer, desc = 'stage buffer' },
+            { '<leader>gu', gs.undo_stage_hunk, desc = 'undo stage hunk' },
+            { '<leader>gR', gs.reset_buffer, desc = 'reset buffer' },
+            { '<leader>gp', gs.preview_hunk, desc = 'preview hunk' },
+            {
+              '<leader>gb',
+              function()
+                gs.blame_line { full = true }
+              end,
+              desc = 'blame line',
+            },
+            { '<leader>gt', group = 'toggle' },
+            {
+              '<leader>gtb',
+              gs.toggle_current_line_blame,
+              desc = 'current line blame',
+            },
+            { '<leader>gtd', gs.toggle_deleted, desc = 'deleted' },
+            { '<leader>gd', gs.diffthis, desc = 'diff this' },
+            {
+              '<leader>gD',
+              function()
+                gs.diffthis '~'
+              end,
+              desc = 'diff this',
+            },
 
-          -- Text object
-          local text_object_mappings = {
-            ih = { '<cmd><C-U>Gitsigns select_hunk<CR>', 'select hunk' },
+            {
+              mode = 'v',
+              {
+                '<leader>gs',
+                ":'<,'>Gitsigns stage_hunk<CR>",
+                desc = 'stage hunk',
+              },
+              {
+                '<leader>gr',
+                ":'<,'>Gitsigns reset_hunk<CR>",
+                desc = 'reset hunk',
+              },
+            },
+
+            -- Text object
+            {
+              'ih',
+              '<cmd><C-U>Gitsigns select_hunk<CR>',
+              desc = 'select hunk',
+              mode = { 'o', 'x' },
+            },
           }
-          wk.register(text_object_mappings, { buffer = bufnr, mode = 'o' })
-          wk.register(text_object_mappings, { buffer = bufnr, mode = 'x' })
         end,
       }
     end,

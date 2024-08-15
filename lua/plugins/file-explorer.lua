@@ -30,11 +30,9 @@ return {
     config = function()
       -- mapings
       local wk = require 'which-key'
-      wk.register {
-        ['<leader>'] = {
-          n = { '<cmd>NvimTreeToggle<CR>', 'toggle file tree' },
-          r = { '<cmd>NvimTreeRefresh<CR>', 'refresh file tree' },
-        },
+      wk.add {
+        { '<leader>n', '<cmd>NvimTreeToggle<CR>', desc = 'toggle file tree' },
+        { '<leader>r', '<cmd>NvimTreeRefresh<CR>', desc = 'refresh file tree' },
       }
 
       require('nvim-tree').setup {

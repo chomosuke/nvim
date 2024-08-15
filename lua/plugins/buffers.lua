@@ -46,14 +46,12 @@ return {
       util.nmap('][', '<cmd>BufferLineMoveNext<CR>')
       util.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
       local wk = require 'which-key'
-      wk.register {
-        ['<leader>b'] = {
-          name = 'buffer',
-          p = { '<cmd>BufferLinePick<CR>', 'pick' },
-          c = { '<cmd>BufferLinePickClose<CR>', 'close' },
-          l = { '<cmd>BufferLineCloseLeft<CR>', 'close left' },
-          r = { '<cmd>BufferLineCloseRight<CR>', 'close right' },
-        },
+      wk.add {
+        { '<leader>b', group = 'buffer' },
+        { '<leader>bp', '<cmd>BufferLinePick<CR>', desc = 'pick' },
+        { '<leader>bc', '<cmd>BufferLinePickClose<CR>', desc = 'close' },
+        { '<leader>bl', '<cmd>BufferLineCloseLeft<CR>', desc = 'close left' },
+        { '<leader>br', '<cmd>BufferLineCloseRight<CR>', desc = 'close right' },
       }
     end,
   },

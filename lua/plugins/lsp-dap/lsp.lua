@@ -7,22 +7,13 @@ vim.lsp.inlay_hint.enable()
 function M.gen_config(server_name, config)
   config = config or {}
   config.capabilities = require('cmp_nvim_lsp').default_capabilities()
-  config.before_init = function(_, config_)
-    if type(config_.root_dir) ~= 'string' then
-      print(
-        'config.root_dir is not a string: ' .. vim.inspect(config_.root_dir)
-      )
-      return
+  local p_config = require('project-config').get_lsp_config(server_name)
+  if p_config ~= nil then
+    if p_config.settings ~= nil then
+      config.settings = p_config.settings
     end
-    local p_config =
-      require('project-config').get_lsp_config(server_name, config_.root_dir)
-    if p_config ~= nil then
-      if p_config.settings ~= nil then
-        config_.settings = p_config.settings
-      end
-      if p_config.cmd ~= nil then
-        config_.cmd = p_config.cmd
-      end
+    if p_config.cmd ~= nil then
+      config.cmd = p_config.cmd
     end
   end
   return config

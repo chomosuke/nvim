@@ -24,34 +24,10 @@ local function expand_json_dot(obj)
   return new_obj
 end
 
----@param path string
----@return string|table|integer|nil
-local function get_config(path)
-  local dir = vim.fn.fnamemodify(path, ':p:h')
-  local config_file = io.open(dir .. '/.nvim-config.json')
-  while config_file == nil do
-    local new_dir = vim.fn.fnamemodify(dir, ':h')
-    if dir == new_dir then
-      return nil
-    end
-    dir = new_dir
-    config_file = io.open(dir .. '/.nvim-config.json')
-  end
-
-  local config = config_file:read '*all'
-  config_file:close()
-
-  config = expand_json_dot(vim.fn.json_decode(config))
-  return config
-end
-
 ---@param server_name string
----@param path string
 ---@return string|integer|table|nil
-function M.get_lsp_config(server_name, path)
-  local config = get_config(path)
-  config = util.table_index(config, 'lsp', server_name, 'settings')
-  if config == nil and _G.LspConfig ~= nil then
+function M.get_lsp_config(server_name)
+  if _G.LspConfig ~= nil then
     -- Lsp settings can be set in .nvim.lua so that project specific settings can be applied
     -- Example:
     -- _G.LspConfig = {
@@ -68,20 +44,19 @@ function M.get_lsp_config(server_name, path)
     --     cmd = { "clangd", "--clang-tidy" },
     --   },
     -- }
-    config = _G.LspConfig[server_name]
+    return _G.LspConfig[server_name]
   end
-  return config
+  return nil
 end
 
 ---@param client_name string
----@param bufnr integer
 ---@return boolean
-function M.get_format_enabled(client_name, bufnr)
-  local config = get_config(vim.api.nvim_buf_get_name(bufnr))
+function M.get_format_enabled(client_name)
+  local config = _G.LspConfig[client_name]
   if config == nil then
     return true
   end
-  config = util.table_index(config, 'lsp', client_name, 'disable')
+  config = util.table_index(config, client_name, 'disable')
   if type(config) == 'table' then
     for _, disabled in pairs(config) do
       if disabled == 'format' then
@@ -96,11 +71,7 @@ end
 ---@param source_name string
 ---@return boolean
 function M.get_null_ls_source_enabled(params, source_name)
-  local config = get_config(params.bufname)
-  config = util.table_index(config, 'null-ls', 'disable')
-  if config == nil then
-    config = _G.NullLsDisable
-  end
+  local config = _G.NullLsDisable
   if config == nil then
     return true
   end

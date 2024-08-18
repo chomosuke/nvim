@@ -4,9 +4,8 @@ require('mason-null-ls').setup {
     function(source_name, methods)
       for _, method in pairs(methods) do
         null_ls.register(null_ls.builtins[method][source_name].with {
-          runtime_condition = function(params)
+          runtime_condition = function()
             return require('project-config').get_null_ls_source_enabled(
-              params,
               source_name
             )
           end,

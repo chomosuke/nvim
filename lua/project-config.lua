@@ -52,10 +52,10 @@ end
 ---@param client_name string
 ---@return boolean
 function M.get_format_enabled(client_name)
-  local config = _G.LspConfig[client_name]
-  if config == nil then
+  if _G.LspConfig == nil or _G.LspConfig[client_name] == nil then
     return true
   end
+  local config = _G.LspConfig[client_name]
   config = util.table_index(config, client_name, 'disable')
   if type(config) == 'table' then
     for _, disabled in pairs(config) do
@@ -67,10 +67,9 @@ function M.get_format_enabled(client_name)
   return true
 end
 
----@param params table
 ---@param source_name string
 ---@return boolean
-function M.get_null_ls_source_enabled(params, source_name)
+function M.get_null_ls_source_enabled(source_name)
   local config = _G.NullLsDisable
   if config == nil then
     return true

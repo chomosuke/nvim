@@ -58,7 +58,7 @@ return {
   {
     'chrisgrieser/nvim-early-retirement',
     opts = {
-      minimumBufferNum = 2,
+      minimumBufferNum = 3,
     },
     event = 'VeryLazy',
   },

@@ -39,6 +39,7 @@ return {
           S = false,
         },
       },
+      default_reg = '+',
     },
   },
 }

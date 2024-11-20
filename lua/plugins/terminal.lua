@@ -27,7 +27,7 @@ return {
 
   {
     'chomosuke/term-edit.nvim',
-    dev = true,
+    -- dev = true,
     version = '1.*',
     event = 'TermOpen',
     opts = {

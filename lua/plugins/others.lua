@@ -144,10 +144,7 @@ return {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
     -- dev = true,
-    version = '0.3.*',
-    build = function()
-      require('typst-preview').update()
-    end,
+    version = '1.1.*',
     config = function()
       local tp = require 'typst-preview'
       local wk = require 'which-key'
@@ -163,7 +160,13 @@ return {
           desc = 'Toggle preview scroll mode',
         },
       }
-      require('typst-preview').setup { debug = true }
+      require('typst-preview').setup {
+        debug = true,
+        dependencies_bin = {
+          ['tinymist'] = '/home/rli43/.local/share/nvim/mason/bin/tinymist',
+          ['websocat'] = 'websocat',
+        },
+      }
     end,
   },
 

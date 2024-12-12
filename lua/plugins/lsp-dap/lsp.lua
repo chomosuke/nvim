@@ -56,11 +56,6 @@ require('mason-lspconfig').setup_handlers {
       },
     }))
   end,
-  als = function()
-    lspconfig.als.setup(M.gen_config('als', {
-      cmd = { 'ada_language_server' },
-    }))
-  end,
   pylsp = function()
     lspconfig.pylsp.setup {
       settings = {

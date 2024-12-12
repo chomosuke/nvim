@@ -163,7 +163,7 @@ return {
       require('typst-preview').setup {
         debug = true,
         dependencies_bin = {
-          ['tinymist'] = '/home/rli43/.local/share/nvim/mason/bin/tinymist',
+          ['tinymist'] = 'tinymist',
           ['websocat'] = 'websocat',
         },
       }

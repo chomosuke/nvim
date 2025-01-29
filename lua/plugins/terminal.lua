@@ -4,7 +4,13 @@ return {
     'akinsho/toggleterm.nvim',
     keys = '<leader>t',
     opts = {
-      size = 12,
+      size = function(_)
+        if vim.o.lines > 48 then
+          return vim.o.lines / 4
+        else
+          return 12
+        end
+      end,
       open_mapping = '<leader>t',
       start_in_insert = false,
       insert_mappings = false,

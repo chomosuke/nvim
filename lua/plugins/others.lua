@@ -144,7 +144,7 @@ return {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
     -- dev = true,
-    version = '1.1.*',
+    version = '1.*',
     config = function()
       local tp = require 'typst-preview'
       local wk = require 'which-key'
@@ -163,8 +163,8 @@ return {
       require('typst-preview').setup {
         debug = true,
         dependencies_bin = {
-          ['tinymist'] = 'tinymist',
-          ['websocat'] = 'websocat',
+          -- ['tinymist'] = 'tinymist',
+          -- ['websocat'] = 'websocat',
         },
       }
     end,

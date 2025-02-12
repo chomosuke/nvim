@@ -1,4 +1,25 @@
 return {
+  -- watch files
+  {
+    'rktjmp/fwatch.nvim',
+    event = 'BufRead /Users/rli43/.local/state/nvim/lsp.log',
+    config = function()
+      local function watch(path)
+        require 'fwatch'.watch(path, {
+          on_event = function()
+            vim.defer_fn(function()
+              vim.cmd [[
+                edit
+                echo 'Refreshed by fwatch'
+              ]]
+            end, 0)
+          end,
+        })
+      end
+      watch('/Users/rli43/.local/state/nvim/lsp.log')
+    end,
+  },
+
   -- colorcolumn
   {
     'Bekaboo/deadcolumn.nvim',
@@ -60,8 +81,8 @@ return {
       require('auto-save').setup {
         condition = function(buf)
           if
-            vim.fn.getbufvar(buf, '&modifiable') == 1
-            and vim.fn.getbufvar(buf, '&filetype') == 'tex'
+              vim.fn.getbufvar(buf, '&modifiable') == 1
+              and vim.fn.getbufvar(buf, '&filetype') == 'tex'
           then
             return true
           end
@@ -143,15 +164,15 @@ return {
   {
     'chomosuke/typst-preview.nvim',
     ft = 'typst',
-    -- dev = true,
+    dev = true,
     version = '1.*',
     config = function()
       local tp = require 'typst-preview'
       local wk = require 'which-key'
       wk.add {
         mode = 'n',
-        { '<leader>o', group = 'typst-preview' },
-        { '<leader>os', tp.sync_with_cursor, desc = 'Scroll preview' },
+        { '<leader>o',  group = 'typst-preview' },
+        { '<leader>os', tp.sync_with_cursor,    desc = 'Scroll preview' },
         {
           '<leader>ot',
           function()
@@ -163,7 +184,7 @@ return {
       require('typst-preview').setup {
         debug = true,
         dependencies_bin = {
-          -- ['tinymist'] = 'tinymist',
+          ['tinymist'] = 'tinymist',
           -- ['websocat'] = 'websocat',
         },
       }

@@ -56,11 +56,6 @@ return {
         preselect = cmp.PreselectMode.None,
       }
 
-      -- Neorg
-      cmp.setup.filetype('norg', {
-        sources = cmp.config.sources { { name = 'neorg' } },
-      })
-
       -- Use buffer source for `/` and `?`
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),

@@ -28,17 +28,18 @@ return {
         },
         query = {
           [''] = 'rainbow-delimiters',
+          javascript = 'rainbow-delimiters-react'
           -- latex = 'rainbow-blocks',
           -- lua = 'rainbow-blocks',
         },
         highlight = {
-          'TSRainbowRed',
-          'TSRainbowYellow',
-          'TSRainbowBlue',
-          'TSRainbowOrange',
-          'TSRainbowGreen',
-          'TSRainbowViolet',
-          'TSRainbowCyan',
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterCyan',
         },
       }
     end,

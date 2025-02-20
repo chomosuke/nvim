@@ -66,4 +66,10 @@ util.nmap('<leader>bf', '<cmd>bd!<CR>')
 util.map('gq', 'gw')
 
 -- Less carpal tunnel inducing save
-util.map('<leader>w', '<cmd>w<CR>')
+util.map('<leader>w', function()
+  if vim.bo.modified then
+    vim.cmd 'write'
+  else
+    vim.cmd 'edit'
+  end
+end)

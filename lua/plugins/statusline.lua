@@ -1,3 +1,23 @@
+local util = require 'util'
+
+-- winbar
+util.create_autocmds('set-winbar', {
+  {
+    event = 'FileType',
+    opts = {
+      callback = function(opts)
+        if vim.bo.filetype == "toggleterm" or vim.bo.filetype == "neo-tree" or string.find(vim.bo.filetype, 'Telescope') then
+          return
+        end
+
+        local filename = vim.fn.expand("%")
+        vim.opt_local.winbar = " " .. filename .. " %m %=%v:%l "
+      end,
+      pattern = { '*' },
+    },
+  },
+})
+
 return {
   {
     'nvim-lualine/lualine.nvim',

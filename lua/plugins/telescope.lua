@@ -31,6 +31,23 @@ return {
               flip_columns = 150,
             },
           },
+          get_selection_window = function()
+            local function accept(win)
+              local bufnr = vim.api.nvim_win_get_buf(win)
+              local filetype = vim.bo[bufnr].filetype
+              return filetype ~= 'neo-tree' and filetype ~= 'toggleterm'
+            end
+            if accept(0) then
+              return 0
+            end
+            local wins = vim.api.nvim_list_wins()
+            util.filter_inplace(wins, accept)
+            if wins[1] ~= nil then
+              return wins[1]
+            else
+              return 0
+            end
+          end,
         },
       }
       require('telescope').load_extension 'fzf'
@@ -84,7 +101,8 @@ return {
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       },
     },
   },

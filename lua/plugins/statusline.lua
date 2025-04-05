@@ -116,7 +116,7 @@ return {
         options = {
           component_separators = '',
           section_separators = '',
-          disabled_filetypes = { 'NvimTree', 'packer' },
+          disabled_filetypes = { 'neo-tree', 'packer' },
           always_divide_middle = false,
           -- globalstatus = true,
         },

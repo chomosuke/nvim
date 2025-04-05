@@ -87,6 +87,18 @@ function M.set_tw(filetype, tw)
   })
 end
 
+function M.filter_inplace(t, func)
+    local i = 1
+    while (i <= #t) do
+        if func(t[i]) then
+            -- value passes test
+            i = i + 1
+        else
+            table.remove(t, i)
+        end
+    end
+end
+
 -- mapping --
 
 -- for all modes

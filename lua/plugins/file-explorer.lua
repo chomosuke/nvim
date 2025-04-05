@@ -1,83 +1,89 @@
--- Lazy load via autocmd to avoid weird race condition when lazy = false
-require('util').create_autocmds('nvim_tree_open_on_VimEnter', {
-  {
-    event = 'VimEnter',
-    opts = {
-      callback = function(data)
-        -- buffer is a directory
-        local directory = vim.fn.isdirectory(data.file) == 1
-        if not directory then
-          return
-        end
-        -- create a new, empty buffer
-        vim.cmd.enew()
-        -- wipe the directory buffer
-        vim.cmd.bw(data.buf)
-        -- change to the directory
-        vim.cmd.cd(data.file)
-        -- open the tree
-        require('nvim-tree.api').tree.open()
-      end,
-    },
-  },
-})
-
 return {
   {
-    'nvim-tree/nvim-tree.lua',
-    keys = { '<leader>n', '<leader>r' },
-    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- for file icon
+    'nvim-neo-tree/neo-tree.nvim',
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",        -- for file icon
+    },
     config = function()
       -- mapings
       local wk = require 'which-key'
       wk.add {
-        { '<leader>n', '<cmd>NvimTreeToggle<CR>', desc = 'toggle file tree' },
-        { '<leader>r', '<cmd>NvimTreeRefresh<CR>', desc = 'refresh file tree' },
+        { '<leader>n', '<cmd>Neotree toggle reveal<CR>',           desc = 'tree files' },
+        { '<leader>r', '<cmd>Neotree toggle buffers reveal<CR>',   desc = 'tree buffers' },
+        { '<leader>s', '<cmd>Neotree toggle document_symbols<CR>', desc = 'tree document_symbols' },
       }
 
-      require('nvim-tree').setup {
-        renderer = {
-          highlight_opened_files = 'icon',
-          full_name = true,
-          indent_markers = {
-            enable = true,
+      local function getTelescopeOpts(_state, path)
+        return {
+          cwd = path,
+          search_dirs = { path },
+        }
+      end
+
+      require 'neo-tree'.setup {
+        sources = {
+          'filesystem',
+          'buffers',
+          'document_symbols',
+          -- 'neotree-source.iron',
+        },
+        -- enable_cursor_hijack = true,
+        -- hide_root_node = true,            -- Hide the root node.
+        open_files_in_last_window = true, -- false = open files in top left window
+        source_selector = {
+          winbar = true,                  -- toggle to show selector on winbar
+          content_layout = 'center',
+          sources = {
+            { source = 'filesystem' },
+            { source = 'buffers' },
+            { source = 'document_symbols' },
           },
-          icons = {
-            show = {
-              folder_arrow = false,
+          truncation_character = "…", -- string
+        },
+        commands = {
+          ---@diagnostic disable-next-line: redundant-parameter
+          telescope_find = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            require('telescope.builtin').find_files(getTelescopeOpts(state, path))
+          end,
+          ---@diagnostic disable-next-line: redundant-parameter
+          telescope_grep = function(state)
+            local node = state.tree:get_node()
+            local path = node:get_id()
+            require('telescope.builtin').live_grep(getTelescopeOpts(state, path))
+          end,
+        },
+        buffers = {
+          group_empty_dirs = false,
+          window = {
+            mappings = {
+              ['d'] = "buffer_delete",
             },
-            glyphs = {
-              modified = '[+]',
-            },
           },
         },
-        actions = {
-          open_file = {
-            window_picker = {
-              enable = false,
-            },
+        document_symbols = {
+          follow_cursor = true,
+        },
+        window = {
+          mappings = {
+            ['<leader>f'] = 'telescope_find',
+            ['<leader>d'] = 'telescope_grep',
+            ['<leader>p'] = 'prev_source',
+            ['<leader>y'] = 'next_source',
+            ['t'] = 'toggle_node',
+            ['n'] = function() vim.cmd('Neotree focus filesystem left', true) end,
+            ['b'] = function() vim.cmd('Neotree focus buffers left', true) end,
+            ['s'] = function() vim.cmd('Neotree focus document_symbols left', true) end,
+            ['h'] = function(state)
+              local node = state.tree:get_node()
+              require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
+            end
+            -- ['i'] = function() vim.api.nvim_exec('Neotree focus iron left', true) end,
           },
-        },
-        diagnostics = {
-          enable = true,
-          icons = {
-            hint = '󰌶',
-            info = '󰋽',
-            warning = '󰀪',
-            error = '󰅚',
-          },
-          show_on_dirs = true,
-          show_on_open_dirs = false,
-        },
-        git = {
-          ignore = false,
-          show_on_dirs = true,
-          show_on_open_dirs = false,
-        },
-        modified = {
-          enable = true,
-          show_on_dirs = true,
-          show_on_open_dirs = false,
         },
       }
     end,

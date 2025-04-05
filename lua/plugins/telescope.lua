@@ -1,7 +1,9 @@
+local util = require 'util'
+
 return {
   {
     'nvim-telescope/telescope.nvim',
-    keys = '<leader>e',
+    keys = { '<leader>e', '<leader>f', '<leader>d' },
     config = function()
       local actions = require 'telescope.actions'
       local action_layout = require 'telescope.actions.layout'
@@ -37,19 +39,19 @@ return {
       local wk = require 'which-key'
       wk.add {
         { '<leader>e', group = 'telescope' },
-        { '<leader>ef', '<cmd>Telescope find_files<CR>', desc = 'find files' },
+        { '<leader>f', '<cmd>Telescope find_files<CR>', desc = 'find files' },
         {
           '<leader>ec',
           '<cmd>Telescope current_buffer_fuzzy_find<CR>',
           desc = 'find in current buffer',
         },
-        { '<leader>ed', '<cmd>Telescope live_grep<CR>', desc = 'find in cwd' },
+        { '<leader>d',   '<cmd>Telescope live_grep<CR>',   desc = 'find in cwd' },
         {
           '<leader>eu',
           '<cmd>Telescope grep_string<CR>',
           desc = 'find current word',
         },
-        { 'g', group = 'git' },
+        { '<leader>eg',  group = 'git & lsp' },
         { '<leader>egc', '<cmd>Telescope git_commits<CR>', desc = 'list commits' },
         {
           '<leader>egu',
@@ -62,8 +64,8 @@ return {
           desc = 'list branches',
         },
         { '<leader>egs', '<cmd>Telescope git_status<CR>', desc = 'show status' },
-        { '<leader>egh', '<cmd>Telescope git_stash<CR>', desc = 'list stashes' },
-        { 'l', group = 'lsp' },
+        { '<leader>egh', '<cmd>Telescope git_stash<CR>',  desc = 'list stashes' },
+        -- { '<leader>el',  group = 'lsp' },
         {
           '<leader>egr',
           '<cmd>Telescope lsp_references<CR>',

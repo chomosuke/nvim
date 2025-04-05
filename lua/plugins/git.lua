@@ -20,9 +20,9 @@ return {
           end
 
           -- Navigation
-          map('n', ']c', function()
+          map('n', 'gj', function()
             if vim.wo.diff then
-              return ']c'
+              return 'gj'
             end
             vim.schedule(function()
               gs.next_hunk()
@@ -33,9 +33,9 @@ return {
             desc = 'next hunk',
           })
 
-          map('n', '[c', function()
+          map('n', 'gk', function()
             if vim.wo.diff then
-              return '[c'
+              return 'gk'
             end
             vim.schedule(function()
               gs.prev_hunk()

@@ -36,28 +36,28 @@ return {
 
       -- Normal Mode Swapping:
       -- Swap The Master Node relative to the cursor with it's siblings, Dot Repeatable
-      vim.keymap.set('n', '<leader>sU', function()
+      vim.keymap.set('n', ',tU', function()
         vim.opt.opfunc = 'v:lua.STSSwapUpNormal_Dot'
         return 'g@l'
       end, { silent = true, expr = true })
-      vim.keymap.set('n', '<leader>sD', function()
+      vim.keymap.set('n', ',tD', function()
         vim.opt.opfunc = 'v:lua.STSSwapDownNormal_Dot'
         return 'g@l'
       end, { silent = true, expr = true })
 
       -- Swap Current Node at the ursor with it's siblings, Dot Repeatable
-      vim.keymap.set('n', '<leader>sd', function()
+      vim.keymap.set('n', ',td', function()
         vim.opt.opfunc = 'v:lua.STSSwapCurrentNodeNextNormal_Dot'
         return 'g@l'
       end, { silent = true, expr = true })
-      vim.keymap.set('n', '<leader>su', function()
+      vim.keymap.set('n', ',tu', function()
         vim.opt.opfunc = 'v:lua.STSSwapCurrentNodePrevNormal_Dot'
         return 'g@l'
       end, { silent = true, expr = true })
 
       -- Visual Selection from Normal Mode
-      vim.keymap.set('n', '<leader>sx', '<cmd>STSSelectMasterNode<CR>', opts)
-      vim.keymap.set('n', '<leader>sn', '<cmd>STSSelectCurrentNode<CR>', opts)
+      vim.keymap.set('n', ',tx', '<cmd>STSSelectMasterNode<CR>', opts)
+      vim.keymap.set('n', ',tn', '<cmd>STSSelectCurrentNode<CR>', opts)
 
       -- Select Nodes in Visual Mode
       vim.keymap.set('x', 'J', '<cmd>STSSelectNextSiblingNode<CR>', opts)

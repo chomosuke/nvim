@@ -41,7 +41,7 @@ return {
       feedkeys_delay = util.is_windows() and 100 or 20,
       mapping = {
         n = {
-          ['<C-i>'] = 'u',
+          ['<C-i>'] = 'o',
           s = false,
           S = false,
         },

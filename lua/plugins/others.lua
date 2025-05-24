@@ -166,7 +166,7 @@ return {
       require('typst-preview').setup {
         debug = true,
         dependencies_bin = {
-          ['tinymist'] = 'tinymist',
+          -- ['tinymist'] = 'tinymist',
           -- ['websocat'] = 'websocat',
         },
       }

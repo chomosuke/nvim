@@ -57,6 +57,11 @@ return {
             require('telescope.builtin').live_grep(getTelescopeOpts(state, path))
           end,
         },
+        filesystem = {
+          filtered_items = {
+            visible = true,
+          },
+        },
         buffers = {
           group_empty_dirs = false,
           window = {
@@ -75,9 +80,6 @@ return {
             ['<leader>p'] = 'prev_source',
             ['<leader>y'] = 'next_source',
             ['t'] = 'toggle_node',
-            ['n'] = function() vim.cmd('Neotree focus filesystem left', true) end,
-            ['b'] = function() vim.cmd('Neotree focus buffers left', true) end,
-            ['s'] = function() vim.cmd('Neotree focus document_symbols left', true) end,
             ['h'] = function(state)
               local node = state.tree:get_node()
               require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())

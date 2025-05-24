@@ -27,10 +27,10 @@ return {
           diagnostics = 'nvim_lsp',
           diagnostics_indicator = function(_, level, _, _)
             local icon = level:match 'error' and '󰅚'
-              or level:match 'warning' and '󰀪'
-              or level:match 'info' and '󰋽'
-              or level:match 'hint' and '󰌶'
-              or '?'
+                or level:match 'warning' and '󰀪'
+                or level:match 'info' and '󰋽'
+                or level:match 'hint' and '󰌶'
+                or '?'
             return icon
           end,
           sort_by = 'insert_after_current',
@@ -41,16 +41,17 @@ return {
       local util = require 'util'
       util.nmap(']]', '<cmd>BufferLineCycleNext<CR>')
       util.nmap('[[', '<cmd>BufferLineCyclePrev<CR>')
-      util.nmap('<leader>y', '<cmd>BufferLineCycleNext<CR>')
-      util.nmap('<leader>p', '<cmd>BufferLineCyclePrev<CR>')
       util.nmap('][', '<cmd>BufferLineMoveNext<CR>')
       util.nmap('[]', '<cmd>BufferLineMovePrev<CR>')
       local wk = require 'which-key'
+
       wk.add {
-        { '<leader>b', group = 'buffer' },
-        { '<leader>bp', '<cmd>BufferLinePick<CR>', desc = 'pick' },
-        { '<leader>bc', '<cmd>BufferLinePickClose<CR>', desc = 'close' },
-        { '<leader>bl', '<cmd>BufferLineCloseLeft<CR>', desc = 'close left' },
+        { '<leader>b',  group = 'buffer' },
+        { '<leader>bn', '<cmd>BufferLineCycleNext<CR>',  desc = 'cycle next' },
+        { '<leader>bp', '<cmd>BufferLineCyclePrev<CR>',  desc = 'cycle prev' },
+        -- { '<leader>bp', '<cmd>BufferLinePick<CR>', desc = 'pick' },
+        { '<leader>bd', '<cmd>BufferLinePickClose<CR>',  desc = 'close' },
+        { '<leader>bl', '<cmd>BufferLineCloseLeft<CR>',  desc = 'close left' },
         { '<leader>br', '<cmd>BufferLineCloseRight<CR>', desc = 'close right' },
       }
     end,

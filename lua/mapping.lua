@@ -73,3 +73,8 @@ util.map('<leader>w', function()
     vim.cmd 'edit'
   end
 end)
+
+-- Less carpal tunnel inducing scroll
+util.map('J', '8j')
+util.map('K', '8k')
+util.map('X', 'J')

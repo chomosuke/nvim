@@ -83,8 +83,9 @@ return {
             ['h'] = function(state)
               local node = state.tree:get_node()
               require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-            end
-            -- ['i'] = function() vim.api.nvim_exec('Neotree focus iron left', true) end,
+            end,
+            ['gj'] = 'next_git_modified',
+            ['gk'] = 'prev_git_modified',
           },
         },
       }

@@ -67,11 +67,11 @@ util.map('gq', 'gw')
 
 -- Less carpal tunnel inducing save
 util.map('<leader>w', function()
-  if vim.bo.modified then
-    vim.cmd 'write'
-  else
-    vim.cmd 'edit'
-  end
+  -- if vim.bo.modified then
+  vim.cmd 'write'
+  -- else
+  --   vim.cmd 'edit'
+  -- end
 end)
 
 -- Less carpal tunnel inducing scroll

@@ -9,7 +9,6 @@ return {
       -- vim.lsp.set_log_level(0)
 
       require 'plugins.lsp-dap.lsp'
-      require 'plugins.lsp-dap.null-ls'
       require 'plugins.lsp-dap.dap'
       require 'plugins.lsp-dap.both'
       require 'plugins.lsp-dap.mapping'
@@ -30,14 +29,9 @@ return {
     end,
     dependencies = {
       -- mason
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      'mason-org/mason.nvim',
+      'mason-org/mason-lspconfig.nvim',
       'jay-babu/mason-nvim-dap.nvim',
-      'jay-babu/mason-null-ls.nvim',
-
-      -- null-ls
-      'jose-elias-alvarez/null-ls.nvim',
-      'nvim-lua/plenary.nvim',
 
       -- dap
       'rcarriga/nvim-dap-ui',
@@ -48,7 +42,7 @@ return {
       {
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended
-        lazy = false, -- This plugin is already lazy
+        lazy = false,   -- This plugin is already lazy
       },
 
       'akinsho/flutter-tools.nvim',

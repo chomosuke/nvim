@@ -1,29 +1,6 @@
 local util = require 'util'
 local M = {}
 
-local function expand_json_dot(obj)
-  local new_obj = {}
-  for k, v in pairs(obj) do
-    local keys
-    if type(k) == 'string' then
-      keys = util.split(k, '%.')
-    else
-      keys = { k }
-    end
-    local o = new_obj
-    local last_key = table.remove(keys, #keys)
-    for _, key in pairs(keys) do
-      o[key] = o[key] or {}
-      o = o[key]
-    end
-    if type(v) == 'table' then
-      v = expand_json_dot(v)
-    end
-    o[last_key] = v
-  end
-  return new_obj
-end
-
 ---@param server_name string
 ---@return string|integer|table|nil
 function M.get_lsp_config(server_name)
@@ -62,21 +39,6 @@ function M.get_format_enabled(client_name)
       if disabled == 'format' then
         return false
       end
-    end
-  end
-  return true
-end
-
----@param source_name string
----@return boolean
-function M.get_null_ls_source_enabled(source_name)
-  local config = _G.NullLsDisable
-  if config == nil then
-    return true
-  end
-  for _, name in pairs(config) do
-    if name == source_name then
-      return false
     end
   end
   return true

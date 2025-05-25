@@ -1,4 +1,12 @@
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup {
+  automatic_enable = {
+    exclude = {
+      'rust_analyzer',
+      'jdtls',
+      'ocamllsp'
+    }
+  }
+}
 
 local M = {}
 
@@ -29,21 +37,23 @@ end
 
 require('neodev').setup {}
 
-local lspconfig = require 'lspconfig'
-
 -- Self installed lsps:
-lspconfig.ocamllsp.setup(M.gen_config 'ocamllsp')
+local function config(name, cfg)
+  vim.lsp.config[name] = vim.tbl_deep_extend(
+    'force',
+    vim.lsp.config[name] or {},
+    M.gen_config(name, cfg)
+  )
+end
+vim.lsp.enable('ocamllsp')
 
-local function null() end
-require('mason-lspconfig').setup_handlers {
-  rust_analyzer = null,
-  jdtls = null,
-  ocamllsp = null,
-  function(server_name)
-    lspconfig[server_name].setup(M.gen_config(server_name))
-  end,
-  ltex = function()
-    lspconfig.ltex.setup(M.gen_config('ltex', {
+local mappings = require "mason-lspconfig.mappings"
+local registry = require "mason-registry"
+-- for _, mason_pkg in pairs(registry.get_all_package_names()) do
+for _, mason_pkg in pairs(registry.get_installed_package_names()) do
+  local name = mappings.get_mason_map().package_to_lspconfig[mason_pkg]
+  if name == 'ltex' then
+    config(name, {
       filetypes = { 'markdown', 'tex' },
       on_attach = function()
         require('ltex_extra').setup {
@@ -51,10 +61,9 @@ require('mason-lspconfig').setup_handlers {
           path = vim.fn.stdpath 'data' .. '/ltex_extra',
         }
       end,
-    }))
-  end,
-  lua_ls = function()
-    lspconfig.lua_ls.setup(M.gen_config('lua_ls', {
+    })
+  elseif name == 'lua_ls' then
+    config(name, {
       settings = {
         Lua = {
           workspace = {
@@ -62,10 +71,9 @@ require('mason-lspconfig').setup_handlers {
           },
         },
       },
-    }))
-  end,
-  pylsp = function()
-    lspconfig.pylsp.setup {
+    })
+  elseif name == 'pylsp' then
+    config(name, {
       settings = {
         pylsp = {
           plugins = {
@@ -79,9 +87,11 @@ require('mason-lspconfig').setup_handlers {
           },
         },
       },
-    }
-  end,
-}
+    })
+  elseif name ~= nil then
+    config(name)
+  end
+end
 
 vim.api.nvim_set_hl(0, 'LspInfoBorder', {
   fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID 'Comment'), 'fg#'),

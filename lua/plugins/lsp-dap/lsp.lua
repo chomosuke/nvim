@@ -4,6 +4,14 @@ local M = {}
 
 vim.lsp.inlay_hint.enable()
 
+function M.format()
+  vim.lsp.buf.format {
+    filter = function(client)
+      return require('project-config').get_format_enabled(client.name, 0)
+    end,
+  }
+end
+
 function M.gen_config(server_name, config)
   config = config or {}
   config.capabilities = require('cmp_nvim_lsp').default_capabilities()

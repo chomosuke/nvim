@@ -13,6 +13,20 @@ return {
       require 'plugins.lsp-dap.dap'
       require 'plugins.lsp-dap.both'
       require 'plugins.lsp-dap.mapping'
+
+      -- Format on save
+      local lsp = require 'plugins.lsp-dap.lsp'
+      local util = require 'util'
+      util.create_autocmds('format_on_save', {
+        {
+          event = 'BufWritePre',
+          opts = {
+            callback = function()
+              lsp.format()
+            end,
+          },
+        },
+      })
     end,
     dependencies = {
       -- mason

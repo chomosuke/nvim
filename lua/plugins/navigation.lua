@@ -49,10 +49,10 @@ return {
       vim.keymap.set('n', ',tn', '<cmd>STSSelectCurrentNode<CR>', opts)
 
       -- Select Nodes in Visual Mode
-      vim.keymap.set('x', 'J', '<cmd>STSSelectNextSiblingNode<CR>', opts)
-      vim.keymap.set('x', 'K', '<cmd>STSSelectPrevSiblingNode<CR>', opts)
-      vim.keymap.set('x', 'H', '<cmd>STSSelectParentNode<CR>', opts)
-      vim.keymap.set('x', 'L', '<cmd>STSSelectChildNode<CR>', opts)
+      vim.keymap.set('x', '<leader>j', '<cmd>STSSelectNextSiblingNode<CR>', opts)
+      vim.keymap.set('x', '<leader>k', '<cmd>STSSelectPrevSiblingNode<CR>', opts)
+      vim.keymap.set('x', '<leader>h', '<cmd>STSSelectParentNode<CR>', opts)
+      vim.keymap.set('x', '<leader>l', '<cmd>STSSelectChildNode<CR>', opts)
 
       -- Swapping Nodes in Visual Mode
       vim.keymap.set('x', '<A-j>', '<cmd>STSSwapNextVisual<CR>', opts)

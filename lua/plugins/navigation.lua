@@ -1,29 +1,18 @@
+local util = require 'util'
 return {
   {
-    'ggandor/leap.nvim',
-    lazy = false, -- Lazy loading won't work
+    'smoka7/hop.nvim',
+    lazy = false,
+    version = '*',
     config = function()
-      require('leap').setup {
-        equivalence_classes = {
-          {
-            ' \t\r\n',
-            ')]}>',
-            '([{<',
-            { '"', "'", '`' },
-          },
-        },
-        safe_labels = {},
-        -- stylua: ignore
-        labels = {
-          'e', 'u', 'o', 'a', 'i', 't', 'h', 'n', 's', 'd', '.', 'p', ';', 'y',
-          'c', 'g', 'r', 'z', 'f', 'k', 'q', 'j', 'x', 'm', 'v', 'w', 'b', "'",
-          'l', 'E', 'U', 'O', 'A', 'I', 'T', 'H', 'N', 'S', 'D', '>', 'P', ':',
-          'Y', 'C', 'G', 'R', 'Z', 'F', 'K', 'Q', 'J', 'X', 'M', 'V', 'W', 'B',
-          '"', 'L',
-        },
-      }
-      require('leap').set_default_keymaps()
-    end,
+      local hop = require 'hop'
+      hop.setup { keys = "dtnfgcrlbmw',.py;qjkxaoeihus" }
+
+      ---@diagnostic disable-next-line: missing-fields
+      util.map('s', function() hop.hint_char2 {} end)
+      ---@diagnostic disable-next-line: missing-fields
+      util.map('S', function() hop.hint_lines_skip_whitespace {} end)
+    end
   },
 
   {
